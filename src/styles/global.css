@@ -1,0 +1,45 @@
+/* src/styles/global.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --brown: #8B4513;
+    --gold: #C8792A;
+    --gold-light: #e8a855;
+    --dark: #070707;
+    --dark-2: #0d0d0d;
+    --dark-3: #131313;
+    --border: rgba(255, 255, 255, 0.06);
+    --muted: rgba(255, 255, 255, 0.35);
+    --dim: rgba(255, 255, 255, 0.58);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--dark);
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@layer utilities {
+  .text-muted { color: var(--muted); }
+  .text-dim { color: var(--dim); }
+  .border-subtle { border-color: var(--border); }
+  .bg-dark-2 { background-color: var(--dark-2); }
+  .bg-dark-3 { background-color: var(--dark-3); }
+}
