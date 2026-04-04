@@ -1,0 +1,35 @@
+---
+// src/components/NumbersBar.astro
+export interface Props {
+  items: Array<{ value: string; label: string }>;
+}
+const { items } = Astro.props;
+---
+
+<div
+  class="relative rounded-2xl overflow-hidden"
+  style="background: var(--dark-3); border: 1px solid var(--border); padding: 68px 60px;"
+>
+  <div
+    class="absolute top-0 left-1/4 right-1/4 h-px"
+    style="background: linear-gradient(90deg, transparent, rgba(139,69,19,0.6), transparent);"
+  ></div>
+
+  <div class="grid gap-0" style={`grid-template-columns: repeat(${items.length}, 1fr);`}>
+    {items.map((item, i) => (
+      <div
+        class="px-9"
+        style={`padding-left: ${i === 0 ? '0' : '36px'}; padding-right: 36px; ${i < items.length - 1 ? 'border-right: 1px solid var(--border);' : ''}`}
+      >
+        <div
+          class="font-display font-black leading-none"
+          style="font-size: 48px; letter-spacing: -2.5px; color: #fff;"
+          set:html={item.value.replace(/(\d+[\d.,]*[x%+\-]?)/g, `<em style="color: var(--gold); font-style: normal;">$1</em>`)}
+        />
+        <p class="text-xs font-light leading-snug mt-2.5" style="color: var(--muted);">
+          {item.label}
+        </p>
+      </div>
+    ))}
+  </div>
+</div>

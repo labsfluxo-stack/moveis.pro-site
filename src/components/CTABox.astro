@@ -1,0 +1,50 @@
+---
+// src/components/CTABox.astro
+export interface Props {
+  title: string;           // pode ter \n para quebra de linha
+  subtitle: string;
+  buttonLabel: string;
+  buttonHref: string;
+}
+const { title, subtitle, buttonLabel, buttonHref } = Astro.props;
+const titleLines = title.split('\n');
+---
+
+<div
+  class="relative rounded-3xl overflow-hidden"
+  style="border: 1px solid var(--border); background: var(--dark-2); padding: 84px 68px;"
+>
+  <div
+    class="absolute bottom-0 right-0 w-72 h-72 pointer-events-none"
+    style="background: radial-gradient(circle, rgba(139,69,19,0.16) 0%, transparent 70%); transform: translate(25%, 25%);"
+  ></div>
+
+  <div class="grid gap-14 items-center" style="grid-template-columns: 1fr 260px;">
+    <h2
+      class="font-display font-black text-white leading-tight"
+      style="font-size: clamp(32px, 4vw, 52px); letter-spacing: -2px; line-height: 1.05;"
+    >
+      {titleLines.map((line, i) => (
+        <span>
+          {i === titleLines.length - 1
+            ? <em class="not-italic" style="color: var(--gold);">{line}</em>
+            : line}
+          {i < titleLines.length - 1 && <br />}
+        </span>
+      ))}
+    </h2>
+
+    <div class="relative z-10">
+      <p class="text-sm font-light leading-relaxed mb-5" style="color: var(--muted);">
+        {subtitle}
+      </p>
+      <a
+        href={buttonHref}
+        class="flex items-center justify-center gap-2 w-full text-sm font-semibold text-white rounded-[10px] no-underline transition-opacity hover:opacity-90"
+        style="background: var(--brown); padding: 15px 28px;"
+      >
+        {buttonLabel}
+      </a>
+    </div>
+  </div>
+</div>

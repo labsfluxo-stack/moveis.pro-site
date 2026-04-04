@@ -1,0 +1,50 @@
+---
+// src/components/SectionHeader.astro
+export interface Props {
+  index: string;       // ex: "01 — Serviços"
+  title: string;       // ex: "O que a\nMoveis.pro faz"
+  subtitle?: string;
+  linkLabel?: string;
+  linkHref?: string;
+}
+const { index, title, subtitle, linkLabel, linkHref } = Astro.props;
+---
+
+<div
+  class="flex justify-between items-end pb-11 mb-0"
+  style="border-bottom: 1px solid var(--border);"
+>
+  <div>
+    <div
+      class="text-xs font-bold tracking-widest uppercase mb-4"
+      style="color: var(--brown); letter-spacing: 2px;"
+    >
+      {index}
+    </div>
+    <h2
+      class="font-display font-black text-white"
+      style="font-size: clamp(32px, 4vw, 52px); letter-spacing: -1.8px; line-height: 1.0;"
+    >
+      {title}
+    </h2>
+  </div>
+
+  {(subtitle || linkLabel) && (
+    <div class="text-right max-w-xs">
+      {subtitle && (
+        <p class="text-sm font-light leading-relaxed mb-5" style="color: var(--muted);">
+          {subtitle}
+        </p>
+      )}
+      {linkLabel && linkHref && (
+        <a
+          href={linkHref}
+          class="text-sm font-medium no-underline inline-flex items-center gap-1.5"
+          style="color: var(--gold);"
+        >
+          {linkLabel}
+        </a>
+      )}
+    </div>
+  )}
+</div>

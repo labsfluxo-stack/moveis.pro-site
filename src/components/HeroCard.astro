@@ -1,0 +1,57 @@
+---
+// src/components/HeroCard.astro
+export interface Props {
+  metric: string;        // ex: "+187%"
+  metricLabel: string;  // ex: "Leads qualificados — Móveis Alfa SP"
+  barPercent: number;   // 0-100
+  rows: Array<{ label: string; value: string }>;
+}
+const { metric, metricLabel, barPercent, rows } = Astro.props;
+---
+
+<div
+  class="relative rounded-2xl p-8 overflow-hidden"
+  style="background: var(--dark-3); border: 1px solid var(--border);"
+>
+  <div
+    class="absolute top-0 left-0 right-0 h-px"
+    style="background: linear-gradient(90deg, transparent, rgba(200,121,42,0.7), transparent);"
+  ></div>
+
+  <div
+    class="text-xs font-semibold uppercase tracking-widest mb-6"
+    style="color: var(--muted); letter-spacing: 1.8px;"
+  >
+    Performance do mês atual
+  </div>
+
+  <div
+    class="font-display font-black leading-none mb-2"
+    style="font-size: 56px; letter-spacing: -2.5px; color: #fff;"
+  >
+    <em class="not-italic" style="color: var(--gold);">{metric.startsWith('+') ? '+' : ''}</em>{metric.replace('+', '')}
+  </div>
+
+  <p class="text-xs font-light mb-6" style="color: var(--muted);">{metricLabel}</p>
+
+  <div class="h-px rounded-full mb-6" style="background: rgba(255,255,255,0.06);">
+    <div
+      class="h-px rounded-full"
+      style={`width: ${barPercent}%; background: linear-gradient(90deg, var(--brown), var(--gold-light));`}
+    ></div>
+  </div>
+
+  <div class="flex flex-col gap-3">
+    {rows.map((row) => (
+      <div class="flex justify-between items-center">
+        <span class="text-xs font-light" style="color: var(--muted);">{row.label}</span>
+        <span
+          class="font-display font-black text-sm"
+          style="color: var(--gold); letter-spacing: -0.3px;"
+        >
+          {row.value}
+        </span>
+      </div>
+    ))}
+  </div>
+</div>

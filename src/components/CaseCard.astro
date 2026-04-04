@@ -1,0 +1,45 @@
+---
+// src/components/CaseCard.astro
+export interface Props {
+  tag: string;
+  title: string;
+  description: string;
+  metric: string;
+  metricLabel: string;
+  featured?: boolean;
+}
+const { tag, title, description, metric, metricLabel, featured = false } = Astro.props;
+---
+
+<div
+  class={`relative rounded-[18px] p-10 flex flex-col justify-between transition-all duration-200 hover:border-opacity-40 ${featured ? 'row-span-2' : ''}`}
+  style="background: var(--dark-3); border: 1px solid var(--border); min-height: 220px;"
+>
+  <div>
+    <span
+      class="block text-xs font-semibold tracking-widest uppercase mb-5"
+      style="color: var(--gold); letter-spacing: 1.5px;"
+    >
+      {tag}
+    </span>
+    <h3
+      class="font-display font-black text-white mb-2.5"
+      style="font-size: 22px; letter-spacing: -0.6px;"
+    >
+      {title}
+    </h3>
+    <p class="text-sm font-light leading-relaxed" style="color: var(--muted);">
+      {description}
+    </p>
+  </div>
+
+  <div class="mt-10">
+    <div
+      class="font-display font-black leading-none"
+      style={`font-size: ${featured ? '58px' : '44px'}; letter-spacing: -3px; color: var(--gold);`}
+    >
+      {metric}
+    </div>
+    <p class="text-xs font-light mt-1.5" style="color: var(--muted);">{metricLabel}</p>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+---
+// src/components/ServiceRow.astro
+export interface Props {
+  number: string;   // ex: "01"
+  name: string;
+  description: string;
+  badge: string;    // ex: "IA & Automação"
+  href: string;
+}
+const { number, name, description, badge, href } = Astro.props;
+---
+
+<a
+  href={href}
+  class="grid gap-7 py-8 no-underline group transition-all duration-200"
+  style="grid-template-columns: 72px 1fr 1.1fr 110px; align-items: center; border-bottom: 1px solid var(--border);"
+>
+  <span
+    class="font-display font-bold text-xs tracking-wider"
+    style="color: var(--brown); letter-spacing: 1px;"
+  >
+    {number}
+  </span>
+  <span
+    class="font-display font-black text-white transition-colors group-hover:opacity-80"
+    style="font-size: 19px; letter-spacing: -0.5px;"
+  >
+    {name}
+  </span>
+  <span class="text-sm font-light leading-snug" style="color: var(--muted);">
+    {description}
+  </span>
+  <span
+    class="text-xs font-medium text-center px-3 py-1.5 rounded-full whitespace-nowrap"
+    style="color: var(--muted); background: rgba(255,255,255,0.04); letter-spacing: 0.5px;"
+  >
+    {badge}
+  </span>
+</a>
