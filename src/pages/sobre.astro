@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import NumbersBar from '../components/NumbersBar.astro';
+import CTABox from '../components/CTABox.astro';
+
+const diferenciais = [
+  { icon: '🎯', title: 'Especialistas em móveis', desc: 'Somos a única agência 100% focada no setor moveleiro. Entendemos seu cliente, seu ciclo de vendas e o que realmente converte.' },
+  { icon: '🤖', title: 'Tecnologia proprietária', desc: 'Desenvolvemos nossas próprias ferramentas de IA, CRM e 3D — não revendemos software genérico.' },
+  { icon: '📍', title: 'Foco no Nordeste', desc: 'Atuamos em Campina Grande, Caruaru, João Pessoa e Recife com conhecimento profundo do mercado local.' },
+  { icon: '📊', title: 'ROI garantido', desc: 'Trabalhamos com métricas claras e acompanhamento semanal. Você sabe exatamente o retorno do investimento.' },
+];
+
+const numbers = [
+  { value: '+200', label: 'Lojas atendidas no Brasil' },
+  { value: '3.8×', label: 'ROI médio em tráfego' },
+  { value: '98%', label: 'Satisfação dos clientes' },
+  { value: '4', label: 'Cidades no Nordeste' },
+];
+---
+
+<BaseLayout title="Sobre" description="Conheça a Moveis.pro — especialistas em tecnologia para o mercado moveleiro do Nordeste.">
+  <Nav />
+  <main style="padding-top: 64px;">
+
+    <section style="padding: 100px 56px 80px;">
+      <div class="inline-flex items-center gap-2.5 mb-8" style="color: var(--gold);">
+        <span class="block w-7 h-px" style="background: var(--gold);"></span>
+        <span class="text-xs font-medium tracking-widest uppercase" style="letter-spacing: 2px;">Sobre nós</span>
+      </div>
+      <h1 class="font-display font-black text-white mb-8" style="font-size: clamp(44px, 5.5vw, 72px); letter-spacing: -2.5px; line-height: 1.0; max-width: 700px;">
+        A única solução 360°<br />para móveis no<br /><em class="not-italic" style="color: var(--gold);">Nordeste.</em>
+      </h1>
+      <p class="font-light max-w-xl" style="font-size: 17px; color: var(--dim); line-height: 1.75;">
+        A Moveis.pro nasceu de uma constatação simples: o mercado moveleiro do Nordeste tem potencial enorme, mas carece de tecnologia especializada. Agências genéricas não entendem o ciclo de venda de móveis. Nós entendemos.
+      </p>
+    </section>
+
+    <div style="padding: 0 56px 80px;">
+      <NumbersBar items={numbers} />
+    </div>
+
+    <section style="padding: 0 56px 100px;">
+      <div class="grid gap-4" style="grid-template-columns: repeat(2, 1fr);">
+        {diferenciais.map((d) => (
+          <div class="rounded-[18px] p-10" style="background: var(--dark-3); border: 1px solid var(--border);">
+            <div class="text-3xl mb-6">{d.icon}</div>
+            <h3 class="font-display font-black text-white mb-3" style="font-size: 20px; letter-spacing: -0.5px;">{d.title}</h3>
+            <p class="text-sm font-light leading-relaxed" style="color: var(--muted);">{d.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div style="padding: 0 56px 100px;">
+      <CTABox
+        title={"Quer conhecer\nmelhor o nosso\ntrabalho?"}
+        subtitle="Agende uma conversa e veja como transformamos lojas de móveis no Nordeste."
+        buttonLabel="Falar com especialista →"
+        buttonHref="/contato"
+      />
+    </div>
+
+  </main>
+  <Footer />
+</BaseLayout>
