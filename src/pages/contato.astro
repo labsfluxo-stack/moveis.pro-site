@@ -1,0 +1,147 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Contato"
+  description="Agende uma conversa gratuita com um especialista da Moveis.pro."
+>
+  <Nav />
+  <main style="padding-top: 64px;">
+    <section style="padding: 100px 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;">
+
+      <div>
+        <div class="inline-flex items-center gap-2.5 mb-8" style="color: var(--gold);">
+          <span class="block w-7 h-px" style="background: var(--gold);"></span>
+          <span class="text-xs font-medium tracking-widest uppercase" style="letter-spacing: 2px;">Contato</span>
+        </div>
+        <h1 class="font-display font-black text-white mb-6" style="font-size: clamp(40px, 5vw, 64px); letter-spacing: -2.5px; line-height: 1.0;">
+          Vamos transformar<br />sua loja<br /><em class="not-italic" style="color: var(--gold);">juntos.</em>
+        </h1>
+        <p class="font-light mb-12" style="font-size: 16px; color: var(--dim); line-height: 1.7;">
+          Agende uma conversa gratuita de 30 minutos. Nossa equipe faz um diagnóstico completo do seu negócio e apresenta as soluções mais adequadas para o seu momento.
+        </p>
+
+        <div class="flex flex-col gap-6">
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center text-lg flex-shrink-0" style="background: rgba(139,69,19,0.15); border: 1px solid rgba(139,69,19,0.3);">📍</div>
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-widest mb-1" style="color: var(--brown); letter-spacing: 1.5px;">Atuação</p>
+              <p class="text-sm font-light" style="color: var(--muted);">Campina Grande · Caruaru · João Pessoa · Recife</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center text-lg flex-shrink-0" style="background: rgba(139,69,19,0.15); border: 1px solid rgba(139,69,19,0.3);">⚡</div>
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-widest mb-1" style="color: var(--brown); letter-spacing: 1.5px;">Resposta</p>
+              <p class="text-sm font-light" style="color: var(--muted);">Retornamos em até 24 horas úteis</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-2xl p-10" style="background: var(--dark-3); border: 1px solid var(--border);">
+        <form
+          name="contato"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          class="flex flex-col gap-5"
+        >
+          <input type="hidden" name="form-name" value="contato" />
+          <p class="hidden"><label>Não preencha: <input name="bot-field" /></label></p>
+
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-widest mb-2" style="color: var(--muted); letter-spacing: 1.5px;">Nome completo *</label>
+            <input
+              type="text"
+              name="nome"
+              required
+              class="w-full text-sm font-light text-white rounded-lg px-4 py-3 outline-none transition-all"
+              style="background: rgba(255,255,255,0.04); border: 1px solid var(--border);"
+              placeholder="Seu nome"
+            />
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-widest mb-2" style="color: var(--muted); letter-spacing: 1.5px;">Nome da loja *</label>
+            <input
+              type="text"
+              name="loja"
+              required
+              class="w-full text-sm font-light text-white rounded-lg px-4 py-3 outline-none"
+              style="background: rgba(255,255,255,0.04); border: 1px solid var(--border);"
+              placeholder="Ex: Móveis Silva"
+            />
+          </div>
+
+          <div class="grid gap-4" style="grid-template-columns: 1fr 1fr;">
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-widest mb-2" style="color: var(--muted); letter-spacing: 1.5px;">Cidade *</label>
+              <input
+                type="text"
+                name="cidade"
+                required
+                class="w-full text-sm font-light text-white rounded-lg px-4 py-3 outline-none"
+                style="background: rgba(255,255,255,0.04); border: 1px solid var(--border);"
+                placeholder="Sua cidade"
+              />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-widest mb-2" style="color: var(--muted); letter-spacing: 1.5px;">WhatsApp *</label>
+              <input
+                type="tel"
+                name="whatsapp"
+                required
+                class="w-full text-sm font-light text-white rounded-lg px-4 py-3 outline-none"
+                style="background: rgba(255,255,255,0.04); border: 1px solid var(--border);"
+                placeholder="(81) 99999-9999"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-widest mb-2" style="color: var(--muted); letter-spacing: 1.5px;">Principal desafio *</label>
+            <select
+              name="desafio"
+              required
+              class="w-full text-sm font-light text-white rounded-lg px-4 py-3 outline-none appearance-none"
+              style="background: rgba(255,255,255,0.04); border: 1px solid var(--border);"
+            >
+              <option value="" disabled selected style="background: #131313;">Selecione...</option>
+              <option value="leads" style="background: #131313;">Gerar mais leads</option>
+              <option value="crm" style="background: #131313;">Organizar meus clientes</option>
+              <option value="atendimento" style="background: #131313;">Automatizar atendimento</option>
+              <option value="online" style="background: #131313;">Aumentar vendas online</option>
+              <option value="3d" style="background: #131313;">Implementar visualização 3D</option>
+              <option value="outro" style="background: #131313;">Outro</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-widest mb-2" style="color: var(--muted); letter-spacing: 1.5px;">Mensagem (opcional)</label>
+            <textarea
+              name="mensagem"
+              rows="3"
+              class="w-full text-sm font-light text-white rounded-lg px-4 py-3 outline-none resize-none"
+              style="background: rgba(255,255,255,0.04); border: 1px solid var(--border);"
+              placeholder="Conte mais sobre sua loja..."
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full text-sm font-semibold text-white rounded-[10px] py-4 transition-opacity hover:opacity-90 mt-2"
+            style="background: var(--brown);"
+          >
+            Agendar conversa gratuita →
+          </button>
+        </form>
+      </div>
+
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
