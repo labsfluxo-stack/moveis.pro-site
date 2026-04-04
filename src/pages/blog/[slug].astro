@@ -1,0 +1,44 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import CTABox from '../../components/CTABox.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<BaseLayout title={post.data.title} description={post.data.description}>
+  <Nav />
+  <main style="padding-top: 64px;">
+    <article style="padding: 100px 56px 80px; max-width: 760px;">
+      <a href="/blog" class="inline-flex items-center gap-2 text-sm no-underline mb-12 transition-colors hover:text-white" style="color: var(--muted);">
+        ← Blog
+      </a>
+      <p class="text-xs font-medium uppercase tracking-widest mb-4" style="color: var(--brown); letter-spacing: 1.5px;">
+        {post.data.pubDate.toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' })}
+      </p>
+      <h1 class="font-display font-black text-white mb-4" style="font-size: clamp(36px, 5vw, 56px); letter-spacing: -2px; line-height: 1.05;">
+        {post.data.title}
+      </h1>
+      <p class="font-light mb-16" style="font-size: 15px; color: var(--muted);">Por {post.data.author}</p>
+      <div class="prose-custom"><Content /></div>
+    </article>
+
+    <div style="padding: 0 56px 100px;">
+      <CTABox
+        title={"Quer aplicar isso\nna sua loja\nagora?"}
+        subtitle="Agende uma conversa gratuita com nossa equipe."
+        buttonLabel="Falar com especialista →"
+        buttonHref="/contato"
+      />
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

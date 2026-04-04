@@ -1,0 +1,51 @@
+---
+// src/pages/cases/[slug].astro
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import CTABox from '../../components/CTABox.astro';
+
+export async function getStaticPaths() {
+  const cases = await getCollection('cases');
+  return cases.map((c) => ({ params: { slug: c.slug }, props: { case: c } }));
+}
+
+const { case: caseEntry } = Astro.props;
+const { Content } = await caseEntry.render();
+---
+
+<BaseLayout title={caseEntry.data.title} description={`Case: ${caseEntry.data.client} — ${caseEntry.data.service}`}>
+  <Nav />
+  <main style="padding-top: 64px;">
+    <section style="padding: 100px 56px 80px; max-width: 860px;">
+      <a href="/cases" class="inline-flex items-center gap-2 text-sm no-underline mb-12 transition-colors hover:text-white" style="color: var(--muted);">
+        ← Todos os cases
+      </a>
+      <div class="text-xs font-semibold tracking-widest uppercase mb-4" style="color: var(--gold); letter-spacing: 1.5px;">{caseEntry.data.service}</div>
+      <h1 class="font-display font-black text-white mb-4" style="font-size: clamp(36px, 5vw, 60px); letter-spacing: -2px; line-height: 1.0;">
+        {caseEntry.data.title}
+      </h1>
+      <p class="font-light mb-12" style="font-size: 15px; color: var(--muted);">
+        {caseEntry.data.client} — {caseEntry.data.city}
+      </p>
+
+      <div class="mb-16 p-10 rounded-2xl" style="background: var(--dark-3); border: 1px solid var(--border);">
+        <div class="font-display font-black" style="font-size: 64px; letter-spacing: -3px; color: var(--gold); line-height: 1;">{caseEntry.data.metric}</div>
+        <p class="text-sm font-light mt-2" style="color: var(--muted);">{caseEntry.data.metricLabel}</p>
+      </div>
+
+      <div class="prose-custom"><Content /></div>
+    </section>
+
+    <div style="padding: 0 56px 100px;">
+      <CTABox
+        title={"Quer resultados\nassim na sua\nloja?"}
+        subtitle="Agende uma conversa e descubra como podemos transformar o seu negócio."
+        buttonLabel="Falar com especialista →"
+        buttonHref="/contato"
+      />
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

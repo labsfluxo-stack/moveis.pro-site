@@ -1,0 +1,47 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<BaseLayout title="Blog" description="Conteúdo educativo para donos de lojas de móveis.">
+  <Nav />
+  <main style="padding-top: 64px;">
+    <section style="padding: 100px 56px;">
+      <div class="inline-flex items-center gap-2.5 mb-8" style="color: var(--gold);">
+        <span class="block w-7 h-px" style="background: var(--gold);"></span>
+        <span class="text-xs font-medium tracking-widest uppercase" style="letter-spacing: 2px;">Blog</span>
+      </div>
+      <h1 class="font-display font-black text-white mb-16" style="font-size: clamp(44px, 5.5vw, 72px); letter-spacing: -2.5px; line-height: 1.0;">
+        Conteúdo para<br />donos de loja.
+      </h1>
+
+      <div class="flex flex-col gap-4">
+        {posts.map((post) => (
+          <a
+            href={`/blog/${post.slug}`}
+            class="flex justify-between items-center py-8 no-underline group transition-colors"
+            style="border-bottom: 1px solid var(--border);"
+          >
+            <div>
+              <p class="text-xs font-medium uppercase tracking-widest mb-3" style="color: var(--brown); letter-spacing: 1.5px;">
+                {post.data.pubDate.toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' })}
+              </p>
+              <h2 class="font-display font-black text-white group-hover:opacity-80 transition-opacity" style="font-size: 22px; letter-spacing: -0.5px;">
+                {post.data.title}
+              </h2>
+              <p class="text-sm font-light mt-2" style="color: var(--muted);">{post.data.description}</p>
+            </div>
+            <span class="text-xl ml-8 transition-transform group-hover:translate-x-2" style="color: var(--gold);">→</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
