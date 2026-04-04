@@ -44,14 +44,12 @@ import Footer from '../components/Footer.astro';
 
       <div class="rounded-2xl p-10" style="background: var(--dark-3); border: 1px solid var(--border);">
         <form
-          name="contato"
+          action="https://formspree.io/f/SEU_FORM_ID"
           method="POST"
-          data-netlify="true"
-          netlify-honeypot="bot-field"
           class="flex flex-col gap-5"
         >
-          <input type="hidden" name="form-name" value="contato" />
-          <p class="hidden"><label>Não preencha: <input name="bot-field" /></label></p>
+          <input type="hidden" name="_gotcha" style="display:none" />
+          <input type="hidden" name="_next" value="https://moveis.pro/contato?enviado=1" />
 
           <div>
             <label class="block text-xs font-semibold uppercase tracking-widest mb-2" style="color: var(--muted); letter-spacing: 1.5px;">Nome completo *</label>
