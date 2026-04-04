@@ -2,6 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+
+const enviado = Astro.url.searchParams.get('enviado') === '1';
 ---
 
 <BaseLayout
@@ -10,7 +12,30 @@ import Footer from '../components/Footer.astro';
 >
   <Nav />
   <main style="padding-top: 64px;">
-    <section style="padding: 100px 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;">
+
+    {enviado && (
+      <div
+        class="mx-auto max-w-lg text-center rounded-2xl p-10"
+        style="margin: 60px auto; background: var(--dark-3); border: 1px solid rgba(139,69,19,0.4);"
+      >
+        <div class="text-4xl mb-4">✓</div>
+        <h2 class="font-display font-black text-white mb-3" style="font-size: 28px; letter-spacing: -1px;">
+          Mensagem enviada!
+        </h2>
+        <p class="text-sm font-light" style="color: var(--muted); line-height: 1.7;">
+          Recebemos seu contato. Nossa equipe retorna em até 24 horas úteis.
+        </p>
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-sm font-semibold text-white rounded-[10px] no-underline mt-8 transition-opacity hover:opacity-90"
+          style="background: var(--brown); padding: 12px 24px;"
+        >
+          Voltar para o início
+        </a>
+      </div>
+    )}
+
+    <section style={`padding: 100px 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; ${enviado ? 'display: none;' : ''}`}>
 
       <div>
         <div class="inline-flex items-center gap-2.5 mb-8" style="color: var(--gold);">
