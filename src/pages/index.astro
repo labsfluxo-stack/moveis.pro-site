@@ -1,15 +1,164 @@
 ---
-// src/pages/index.astro
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import Marquee from '../components/Marquee.astro';
+import HeroCard from '../components/HeroCard.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import ServiceRow from '../components/ServiceRow.astro';
+import NumbersBar from '../components/NumbersBar.astro';
+import CaseCard from '../components/CaseCard.astro';
+import CTABox from '../components/CTABox.astro';
 import '../styles/global.css';
+
+const services = [
+  { number: '01', name: 'CRM Automatizado', description: 'Gestão de clientes com IA para aumentar conversão e fidelização sem trabalho manual.', badge: 'IA & Automação', slug: 'crm-automatizado' },
+  { number: '02', name: 'Tráfego com IA', description: 'Google e Meta Ads otimizados por inteligência artificial para maximizar seu ROI.', badge: 'Performance', slug: 'trafego-com-ia' },
+  { number: '03', name: 'Omnichannel', description: 'WhatsApp, Instagram, e-mail e loja física integrados em um único painel de controle.', badge: 'Integração', slug: 'omnichannel' },
+  { number: '04', name: 'Agente de IA / Chatbot', description: 'Atendimento 24/7 que qualifica leads, responde dúvidas e agenda visitas automaticamente.', badge: 'IA & Automação', slug: 'agente-ia' },
+  { number: '05', name: 'Métricas em Tempo Real', description: 'Dashboard com todos os indicadores da sua loja atualizados ao vivo, acessível de qualquer lugar.', badge: 'Analytics', slug: 'metricas' },
+  { number: '06', name: 'Sites de Alto Padrão', description: 'Sites rápidos, modernos e otimizados para converter visitantes em compradores reais.', badge: 'Web & Design', slug: 'sites' },
+  { number: '07', name: 'Soluções Comerciais', description: 'Estratégia e consultoria comercial integrada para ampliar suas vendas no Nordeste.', badge: 'Estratégia', slug: 'solucoes-comerciais' },
+  { number: '08', name: 'Visualização 3D / RA', description: 'Configurador 3D e realidade aumentada para móveis — nenhum concorrente no Nordeste oferece.', badge: '3D & RA', slug: 'visualizacao-3d' },
+];
+
+const numbers = [
+  { value: '+200', label: 'Lojas de móveis atendidas no Brasil' },
+  { value: '3.8×', label: 'Retorno médio sobre investimento em tráfego' },
+  { value: '98%', label: 'Taxa de satisfação dos clientes ativos' },
+  { value: '24h', label: 'Suporte especializado sempre disponível' },
+];
+
+const cases = [
+  { tag: 'CRM + Tráfego com IA', title: 'Móveis Alfa — São Paulo', description: 'Implementação de CRM automatizado e campanhas de tráfego com IA em 45 dias. O resultado superou todas as metas no primeiro trimestre.', metric: '+187%', metricLabel: 'Aumento em leads qualificados', featured: true },
+  { tag: 'Omnichannel', title: 'Casa & Design — BH', description: 'Integração de todos os canais em painel único.', metric: '4.2×', metricLabel: 'Retorno sobre investimento', featured: false },
+  { tag: 'Agente de IA', title: 'Decor Prime — Rio', description: 'Chatbot com IA para qualificação automática de leads.', metric: '−68%', metricLabel: 'Tempo de atendimento', featured: false },
+];
+
+const marqueeItems = ['CRM Automatizado', 'Tráfego com IA', 'Omnichannel', 'Agente de IA', 'Métricas em Tempo Real', 'Sites de Alto Padrão', 'Soluções Comerciais', 'Visualização 3D'];
 ---
 
 <BaseLayout title="Tecnologia que vende móveis">
   <Nav />
-  <main style="padding-top: 64px;">
-    <p style="padding: 4rem;">Em construção...</p>
-  </main>
+
+  <!-- HERO -->
+  <section
+    class="relative overflow-hidden"
+    style="padding: 148px 56px 88px; display: grid; grid-template-columns: 1fr 400px; gap: 56px; align-items: center; min-height: 100vh;"
+  >
+    <!-- Ambient glows -->
+    <div class="absolute pointer-events-none" style="top: -160px; right: 80px; width: 580px; height: 580px; background: radial-gradient(circle, rgba(139,69,19,0.2) 0%, transparent 68%);"></div>
+    <div class="absolute pointer-events-none" style="bottom: 0; left: -60px; width: 360px; height: 360px; background: radial-gradient(circle, rgba(200,121,42,0.07) 0%, transparent 70%);"></div>
+
+    <div class="relative z-10">
+      <div class="inline-flex items-center gap-2.5 mb-8" style="color: var(--gold);">
+        <span class="block w-7 h-px" style="background: var(--gold);"></span>
+        <span class="text-xs font-medium tracking-widest uppercase" style="letter-spacing: 2px;">Especialistas em móveis</span>
+      </div>
+
+      <h1
+        class="font-display font-black text-white mb-8"
+        style="font-size: clamp(52px, 6.2vw, 86px); line-height: 0.95; letter-spacing: -3px;"
+      >
+        Tecnologia<br />que vende<br />
+        <span style="-webkit-text-stroke: 1.8px var(--gold); color: transparent;">móveis.</span>
+      </h1>
+
+      <p class="font-light mb-12 max-w-md" style="font-size: 16px; color: var(--dim); line-height: 1.7;">
+        CRM com IA, tráfego inteligente, omnichannel e visualização 3D — desenvolvidos para o mercado moveleiro do Nordeste.
+      </p>
+
+      <div class="flex items-center gap-4">
+        <a
+          href="/contato"
+          class="inline-flex items-center gap-2 text-sm font-semibold text-white rounded-[10px] no-underline transition-opacity hover:opacity-90"
+          style="background: var(--brown); padding: 14px 28px;"
+        >
+          Ver demonstração →
+        </a>
+        <a
+          href="/servicos"
+          class="text-sm font-normal no-underline transition-colors hover:text-white"
+          style="color: var(--muted);"
+        >
+          Conheça os serviços ↓
+        </a>
+      </div>
+    </div>
+
+    <div class="relative z-10">
+      <HeroCard
+        metric="+187%"
+        metricLabel="Leads qualificados — Móveis Alfa SP"
+        barPercent={74}
+        rows={[
+          { label: 'ROI em tráfego pago', value: '3.8×' },
+          { label: 'Taxa de conversão', value: '+64%' },
+          { label: 'Tempo de resposta', value: '−68%' },
+        ]}
+      />
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <Marquee items={marqueeItems} />
+
+  <!-- SERVICES -->
+  <section style="padding: 116px 56px;">
+    <SectionHeader
+      index="01 — Serviços"
+      title={"O que a\nMoveis.pro faz"}
+      subtitle="Da captação de leads à gestão completa — cobrimos toda a jornada com tecnologia própria para o setor moveleiro."
+      linkLabel="Ver todos os serviços →"
+      linkHref="/servicos"
+    />
+    <div class="flex flex-col mt-0">
+      {services.map((s) => (
+        <ServiceRow
+          number={s.number}
+          name={s.name}
+          description={s.description}
+          badge={s.badge}
+          href={`/servicos/${s.slug}`}
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- NUMBERS -->
+  <div style="padding: 0 56px;">
+    <NumbersBar items={numbers} />
+  </div>
+
+  <!-- CASES -->
+  <section style="padding: 116px 56px;">
+    <SectionHeader index="02 — Resultados" title="Cases de sucesso" />
+    <div
+      class="mt-14"
+      style="display: grid; grid-template-columns: 1.5fr 1fr; grid-template-rows: 1fr 1fr; gap: 14px;"
+    >
+      {cases.map((c) => (
+        <CaseCard
+          tag={c.tag}
+          title={c.title}
+          description={c.description}
+          metric={c.metric}
+          metricLabel={c.metricLabel}
+          featured={c.featured}
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div style="padding: 0 56px 100px;">
+    <CTABox
+      title={"Pronto para sua\nloja vender com\ntecnologia?"}
+      subtitle="Agende uma conversa gratuita com um especialista e receba um diagnóstico completo do seu negócio."
+      buttonLabel="Agendar conversa gratuita →"
+      buttonHref="/contato"
+    />
+  </div>
+
   <Footer />
 </BaseLayout>
