@@ -43,3 +43,138 @@
   .bg-dark-2 { background-color: var(--dark-2); }
   .bg-dark-3 { background-color: var(--dark-3); }
 }
+
+/* =========================================
+   RESPONSIVE — MOBILE
+   ========================================= */
+
+/* Section padding */
+@media (max-width: 768px) {
+  section, [data-section] {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+}
+
+/* Hero */
+@media (max-width: 768px) {
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+    padding: 100px 24px 60px !important;
+    min-height: auto !important;
+  }
+  .hero-card-wrapper {
+    display: none;
+  }
+}
+
+/* Services section */
+@media (max-width: 768px) {
+  .service-row-grid {
+    grid-template-columns: 48px 1fr !important;
+    gap: 12px !important;
+  }
+  .service-row-desc,
+  .service-row-badge {
+    display: none !important;
+  }
+}
+
+/* Numbers bar */
+@media (max-width: 768px) {
+  .numbers-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0 !important;
+  }
+  .numbers-item {
+    padding: 24px 20px !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--border) !important;
+  }
+  .numbers-item:nth-child(odd) {
+    border-right: 1px solid var(--border) !important;
+  }
+  .numbers-item:nth-last-child(-n+2) {
+    border-bottom: none !important;
+  }
+}
+
+/* Cases grid */
+@media (max-width: 768px) {
+  .cases-grid {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto !important;
+  }
+  .cases-grid > * {
+    grid-row: auto !important;
+  }
+}
+
+/* CTA box */
+@media (max-width: 768px) {
+  .cta-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+    padding: 48px 32px !important;
+  }
+}
+
+/* Section header */
+@media (max-width: 768px) {
+  .section-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 16px !important;
+  }
+}
+
+/* Service cards grid (servicos/index) */
+@media (max-width: 768px) {
+  .services-cards-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Contato page */
+@media (max-width: 768px) {
+  .contato-grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+    padding: 60px 24px !important;
+  }
+}
+
+/* About diferenciais */
+@media (max-width: 768px) {
+  .diferenciais-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Blog/cases listing padding */
+@media (max-width: 768px) {
+  .page-section {
+    padding: 60px 24px !important;
+  }
+}
+
+/* =========================================
+   SCROLL ANIMATIONS
+   ========================================= */
+
+[data-animate] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+[data-animate].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-animate][data-delay="1"] { transition-delay: 0.1s; }
+[data-animate][data-delay="2"] { transition-delay: 0.2s; }
+[data-animate][data-delay="3"] { transition-delay: 0.3s; }
+[data-animate][data-delay="4"] { transition-delay: 0.4s; }
+[data-animate][data-delay="5"] { transition-delay: 0.5s; }

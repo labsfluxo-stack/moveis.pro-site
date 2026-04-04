@@ -27,7 +27,7 @@ const services = (await getCollection('servicos')).sort((a, b) => a.data.order -
     </section>
 
     <section style="padding: 0 56px 100px;">
-      <div class="grid gap-4" style="grid-template-columns: repeat(2, 1fr);">
+      <div class="services-cards-grid grid gap-4" style="grid-template-columns: repeat(2, 1fr);">
         {services.map((service) => (
           <a
             href={`/servicos/${service.slug}`}

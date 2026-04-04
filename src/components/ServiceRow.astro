@@ -12,7 +12,7 @@ const { number, name, description, badge, href } = Astro.props;
 
 <a
   href={href}
-  class="grid gap-7 py-8 no-underline group transition-all duration-200"
+  class="service-row-grid grid gap-7 py-8 no-underline group transition-all duration-200"
   style="grid-template-columns: 72px 1fr 1.1fr 110px; align-items: center; border-bottom: 1px solid var(--border);"
 >
   <span
@@ -27,11 +27,11 @@ const { number, name, description, badge, href } = Astro.props;
   >
     {name}
   </span>
-  <span class="text-sm font-light leading-snug" style="color: var(--muted);">
+  <span class="service-row-desc text-sm font-light leading-snug" style="color: var(--muted);">
     {description}
   </span>
   <span
-    class="text-xs font-medium text-center px-3 py-1.5 rounded-full whitespace-nowrap"
+    class="service-row-badge text-xs font-medium text-center px-3 py-1.5 rounded-full whitespace-nowrap"
     style="color: var(--muted); background: rgba(255,255,255,0.04); letter-spacing: 0.5px;"
   >
     {badge}

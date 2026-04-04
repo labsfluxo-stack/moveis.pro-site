@@ -43,14 +43,14 @@ const marqueeItems = ['CRM Automatizado', 'Tráfego com IA', 'Omnichannel', 'Age
 
   <!-- HERO -->
   <section
-    class="relative overflow-hidden"
+    class="hero-grid relative overflow-hidden"
     style="padding: 148px 56px 88px; display: grid; grid-template-columns: 1fr 400px; gap: 56px; align-items: center; min-height: 100vh;"
   >
     <!-- Ambient glows -->
     <div class="absolute pointer-events-none" style="top: -160px; right: 80px; width: 580px; height: 580px; background: radial-gradient(circle, rgba(139,69,19,0.2) 0%, transparent 68%);"></div>
     <div class="absolute pointer-events-none" style="bottom: 0; left: -60px; width: 360px; height: 360px; background: radial-gradient(circle, rgba(200,121,42,0.07) 0%, transparent 70%);"></div>
 
-    <div class="relative z-10">
+    <div class="relative z-10" data-animate>
       <div class="inline-flex items-center gap-2.5 mb-8" style="color: var(--gold);">
         <span class="block w-7 h-px" style="background: var(--gold);"></span>
         <span class="text-xs font-medium tracking-widest uppercase" style="letter-spacing: 2px;">Especialistas em móveis</span>
@@ -86,7 +86,7 @@ const marqueeItems = ['CRM Automatizado', 'Tráfego com IA', 'Omnichannel', 'Age
       </div>
     </div>
 
-    <div class="relative z-10">
+    <div class="hero-card-wrapper relative z-10">
       <HeroCard
         metric="+187%"
         metricLabel="Leads qualificados — Móveis Alfa SP"
@@ -101,57 +101,67 @@ const marqueeItems = ['CRM Automatizado', 'Tráfego com IA', 'Omnichannel', 'Age
   </section>
 
   <!-- MARQUEE -->
-  <Marquee items={marqueeItems} />
+  <div data-animate>
+    <Marquee items={marqueeItems} />
+  </div>
 
   <!-- SERVICES -->
   <section style="padding: 116px 56px;">
-    <SectionHeader
-      index="01 — Serviços"
-      title={"O que a\nMoveis.pro faz"}
-      subtitle="Da captação de leads à gestão completa — cobrimos toda a jornada com tecnologia própria para o setor moveleiro."
-      linkLabel="Ver todos os serviços →"
-      linkHref="/servicos"
-    />
+    <div data-animate>
+      <SectionHeader
+        index="01 — Serviços"
+        title={"O que a\nMoveis.pro faz"}
+        subtitle="Da captação de leads à gestão completa — cobrimos toda a jornada com tecnologia própria para o setor moveleiro."
+        linkLabel="Ver todos os serviços →"
+        linkHref="/servicos"
+      />
+    </div>
     <div class="flex flex-col mt-0">
-      {services.map((s) => (
-        <ServiceRow
-          number={s.number}
-          name={s.name}
-          description={s.description}
-          badge={s.badge}
-          href={`/servicos/${s.slug}`}
-        />
+      {services.map((s, i) => (
+        <div data-animate data-delay={String((i % 5) + 1)}>
+          <ServiceRow
+            number={s.number}
+            name={s.name}
+            description={s.description}
+            badge={s.badge}
+            href={`/servicos/${s.slug}`}
+          />
+        </div>
       ))}
     </div>
   </section>
 
   <!-- NUMBERS -->
-  <div style="padding: 0 56px;">
+  <div style="padding: 0 56px;" data-animate>
     <NumbersBar items={numbers} />
   </div>
 
   <!-- CASES -->
   <section style="padding: 116px 56px;">
-    <SectionHeader index="02 — Resultados" title="Cases de sucesso" />
+    <div data-animate>
+      <SectionHeader index="02 — Resultados" title="Cases de sucesso" />
+    </div>
     <div
-      class="mt-14"
+      class="cases-grid mt-14"
       style="display: grid; grid-template-columns: 1.5fr 1fr; grid-template-rows: 1fr 1fr; gap: 14px;"
     >
-      {cases.map((c) => (
-        <CaseCard
-          tag={c.tag}
-          title={c.title}
-          description={c.description}
-          metric={c.metric}
-          metricLabel={c.metricLabel}
-          featured={c.featured}
-        />
+      {cases.map((c, i) => (
+        <div data-animate data-delay={String(i + 1)}>
+          <CaseCard
+            tag={c.tag}
+            title={c.title}
+            description={c.description}
+            metric={c.metric}
+            metricLabel={c.metricLabel}
+            featured={c.featured}
+          />
+        </div>
       ))}
     </div>
   </section>
 
   <!-- CTA -->
-  <div style="padding: 0 56px 100px;">
+  <div style="padding: 0 56px 100px;" data-animate>
     <CTABox
       title={"Pronto para sua\nloja vender com\ntecnologia?"}
       subtitle="Agende uma conversa gratuita com um especialista e receba um diagnóstico completo do seu negócio."

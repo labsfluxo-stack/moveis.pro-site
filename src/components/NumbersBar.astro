@@ -15,10 +15,10 @@ const { items } = Astro.props;
     style="background: linear-gradient(90deg, transparent, rgba(139,69,19,0.6), transparent);"
   ></div>
 
-  <div class="grid gap-0" style={`grid-template-columns: repeat(${items.length}, 1fr);`}>
+  <div class="numbers-grid grid gap-0" style={`grid-template-columns: repeat(${items.length}, 1fr);`}>
     {items.map((item, i) => (
       <div
-        class="px-9"
+        class="numbers-item px-9"
         style={`padding-left: ${i === 0 ? '0' : '36px'}; padding-right: 36px; ${i < items.length - 1 ? 'border-right: 1px solid var(--border);' : ''}`}
       >
         <div

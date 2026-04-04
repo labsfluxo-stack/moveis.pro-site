@@ -35,7 +35,7 @@ const enviado = Astro.url.searchParams.get('enviado') === '1';
       </div>
     )}
 
-    <section style={`padding: 100px 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; ${enviado ? 'display: none;' : ''}`}>
+    <section class="contato-grid" style={`padding: 100px 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; ${enviado ? 'display: none;' : ''}`}>
 
       <div>
         <div class="inline-flex items-center gap-2.5 mb-8" style="color: var(--gold);">
