@@ -1,0 +1,16 @@
+---
+// src/components/Footer.astro
+const year = new Date().getFullYear();
+---
+
+<footer
+  class="px-14 py-7 flex justify-between items-center"
+  style="border-top: 1px solid var(--border);"
+>
+  <div class="font-display font-black text-base tracking-tight" style="color: rgba(255,255,255,0.25);">
+    moveis<em class="not-italic" style="color: var(--brown);">.pro</em>
+  </div>
+  <p class="text-xs font-light" style="color: rgba(255,255,255,0.18);">
+    © {year} Moveis.pro — Tecnologia para o mercado moveleiro
+  </p>
+</footer>

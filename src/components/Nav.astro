@@ -1,0 +1,47 @@
+---
+// src/components/Nav.astro
+const links = [
+  { href: '/servicos', label: 'Serviços' },
+  { href: '/sobre', label: 'Sobre' },
+  { href: '/cases', label: 'Cases' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/contato', label: 'Contato' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<nav
+  class="fixed top-0 left-0 right-0 z-50 h-16 px-14 flex items-center justify-between"
+  style="background: rgba(7,7,7,0.88); backdrop-filter: blur(18px) saturate(1.6); border-bottom: 1px solid var(--border);"
+>
+  <a href="/" class="font-display font-black text-xl tracking-tight text-white no-underline">
+    moveis<em class="not-italic" style="color: var(--gold);">.pro</em>
+  </a>
+
+  <ul class="hidden md:flex gap-9 list-none">
+    {links.map((link) => (
+      <li>
+        <a
+          href={link.href}
+          class={`text-sm font-normal no-underline transition-colors duration-150 ${
+            currentPath.startsWith(link.href)
+              ? 'text-white'
+              : 'text-muted hover:text-white'
+          }`}
+          style={currentPath.startsWith(link.href) ? '' : 'color: var(--muted);'}
+        >
+          {link.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  <a
+    href="/contato"
+    class="text-sm font-semibold text-white px-5 py-2.5 rounded-lg no-underline transition-opacity hover:opacity-90"
+    style="background: var(--brown);"
+  >
+    Falar com especialista
+  </a>
+</nav>
