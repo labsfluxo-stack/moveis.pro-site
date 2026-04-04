@@ -1,0 +1,59 @@
+---
+// src/pages/servicos/index.astro
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import CTABox from '../../components/CTABox.astro';
+
+const services = (await getCollection('servicos')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout title="Serviços" description="Conheça todos os serviços da Moveis.pro para lojas de móveis.">
+  <Nav />
+  <main style="padding-top: 64px;">
+
+    <section style="padding: 100px 56px 60px;">
+      <div class="inline-flex items-center gap-2.5 mb-8" style="color: var(--gold);">
+        <span class="block w-7 h-px" style="background: var(--gold);"></span>
+        <span class="text-xs font-medium tracking-widest uppercase" style="letter-spacing: 2px;">Nossos serviços</span>
+      </div>
+      <h1 class="font-display font-black text-white mb-6" style="font-size: clamp(44px, 5.5vw, 72px); letter-spacing: -2.5px; line-height: 1.0;">
+        Tecnologia completa<br />para sua loja.
+      </h1>
+      <p class="font-light max-w-lg" style="font-size: 16px; color: var(--dim); line-height: 1.7;">
+        8 soluções integradas, desenvolvidas exclusivamente para o mercado moveleiro do Nordeste.
+      </p>
+    </section>
+
+    <section style="padding: 0 56px 100px;">
+      <div class="grid gap-4" style="grid-template-columns: repeat(2, 1fr);">
+        {services.map((service) => (
+          <a
+            href={`/servicos/${service.slug}`}
+            class="relative rounded-[18px] p-10 no-underline group transition-all duration-200"
+            style="background: var(--dark-3); border: 1px solid var(--border);"
+          >
+            <div class="absolute top-0 left-0 right-0 h-0.5 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" style="background: var(--brown);"></div>
+            <div class="text-3xl mb-6">{service.data.icon}</div>
+            <div class="text-xs font-semibold tracking-widest uppercase mb-3" style="color: var(--gold); letter-spacing: 1.5px;">{service.data.badge}</div>
+            <h2 class="font-display font-black text-white mb-3" style="font-size: 22px; letter-spacing: -0.5px;">{service.data.title}</h2>
+            <p class="text-sm font-light leading-relaxed" style="color: var(--muted);">{service.data.description}</p>
+            <div class="mt-6 text-sm font-medium" style="color: var(--gold);">Saiba mais →</div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <div style="padding: 0 56px 100px;">
+      <CTABox
+        title={"Não sabe por onde\ncomeçar? Fale\nconosco."}
+        subtitle="Nossa equipe faz um diagnóstico gratuito e indica qual solução faz mais sentido para o seu momento."
+        buttonLabel="Agendar conversa gratuita →"
+        buttonHref="/contato"
+      />
+    </div>
+
+  </main>
+  <Footer />
+</BaseLayout>

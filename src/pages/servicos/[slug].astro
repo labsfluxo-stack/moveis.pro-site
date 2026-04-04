@@ -1,0 +1,96 @@
+---
+// src/pages/servicos/[slug].astro
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import CTABox from '../../components/CTABox.astro';
+
+export async function getStaticPaths() {
+  const services = await getCollection('servicos');
+  return services.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+const { Content } = await service.render();
+---
+
+<BaseLayout title={service.data.title} description={service.data.description}>
+  <Nav />
+  <main style="padding-top: 64px;">
+
+    <section style="padding: 100px 56px 80px;">
+      <a href="/servicos" class="inline-flex items-center gap-2 text-sm no-underline mb-12 transition-colors hover:text-white" style="color: var(--muted);">
+        ← Todos os serviços
+      </a>
+
+      <div class="text-4xl mb-8">{service.data.icon}</div>
+      <div class="text-xs font-semibold tracking-widest uppercase mb-4" style="color: var(--gold); letter-spacing: 1.5px;">{service.data.badge}</div>
+      <h1 class="font-display font-black text-white mb-6" style="font-size: clamp(44px, 5.5vw, 68px); letter-spacing: -2.5px; line-height: 1.0; max-width: 700px;">
+        {service.data.title}
+      </h1>
+      <p class="font-light max-w-lg" style="font-size: 18px; color: var(--dim); line-height: 1.7;">
+        {service.data.description}
+      </p>
+    </section>
+
+    <section style="padding: 0 56px 80px; max-width: 760px;">
+      <div class="prose-custom">
+        <Content />
+      </div>
+    </section>
+
+    <div style="padding: 0 56px 100px;">
+      <CTABox
+        title={`Quer implementar\n${service.data.title}\nna sua loja?`}
+        subtitle="Agende uma conversa gratuita e receba um diagnóstico personalizado para o seu negócio."
+        buttonLabel="Falar com especialista →"
+        buttonHref="/contato"
+      />
+    </div>
+
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style is:global>
+  .prose-custom h2 {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 800;
+    font-size: 28px;
+    letter-spacing: -0.8px;
+    color: #fff;
+    margin: 48px 0 16px;
+  }
+  .prose-custom p {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.58);
+    margin-bottom: 16px;
+  }
+  .prose-custom ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .prose-custom li {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.58);
+    padding-left: 20px;
+    position: relative;
+  }
+  .prose-custom li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #C8792A;
+    font-weight: 700;
+  }
+</style>
