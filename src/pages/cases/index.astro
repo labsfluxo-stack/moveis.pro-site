@@ -288,20 +288,21 @@ const transformacoes = [
 
   .transf-img-wrap {
     width: 100%;
-    height: 220px;
+    height: 200px;
     overflow: hidden;
-    flex: 1;
+    flex-shrink: 0;
   }
 
   .transf-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center 30%;
     display: block;
-    transition: transform 0.4s ease;
+    transition: transform 0.5s ease;
   }
   .transf-card:hover .transf-img {
-    transform: scale(1.03);
+    transform: scale(1.05);
   }
 
   /* Placeholder for "antes" */
@@ -310,6 +311,7 @@ const transformacoes = [
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 200px;
   }
   .placeholder-inner {
     text-align: center;
@@ -425,8 +427,9 @@ const transformacoes = [
       padding-top: 0;
       align-items: flex-end;
     }
-    .transf-img-wrap {
-      height: 160px;
+    .transf-img-wrap,
+    .transf-placeholder {
+      height: 150px;
     }
   }
 </style>
