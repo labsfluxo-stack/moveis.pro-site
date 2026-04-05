@@ -18,6 +18,7 @@ const transformacoes = [
     metrica: '+187%',
     metricaLabel: 'leads em 45 dias',
     depois: '/images/cases/loja-1-depois.png',
+    pos: 'center 55%',
   },
   {
     nome: 'Loja Recife',
@@ -25,6 +26,7 @@ const transformacoes = [
     metrica: '3.2×',
     metricaLabel: 'retorno sobre investimento',
     depois: '/images/cases/loja-2-depois.png',
+    pos: 'center 50%',
   },
   {
     nome: 'Loja João Pessoa',
@@ -32,6 +34,7 @@ const transformacoes = [
     metrica: '−62%',
     metricaLabel: 'tempo de atendimento',
     depois: '/images/cases/loja-3-depois.png',
+    pos: 'center 40%',
   },
   {
     nome: 'Loja Caruaru',
@@ -39,6 +42,7 @@ const transformacoes = [
     metrica: '+94%',
     metricaLabel: 'agendamentos de visita',
     depois: '/images/cases/loja-4-depois.png',
+    pos: 'center 45%',
   },
   {
     nome: 'Loja Campina Grande II',
@@ -46,6 +50,7 @@ const transformacoes = [
     metrica: '4.1×',
     metricaLabel: 'ROI médio',
     depois: '/images/cases/loja-5-depois.png',
+    pos: 'center 50%',
   },
   {
     nome: 'Loja Recife II',
@@ -53,6 +58,7 @@ const transformacoes = [
     metrica: '+40%',
     metricaLabel: 'taxa de conversão',
     depois: '/images/cases/loja-6-depois.png',
+    pos: 'center 55%',
   },
   {
     nome: 'Loja João Pessoa II',
@@ -60,6 +66,7 @@ const transformacoes = [
     metrica: '−38%',
     metricaLabel: 'custo por lead',
     depois: '/images/cases/loja-7-depois.png',
+    pos: 'center 50%',
   },
   {
     nome: 'Loja Caruaru II',
@@ -67,6 +74,7 @@ const transformacoes = [
     metrica: '2.8×',
     metricaLabel: 'retorno sobre investimento',
     depois: '/images/cases/loja-8-depois.png',
+    pos: 'center 48%',
   },
   {
     nome: 'Loja Recife III',
@@ -74,6 +82,7 @@ const transformacoes = [
     metrica: '+112%',
     metricaLabel: 'faturamento em 3 meses',
     depois: '/images/cases/loja-9-depois.png',
+    pos: 'center 52%',
   },
 ];
 ---
@@ -173,6 +182,7 @@ const transformacoes = [
                   src={t.depois}
                   alt={`${t.nome} — depois da Moveis.pro`}
                   class="transf-img"
+                  style={`object-position: ${t.pos};`}
                   loading="lazy"
                 />
               </div>
@@ -298,7 +308,6 @@ const transformacoes = [
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 30%;
     display: block;
     transition: transform 0.5s ease;
   }
