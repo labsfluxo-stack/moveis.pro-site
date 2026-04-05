@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fontes — Moveis.pro</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,900&family=Manrope:wght@300;400;600&family=Urbanist:wght@300;400;700;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@400,600,700&f[]=satoshi@300,400,500&display=swap">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #080808; color: #fff; padding: 40px 48px; -webkit-font-smoothing: antialiased; }
+
+  h2 { font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 40px; }
+
+  .options { display: flex; flex-direction: column; gap: 16px; }
+
+  .option {
+    background: #111;
+    border: 2px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    padding: 40px 48px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .option.selected { border-color: #8B4513 !important; }
+  .option:hover { border-color: rgba(139,69,19,0.4); }
+  .option::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, #8B4513, transparent);
+    opacity: 0;
+  }
+  .option.selected::before { opacity: 1; }
+
+  .opt-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(255,255,255,0.25); margin-bottom: 24px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .opt-letter {
+    width: 24px; height: 24px; border-radius: 6px;
+    background: rgba(139,69,19,0.2); border: 1px solid rgba(139,69,19,0.4);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: #C8792A;
+  }
+
+  /* Opção A — Clash Display + Satoshi */
+  .opt-a .headline {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 52px; font-weight: 700;
+    letter-spacing: -1.5px; line-height: 1.0;
+    color: #fff; margin-bottom: 14px;
+  }
+  .opt-a .headline em { font-style: normal; color: #C8792A; }
+  .opt-a .body-text {
+    font-family: 'Satoshi', sans-serif;
+    font-size: 15px; font-weight: 300;
+    color: rgba(255,255,255,0.5); line-height: 1.65; max-width: 520px;
+  }
+  .opt-a .tag {
+    font-family: 'Satoshi', sans-serif;
+    font-size: 11px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase;
+    color: #C8792A; margin-bottom: 16px; display: block;
+  }
+  .opt-a .meta {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px; color: rgba(255,255,255,0.2); margin-top: 24px;
+  }
+
+  /* Opção B — Fraunces (Serif) + Manrope */
+  .opt-b .headline {
+    font-family: 'Fraunces', serif;
+    font-size: 54px; font-weight: 900;
+    letter-spacing: -2px; line-height: 1.0;
+    color: #fff; margin-bottom: 14px;
+  }
+  .opt-b .headline em { font-style: italic; color: #C8792A; }
+  .opt-b .body-text {
+    font-family: 'Manrope', sans-serif;
+    font-size: 15px; font-weight: 300;
+    color: rgba(255,255,255,0.5); line-height: 1.7; max-width: 520px;
+  }
+  .opt-b .tag {
+    font-family: 'Manrope', sans-serif;
+    font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+    color: #C8792A; margin-bottom: 16px; display: block;
+  }
+  .opt-b .meta {
+    font-family: 'Manrope', sans-serif;
+    font-size: 11px; color: rgba(255,255,255,0.2); margin-top: 24px;
+  }
+
+  /* Opção C — Urbanist + DM Sans */
+  .opt-c .headline {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 58px; font-weight: 900;
+    letter-spacing: -2.5px; line-height: 0.95;
+    color: #fff; margin-bottom: 14px;
+  }
+  .opt-c .headline em { font-style: normal; color: transparent; -webkit-text-stroke: 1.5px #C8792A; }
+  .opt-c .body-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px; font-weight: 300;
+    color: rgba(255,255,255,0.5); line-height: 1.65; max-width: 520px;
+  }
+  .opt-c .tag {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+    color: #C8792A; margin-bottom: 16px; display: block;
+  }
+  .opt-c .meta {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px; color: rgba(255,255,255,0.2); margin-top: 24px;
+  }
+</style>
+<script>
+  function toggleSelect(el) {
+    document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    if (window.recordChoice) recordChoice(el.dataset.choice, el.querySelector('.opt-label').innerText.trim());
+  }
+</script>
+</head>
+<body>
+
+<h2>Escolha a combinação de fontes — Moveis.pro</h2>
+
+<div class="options">
+
+  <!-- A -->
+  <div class="option opt-a" data-choice="a" onclick="toggleSelect(this)">
+    <div class="opt-label"><div class="opt-letter">A</div> Clash Display + Satoshi — Agência Premium Moderna</div>
+    <span class="tag">Especialistas em móveis</span>
+    <div class="headline">Tecnologia que vende<br><em>móveis.</em></div>
+    <p class="body-text">CRM automatizado, tráfego com IA e omnichannel — desenvolvido exclusivamente para o mercado moveleiro brasileiro.</p>
+    <div class="meta">Clash Display (títulos) — geométrica com personalidade, usada por agências top em 2025 · Satoshi (corpo) — clean, moderna</div>
+  </div>
+
+  <!-- B -->
+  <div class="option opt-b" data-choice="b" onclick="toggleSelect(this)">
+    <div class="opt-label"><div class="opt-letter">B</div> Fraunces + Manrope — Editorial Luxo / Serifada</div>
+    <span class="tag">Especialistas em móveis</span>
+    <div class="headline">Tecnologia que vende<br><em>móveis.</em></div>
+    <p class="body-text">CRM automatizado, tráfego com IA e omnichannel — desenvolvido exclusivamente para o mercado moveleiro brasileiro.</p>
+    <div class="meta">Fraunces (títulos) — serif premium com contraste alto, usada por marcas de luxo · Manrope (corpo) — humanista, arejada</div>
+  </div>
+
+  <!-- C -->
+  <div class="option opt-c" data-choice="c" onclick="toggleSelect(this)">
+    <div class="opt-label"><div class="opt-letter">C</div> Urbanist + DM Sans — Bold Tech Premium</div>
+    <span class="tag">Especialistas em móveis</span>
+    <div class="headline">Tecnologia que<br>vende <em>móveis.</em></div>
+    <p class="body-text">CRM automatizado, tráfego com IA e omnichannel — desenvolvido exclusivamente para o mercado moveleiro brasileiro.</p>
+    <div class="meta">Urbanist (títulos) — condensada mas com altura, muito premium · DM Sans (corpo) — clean e profissional</div>
+  </div>
+
+</div>
+
+</body>
+</html>

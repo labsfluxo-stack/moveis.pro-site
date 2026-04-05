@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moveis.pro — Mockup V2</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; background: #0a0a0a; color: #fff; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 0 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; }
+  .nav-logo-icon {
+    width: 32px; height: 32px; background: #8B4513; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 900; color: white;
+  }
+  .nav-logo-text { font-size: 17px; font-weight: 800; color: #fff; letter-spacing: -0.5px; }
+  .nav-logo-text span { color: #cd7f32; }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a { color: rgba(255,255,255,0.6); font-size: 13px; font-weight: 500; text-decoration: none; letter-spacing: 0.2px; transition: color 0.2s; }
+  .nav-links a:hover { color: #fff; }
+  .nav-cta {
+    background: #8B4513; color: white; font-size: 13px; font-weight: 700;
+    padding: 10px 22px; border-radius: 8px; border: none; cursor: pointer;
+    letter-spacing: 0.2px;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 90vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 48px 60px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -200px; right: -100px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(139,69,19,0.25) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -100px; left: 30%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(205,127,50,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(139,69,19,0.15); border: 1px solid rgba(139,69,19,0.4);
+    color: #cd7f32; font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+    text-transform: uppercase; padding: 6px 14px; border-radius: 100px;
+    margin-bottom: 32px; width: fit-content;
+  }
+  .hero-tag::before { content: '●'; font-size: 8px; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  .hero h1 {
+    font-size: clamp(40px, 5.5vw, 72px);
+    font-weight: 900; line-height: 1.05;
+    letter-spacing: -2px; color: #fff;
+    max-width: 800px; margin-bottom: 24px;
+  }
+  .hero h1 em { font-style: normal; color: #cd7f32; }
+  .hero p {
+    font-size: 17px; color: rgba(255,255,255,0.5); font-weight: 400;
+    max-width: 500px; line-height: 1.7; margin-bottom: 40px;
+  }
+  .hero-btns { display: flex; gap: 12px; align-items: center; }
+  .btn-primary {
+    background: #8B4513; color: white; font-size: 14px; font-weight: 700;
+    padding: 14px 28px; border-radius: 10px; cursor: pointer; border: none;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .btn-secondary {
+    color: rgba(255,255,255,0.6); font-size: 14px; font-weight: 500;
+    padding: 14px 20px; cursor: pointer;
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  /* STATS */
+  .stats {
+    border-top: 1px solid rgba(255,255,255,0.07);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    padding: 40px 48px;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+  .stat { padding: 0 32px; border-right: 1px solid rgba(255,255,255,0.07); }
+  .stat:first-child { padding-left: 0; }
+  .stat:last-child { border-right: none; }
+  .stat-value { font-size: 36px; font-weight: 900; color: #fff; letter-spacing: -1px; }
+  .stat-value span { color: #cd7f32; }
+  .stat-label { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 4px; font-weight: 400; }
+
+  /* SERVICES */
+  .services { padding: 100px 48px; }
+  .section-tag {
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: #cd7f32; margin-bottom: 16px;
+  }
+  .section-title {
+    font-size: clamp(28px, 3.5vw, 46px); font-weight: 900;
+    letter-spacing: -1.5px; color: #fff; margin-bottom: 16px; line-height: 1.1;
+  }
+  .section-sub {
+    font-size: 15px; color: rgba(255,255,255,0.4); max-width: 480px;
+    line-height: 1.7; margin-bottom: 60px;
+  }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+  }
+  .service-card {
+    background: #111; padding: 36px 32px;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: background 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 2px; background: #8B4513; transform: scaleX(0);
+    transition: transform 0.3s; transform-origin: left;
+  }
+  .service-card:hover { background: #161616; }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: rgba(139,69,19,0.15); border: 1px solid rgba(139,69,19,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; margin-bottom: 20px;
+  }
+  .service-card h3 { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 10px; letter-spacing: -0.3px; }
+  .service-card p { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.6; }
+  .service-arrow {
+    position: absolute; bottom: 28px; right: 28px;
+    color: rgba(255,255,255,0.15); font-size: 18px;
+  }
+
+  /* ABOUT STRIP */
+  .about-strip {
+    margin: 0 48px;
+    background: linear-gradient(135deg, #8B4513 0%, #A0522D 50%, #cd7f32 100%);
+    border-radius: 20px; padding: 60px 56px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+  }
+  .about-strip h2 { font-size: 36px; font-weight: 900; letter-spacing: -1px; line-height: 1.15; }
+  .about-strip p { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.7; margin-bottom: 28px; }
+  .about-features { display: flex; flex-direction: column; gap: 12px; }
+  .about-feat { display: flex; align-items: center; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.85); }
+  .about-feat::before { content: '✓'; color: #fff; font-weight: 800; background: rgba(255,255,255,0.2); width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; flex-shrink: 0; }
+
+  /* CASES */
+  .cases { padding: 100px 48px; }
+  .cases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .case-card {
+    background: #111; border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 14px; padding: 28px; position: relative; overflow: hidden;
+  }
+  .case-badge {
+    display: inline-block; background: rgba(139,69,19,0.2); color: #cd7f32;
+    font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 4px; margin-bottom: 16px;
+  }
+  .case-card h3 { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+  .case-card p { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.6; margin-bottom: 20px; }
+  .case-metric { font-size: 28px; font-weight: 900; color: #cd7f32; letter-spacing: -1px; }
+  .case-metric-label { font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 2px; }
+
+  /* CTA FINAL */
+  .cta-final { padding: 80px 48px; text-align: center; }
+  .cta-box {
+    border: 1px solid rgba(255,255,255,0.08); border-radius: 24px;
+    padding: 72px 48px; background: #0f0f0f; position: relative; overflow: hidden;
+  }
+  .cta-box::before {
+    content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    width: 500px; height: 300px;
+    background: radial-gradient(ellipse, rgba(139,69,19,0.2) 0%, transparent 70%);
+  }
+  .cta-box h2 { font-size: clamp(28px, 4vw, 52px); font-weight: 900; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 16px; position: relative; }
+  .cta-box p { font-size: 15px; color: rgba(255,255,255,0.4); margin-bottom: 36px; position: relative; }
+  .cta-box .btn-primary { margin: 0 auto; position: relative; font-size: 15px; padding: 16px 36px; border-radius: 12px; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 32px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  footer .logo { font-size: 15px; font-weight: 800; color: rgba(255,255,255,0.5); }
+  footer .logo span { color: #cd7f32; }
+  footer p { font-size: 12px; color: rgba(255,255,255,0.25); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-icon">M</div>
+    <div class="nav-logo-text">moveis<span>.pro</span></div>
+  </div>
+  <div class="nav-links">
+    <a href="#">Serviços</a>
+    <a href="#">Sobre</a>
+    <a href="#">Cases</a>
+    <a href="#">Blog</a>
+    <a href="#">Contato</a>
+  </div>
+  <button class="nav-cta">Falar com especialista →</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">Especialistas no setor moveleiro</div>
+  <h1>Tecnologia e IA para<br>sua loja de móveis<br><em>vender mais.</em></h1>
+  <p>CRM automatizado, tráfego inteligente, omnichannel e agentes de IA — tudo pensado para o mercado moveleiro brasileiro.</p>
+  <div class="hero-btns">
+    <button class="btn-primary">Ver demonstração →</button>
+    <button class="btn-secondary">Conhecer serviços ↓</button>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-value">+<span>200</span></div>
+    <div class="stat-label">Lojas atendidas</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value"><span>3.8</span>x</div>
+    <div class="stat-label">ROI médio em tráfego</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value"><span>98</span>%</div>
+    <div class="stat-label">Satisfação dos clientes</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value"><span>24</span>h</div>
+    <div class="stat-label">Suporte especializado</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="section-tag">O que fazemos</div>
+  <h2 class="section-title">Soluções completas para<br>o mercado moveleiro</h2>
+  <p class="section-sub">Da captação de leads à gestão de clientes, cobrimos toda a jornada com tecnologia de ponta.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🤖</div>
+      <h3>CRM Automatizado</h3>
+      <p>Gestão de clientes com IA integrada para aumentar sua taxa de conversão e fidelização.</p>
+      <div class="service-arrow">→</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📊</div>
+      <h3>Tráfego com IA</h3>
+      <p>Anúncios no Google e Meta analisados por inteligência artificial para maximizar seu ROI.</p>
+      <div class="service-arrow">→</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔗</div>
+      <h3>Omnichannel</h3>
+      <p>WhatsApp, Instagram, e-mail e loja física integrados em um único painel de controle.</p>
+      <div class="service-arrow">→</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💬</div>
+      <h3>Agente de IA / Chatbot</h3>
+      <p>Atendimento 24/7 que qualifica leads e agenda visitas automaticamente.</p>
+      <div class="service-arrow">→</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⚡</div>
+      <h3>Métricas em Tempo Real</h3>
+      <p>Dashboard com todos os indicadores da sua loja atualizados ao vivo.</p>
+      <div class="service-arrow">→</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🌐</div>
+      <h3>Sites de Alto Padrão</h3>
+      <p>Sites rápidos, modernos e otimizados para converter visitantes em compradores.</p>
+      <div class="service-arrow">→</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT STRIP -->
+<div class="about-strip">
+  <div>
+    <h2>Por que escolher a Moveis.pro?</h2>
+  </div>
+  <div>
+    <p>Somos a única agência 100% especializada no setor moveleiro. Entendemos seu cliente, seu ciclo de vendas e o que realmente converte.</p>
+    <div class="about-features">
+      <div class="about-feat">Especialistas no nicho de móveis há mais de 5 anos</div>
+      <div class="about-feat">Tecnologia própria integrada ao seu processo de venda</div>
+      <div class="about-feat">Equipe dedicada com acompanhamento semanal</div>
+      <div class="about-feat">Resultados mensuráveis desde o primeiro mês</div>
+    </div>
+  </div>
+</div>
+
+<!-- CASES -->
+<section class="cases">
+  <div class="section-tag">Resultados reais</div>
+  <h2 class="section-title">Cases de sucesso</h2>
+  <p class="section-sub" style="margin-bottom:40px;">Lojas que transformaram seus números com a Moveis.pro.</p>
+  <div class="cases-grid">
+    <div class="case-card">
+      <div class="case-badge">CRM + Tráfego</div>
+      <h3>Móveis Alfa — São Paulo</h3>
+      <p>Implementação de CRM automatizado e tráfego pago com IA em 45 dias.</p>
+      <div class="case-metric">+187%</div>
+      <div class="case-metric-label">Aumento em leads qualificados</div>
+    </div>
+    <div class="case-card">
+      <div class="case-badge">Omnichannel</div>
+      <h3>Casa & Design — BH</h3>
+      <p>Integração de WhatsApp, Instagram e e-commerce em painel único.</p>
+      <div class="case-metric">4.2x</div>
+      <div class="case-metric-label">Retorno sobre investimento</div>
+    </div>
+    <div class="case-card">
+      <div class="case-badge">Agente de IA</div>
+      <h3>Decor Prime — Rio</h3>
+      <p>Chatbot com IA para qualificação e agendamento automático.</p>
+      <div class="case-metric">-68%</div>
+      <div class="case-metric-label">Redução no tempo de atendimento</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<div class="cta-final">
+  <div class="cta-box">
+    <h2>Pronto para transformar<br>sua loja?</h2>
+    <p>Fale com um especialista e receba um diagnóstico gratuito do seu negócio.</p>
+    <button class="btn-primary">Agendar conversa gratuita →</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo">moveis<span>.pro</span></div>
+  <p>© 2025 Moveis.pro — Tecnologia para o mercado moveleiro</p>
+</footer>
+
+</body>
+</html>

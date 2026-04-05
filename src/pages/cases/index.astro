@@ -10,12 +10,67 @@ import CTABox from '../../components/CTABox.astro';
 const cases = await getCollection('cases');
 const featured = cases.find((c) => c.data.featured);
 const rest = cases.filter((c) => !c.data.featured);
+
+const transformacoes = [
+  {
+    nome: 'Loja Campina Grande',
+    servico: 'CRM + Tráfego com IA',
+    metrica: '+187%',
+    metricaLabel: 'leads em 45 dias',
+    depois: '/images/cases/loja-1-depois.jpg',
+  },
+  {
+    nome: 'Loja Recife',
+    servico: 'Sites de Alto Padrão',
+    metrica: '3.2×',
+    metricaLabel: 'retorno sobre investimento',
+    depois: '/images/cases/loja-2-depois.jpg',
+  },
+  {
+    nome: 'Loja João Pessoa',
+    servico: 'Omnichannel',
+    metrica: '−62%',
+    metricaLabel: 'tempo de atendimento',
+    depois: '/images/cases/loja-3-depois.jpg',
+  },
+  {
+    nome: 'Loja Caruaru',
+    servico: 'Agente de IA',
+    metrica: '+94%',
+    metricaLabel: 'agendamentos de visita',
+    depois: '/images/cases/loja-4-depois.jpg',
+  },
+  {
+    nome: 'Loja Campina Grande II',
+    servico: 'Métricas em Tempo Real',
+    metrica: '4.1×',
+    metricaLabel: 'ROI médio',
+    depois: '/images/cases/loja-5-depois.jpg',
+  },
+  {
+    nome: 'Loja Recife II',
+    servico: 'Visualização 3D / RA',
+    metrica: '+40%',
+    metricaLabel: 'taxa de conversão',
+    depois: '/images/cases/loja-6-depois.jpg',
+  },
+  {
+    nome: 'Loja João Pessoa II',
+    servico: 'Tráfego com IA',
+    metrica: '−38%',
+    metricaLabel: 'custo por lead',
+    depois: '/images/cases/loja-7-depois.jpg',
+  },
+];
 ---
 
 <BaseLayout title="Cases de Sucesso" description="Resultados reais de lojas de móveis que transformaram seus negócios com a Moveis.pro.">
   <Nav />
   <main style="padding-top: 64px;">
-    <section style="padding: 100px 56px;">
+
+    <!-- HERO -->
+    <section style="padding: 100px 56px 60px; position: relative; overflow: hidden;">
+      <div style="position: absolute; top: -100px; right: -80px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(139,69,19,0.14) 0%, transparent 65%); pointer-events: none;"></div>
       <div class="inline-flex items-center gap-2.5 mb-8" style="color: var(--gold);">
         <span class="block w-7 h-px" style="background: var(--gold);"></span>
         <span class="text-xs font-medium tracking-widest uppercase" style="letter-spacing: 2px;">Resultados reais</span>
@@ -23,10 +78,13 @@ const rest = cases.filter((c) => !c.data.featured);
       <h1 class="font-display font-black text-white mb-6" style="font-size: clamp(44px, 5.5vw, 72px); letter-spacing: -2.5px; line-height: 1.0;">
         Cases de sucesso.
       </h1>
-      <p class="font-light max-w-lg mb-16" style="font-size: 16px; color: var(--dim); line-height: 1.7;">
+      <p class="font-light max-w-lg" style="font-size: 16px; color: var(--dim); line-height: 1.7;">
         Lojas de móveis que transformaram seus resultados com tecnologia da Moveis.pro.
       </p>
+    </section>
 
+    <!-- METRICS CARDS -->
+    <section style="padding: 0 56px 80px;">
       <div class="cases-grid" style="display: grid; grid-template-columns: 1.5fr 1fr; grid-template-rows: auto auto; gap: 14px;">
         {featured && (
           <a href={`/cases/${featured.slug}`} class="no-underline" style="grid-row: span 2;">
@@ -55,6 +113,75 @@ const rest = cases.filter((c) => !c.data.featured);
       </div>
     </section>
 
+    <!-- BEFORE / AFTER TRANSFORMAÇÕES -->
+    <section class="transformacoes-section">
+      <div class="transformacoes-header">
+        <div>
+          <div class="inline-flex items-center gap-2.5 mb-5" style="color: var(--gold);">
+            <span class="block w-7 h-px" style="background: var(--gold);"></span>
+            <span class="text-xs font-medium tracking-widest uppercase" style="letter-spacing: 2px;">Galeria</span>
+          </div>
+          <h2 class="font-display font-black text-white" style="font-size: clamp(32px, 4vw, 52px); letter-spacing: -2px; line-height: 1.0;">
+            Transformações<br />
+            <em class="not-italic" style="color: var(--gold);">antes & depois.</em>
+          </h2>
+        </div>
+        <p class="transformacoes-sub">
+          Veja o impacto visual e de negócio nas lojas que adotaram a plataforma Moveis.pro.
+        </p>
+      </div>
+
+      <div class="transformacoes-grid">
+        {transformacoes.map((t) => (
+          <div class="transf-card">
+
+            <!-- ANTES -->
+            <div class="transf-side">
+              <div class="transf-label transf-label-antes">Antes</div>
+              <div class="transf-img-wrap transf-placeholder">
+                <div class="placeholder-inner">
+                  <div class="placeholder-icon">📷</div>
+                  <p class="placeholder-text">Foto em breve</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- DIVIDER -->
+            <div class="transf-divider">
+              <div class="transf-arrow">→</div>
+            </div>
+
+            <!-- DEPOIS -->
+            <div class="transf-side">
+              <div class="transf-label transf-label-depois">Depois</div>
+              <div class="transf-img-wrap">
+                <img
+                  src={t.depois}
+                  alt={`${t.nome} — depois da Moveis.pro`}
+                  class="transf-img"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+
+            <!-- INFO -->
+            <div class="transf-info">
+              <div>
+                <p class="transf-servico">{t.servico}</p>
+                <p class="transf-nome">{t.nome}</p>
+              </div>
+              <div class="transf-metrica-wrap">
+                <span class="transf-metrica">{t.metrica}</span>
+                <span class="transf-metrica-label">{t.metricaLabel}</span>
+              </div>
+            </div>
+
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA -->
     <div style="padding: 0 56px 100px;">
       <CTABox
         title={"Quer ser o\npróximo case\nde sucesso?"}
@@ -63,6 +190,229 @@ const rest = cases.filter((c) => !c.data.featured);
         buttonHref="/contato"
       />
     </div>
+
   </main>
   <Footer />
 </BaseLayout>
+
+<style>
+  /* ── TRANSFORMAÇÕES SECTION ──────────────────── */
+  .transformacoes-section {
+    padding: 0 56px 100px;
+  }
+
+  .transformacoes-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 48px;
+    margin-bottom: 48px;
+    border-bottom: 1px solid var(--border);
+    gap: 40px;
+  }
+
+  .transformacoes-sub {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 280px;
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  .transformacoes-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  /* ── CARD ─────────────────────────────────────── */
+  .transf-card {
+    display: grid;
+    grid-template-columns: 1fr 40px 1fr auto;
+    gap: 0;
+    align-items: stretch;
+    background: var(--dark-3);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .transf-card:hover {
+    border-color: rgba(139,69,19,0.4);
+  }
+
+  .transf-side {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .transf-label {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 2;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+  .transf-label-antes {
+    background: rgba(255,255,255,0.08);
+    color: var(--muted);
+    border: 1px solid var(--border);
+  }
+  .transf-label-depois {
+    background: rgba(139,69,19,0.25);
+    color: var(--gold);
+    border: 1px solid rgba(200,121,42,0.3);
+  }
+
+  .transf-img-wrap {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    flex: 1;
+  }
+
+  .transf-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .transf-card:hover .transf-img {
+    transform: scale(1.03);
+  }
+
+  /* Placeholder for "antes" */
+  .transf-placeholder {
+    background: var(--dark-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .placeholder-inner {
+    text-align: center;
+    opacity: 0.3;
+  }
+  .placeholder-icon {
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+  .placeholder-text {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  /* ── DIVIDER ARROW ───────────────────────────── */
+  .transf-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--dark-2);
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+  }
+  .transf-arrow {
+    font-size: 16px;
+    color: var(--gold);
+    opacity: 0.6;
+  }
+
+  /* ── INFO BAR ────────────────────────────────── */
+  .transf-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    padding: 24px 28px;
+    min-width: 200px;
+    border-left: 1px solid var(--border);
+    background: var(--dark-2);
+  }
+
+  .transf-servico {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--brown);
+    margin-bottom: 4px;
+  }
+  .transf-nome {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 800;
+    font-size: 15px;
+    letter-spacing: -0.3px;
+    color: #fff;
+    line-height: 1.2;
+  }
+
+  .transf-metrica-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+  }
+  .transf-metrica {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 900;
+    font-size: 28px;
+    letter-spacing: -1.5px;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .transf-metrica-label {
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* ── RESPONSIVE ──────────────────────────────── */
+  @media (max-width: 768px) {
+    .transformacoes-section {
+      padding: 0 24px 80px;
+    }
+    .transformacoes-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .transformacoes-sub {
+      text-align: left;
+      max-width: 100%;
+    }
+    .transf-card {
+      grid-template-columns: 1fr 32px 1fr;
+      grid-template-rows: auto auto;
+    }
+    .transf-info {
+      grid-column: 1 / -1;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      min-width: unset;
+      border-left: none;
+      border-top: 1px solid var(--border);
+      padding: 16px 20px;
+    }
+    .transf-metrica-wrap {
+      border-top: none;
+      padding-top: 0;
+      align-items: flex-end;
+    }
+    .transf-img-wrap {
+      height: 160px;
+    }
+  }
+</style>

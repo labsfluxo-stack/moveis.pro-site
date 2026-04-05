@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moveis.pro — V4 Final</title>
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,300;0,400;0,500;0,700;0,800;0,900;1,900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --brown:      #8B4513;
+    --gold:       #C8792A;
+    --gold-light: #e8a855;
+    --dark:       #070707;
+    --dark-2:     #0d0d0d;
+    --dark-3:     #131313;
+    --border:     rgba(255,255,255,0.06);
+    --muted:      rgba(255,255,255,0.35);
+    --dim:        rgba(255,255,255,0.58);
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--dark); color: #fff;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ───── NAV ───── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    height: 66px; padding: 0 56px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(7,7,7,0.88);
+    backdrop-filter: blur(18px) saturate(1.6);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 900; font-size: 20px; letter-spacing: -0.8px; color: #fff;
+  }
+  .logo em { font-style: normal; color: var(--gold); }
+  nav ul { list-style: none; display: flex; gap: 38px; }
+  nav ul a {
+    font-size: 13.5px; font-weight: 400; color: var(--muted);
+    text-decoration: none; transition: color 0.15s; letter-spacing: 0.1px;
+  }
+  nav ul a:hover { color: #fff; }
+  .nav-cta {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 600;
+    background: var(--brown); color: #fff;
+    padding: 9px 22px; border-radius: 8px; border: none; cursor: pointer;
+  }
+
+  /* ───── HERO ───── */
+  .hero {
+    padding: 148px 56px 88px;
+    display: grid; grid-template-columns: 1fr 400px;
+    gap: 56px; align-items: center;
+    min-height: 100vh; position: relative; overflow: hidden;
+  }
+  /* ambient glows */
+  .hero::before {
+    content: ''; position: absolute; top: -160px; right: 80px;
+    width: 580px; height: 580px;
+    background: radial-gradient(circle, rgba(139,69,19,0.2) 0%, transparent 68%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: ''; position: absolute; bottom: 0; left: -60px;
+    width: 360px; height: 360px;
+    background: radial-gradient(circle, rgba(200,121,42,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-left { position: relative; z-index: 1; }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    margin-bottom: 30px;
+    font-size: 11px; font-weight: 500; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--gold);
+  }
+  .eyebrow-line { width: 28px; height: 1px; background: var(--gold); }
+
+  h1 {
+    font-family: 'Urbanist', sans-serif;
+    font-size: clamp(52px, 6.2vw, 86px);
+    font-weight: 900; line-height: 0.95; letter-spacing: -3px;
+    color: #fff; margin-bottom: 30px;
+  }
+  h1 .outline {
+    color: transparent;
+    -webkit-text-stroke: 1.8px var(--gold);
+  }
+
+  .hero-desc {
+    font-size: 16px; font-weight: 300; color: var(--dim);
+    line-height: 1.7; max-width: 430px; margin-bottom: 48px;
+  }
+
+  .hero-actions { display: flex; align-items: center; gap: 18px; }
+  .btn-primary {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 600; color: #fff;
+    background: var(--brown); padding: 14px 28px;
+    border-radius: 10px; border: none; cursor: pointer;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .btn-text {
+    font-size: 14px; font-weight: 400; color: var(--muted);
+    background: none; border: none; cursor: pointer;
+    display: flex; align-items: center; gap: 6px;
+    transition: color 0.15s;
+  }
+  .btn-text:hover { color: #fff; }
+
+  /* hero right card */
+  .hero-card {
+    position: relative; z-index: 1;
+    background: var(--dark-3);
+    border: 1px solid var(--border);
+    border-radius: 20px; padding: 30px;
+    overflow: hidden;
+  }
+  .hero-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(200,121,42,0.7), transparent);
+  }
+  .hc-eyebrow {
+    font-size: 10px; font-weight: 600; letter-spacing: 1.8px;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 22px;
+  }
+  .hc-big {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 56px; font-weight: 900; letter-spacing: -2.5px;
+    color: #fff; line-height: 1;
+  }
+  .hc-big em { font-style: normal; color: var(--gold); }
+  .hc-sub { font-size: 12px; color: var(--muted); margin-top: 6px; margin-bottom: 22px; font-weight: 300; }
+  .hc-bar-bg { height: 3px; background: rgba(255,255,255,0.06); border-radius: 99px; margin-bottom: 24px; }
+  .hc-bar-fill { height: 3px; width: 74%; background: linear-gradient(90deg, var(--brown), var(--gold-light)); border-radius: 99px; }
+  .hc-rows { display: flex; flex-direction: column; gap: 13px; }
+  .hc-row { display: flex; justify-content: space-between; align-items: center; }
+  .hc-row-label { font-size: 12.5px; color: var(--muted); font-weight: 300; }
+  .hc-row-val {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 14px; font-weight: 800; color: var(--gold); letter-spacing: -0.3px;
+  }
+
+  /* ───── MARQUEE ───── */
+  .marquee {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--dark-2); overflow: hidden; padding: 17px 0;
+  }
+  .marquee-track {
+    display: flex; gap: 52px; width: max-content;
+    animation: scroll 24s linear infinite;
+  }
+  @keyframes scroll { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+  .marquee-item {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 12px; font-weight: 700; letter-spacing: 2.5px;
+    text-transform: uppercase; color: rgba(255,255,255,0.13);
+    white-space: nowrap; display: flex; align-items: center; gap: 20px;
+  }
+  .marquee-item::after { content: '✦'; color: var(--brown); font-size: 9px; }
+
+  /* ───── SERVICES ───── */
+  .services { padding: 116px 56px; }
+
+  .section-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    padding-bottom: 44px; margin-bottom: 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-index {
+    font-size: 10px; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--brown); margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Urbanist', sans-serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 900; letter-spacing: -1.8px; line-height: 1.0; color: #fff;
+  }
+  .section-right { text-align: right; max-width: 320px; }
+  .section-right p {
+    font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.65; margin-bottom: 18px;
+  }
+  .link-more {
+    font-size: 13px; font-weight: 500; color: var(--gold); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+
+  .svc-list { display: flex; flex-direction: column; }
+  .svc-item {
+    display: grid;
+    grid-template-columns: 72px 1fr 1.1fr 110px;
+    gap: 28px; align-items: center;
+    padding: 30px 0;
+    border-bottom: 1px solid var(--border);
+    cursor: default;
+    transition: padding 0.2s;
+  }
+  .svc-item:hover { padding-left: 12px; }
+  .svc-n {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 12px; font-weight: 700; color: var(--brown); letter-spacing: 1px;
+  }
+  .svc-name {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 19px; font-weight: 800; letter-spacing: -0.5px; color: #fff;
+  }
+  .svc-desc { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.55; }
+  .svc-badge {
+    font-size: 10.5px; font-weight: 500; letter-spacing: 0.5px;
+    color: var(--muted); background: rgba(255,255,255,0.04);
+    padding: 6px 13px; border-radius: 99px;
+    text-align: center; white-space: nowrap;
+  }
+
+  /* ───── NUMBERS ───── */
+  .numbers {
+    margin: 0 56px;
+    background: var(--dark-3); border: 1px solid var(--border);
+    border-radius: 22px; padding: 68px 60px;
+    display: grid; grid-template-columns: repeat(4,1fr);
+    position: relative; overflow: hidden;
+  }
+  .numbers::after {
+    content: ''; position: absolute; top: 0; left: 20%; right: 20%;
+    height: 1px; background: linear-gradient(90deg, transparent, rgba(139,69,19,0.6), transparent);
+  }
+  .num-item { padding: 0 36px; border-right: 1px solid var(--border); }
+  .num-item:first-child { padding-left: 0; }
+  .num-item:last-child { border-right: none; }
+  .num-val {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 48px; font-weight: 900; letter-spacing: -2.5px;
+    color: #fff; line-height: 1;
+  }
+  .num-val em { font-style: normal; color: var(--gold); }
+  .num-label { font-size: 12px; font-weight: 300; color: var(--muted); margin-top: 10px; line-height: 1.5; }
+
+  /* ───── CASES ───── */
+  .cases { padding: 116px 56px; }
+  .cases-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 14px; margin-top: 56px;
+  }
+  .case-card {
+    background: var(--dark-3); border: 1px solid var(--border);
+    border-radius: 18px; padding: 38px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    transition: border-color 0.2s; position: relative; overflow: hidden;
+  }
+  .case-card:hover { border-color: rgba(139,69,19,0.35); }
+  .case-card.big { grid-row: span 2; }
+  .case-tag {
+    font-size: 10px; font-weight: 600; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 18px; display: block;
+  }
+  .case-card h3 {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 22px; font-weight: 800; letter-spacing: -0.6px;
+    color: #fff; margin-bottom: 10px;
+  }
+  .case-card p { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.6; }
+  .case-result { margin-top: 40px; }
+  .case-num {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 58px; font-weight: 900; letter-spacing: -3px;
+    color: var(--gold); line-height: 1;
+  }
+  .case-num-sm {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 44px; font-weight: 900; letter-spacing: -2.5px;
+    color: var(--gold); line-height: 1;
+  }
+  .case-label { font-size: 12px; font-weight: 300; color: var(--muted); margin-top: 5px; }
+
+  /* ───── CTA ───── */
+  .cta { padding: 80px 56px 100px; }
+  .cta-box {
+    border: 1px solid var(--border); border-radius: 24px;
+    background: var(--dark-2); padding: 84px 68px;
+    display: grid; grid-template-columns: 1fr 260px;
+    gap: 56px; align-items: center;
+    position: relative; overflow: hidden;
+  }
+  .cta-box::before {
+    content: ''; position: absolute;
+    bottom: -100px; right: -60px;
+    width: 360px; height: 360px;
+    background: radial-gradient(circle, rgba(139,69,19,0.16) 0%, transparent 70%);
+  }
+  .cta-box h2 {
+    font-family: 'Urbanist', sans-serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 900; letter-spacing: -2px; line-height: 1.05; color: #fff;
+  }
+  .cta-box h2 em { font-style: normal; color: var(--gold); }
+  .cta-right { position: relative; z-index: 1; }
+  .cta-right p { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.65; margin-bottom: 20px; }
+  .btn-cta {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 600; color: #fff;
+    background: var(--brown); padding: 15px 28px;
+    border-radius: 10px; border: none; cursor: pointer; width: 100%;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+
+  /* ───── FOOTER ───── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 30px 56px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-logo {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 900; font-size: 16px; letter-spacing: -0.5px;
+    color: rgba(255,255,255,0.25);
+  }
+  .footer-logo em { font-style: normal; color: var(--brown); }
+  footer p { font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.18); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">moveis<em>.pro</em></div>
+  <ul>
+    <li><a href="#">Serviços</a></li>
+    <li><a href="#">Sobre</a></li>
+    <li><a href="#">Cases</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">Contato</a></li>
+  </ul>
+  <button class="nav-cta">Falar com especialista</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="eyebrow"><span class="eyebrow-line"></span>Especialistas em móveis</div>
+    <h1>Tecnologia<br>que vende<br><span class="outline">móveis.</span></h1>
+    <p class="hero-desc">
+      CRM com IA, tráfego inteligente, omnichannel e chatbots — desenvolvidos para o mercado moveleiro brasileiro.
+    </p>
+    <div class="hero-actions">
+      <button class="btn-primary">Ver demonstração →</button>
+      <button class="btn-text">Conheça os serviços ↓</button>
+    </div>
+  </div>
+
+  <div class="hero-card">
+    <div class="hc-eyebrow">Performance do mês atual</div>
+    <div class="hc-big"><em>+</em>187<em>%</em></div>
+    <div class="hc-sub">Leads qualificados — Móveis Alfa SP</div>
+    <div class="hc-bar-bg"><div class="hc-bar-fill"></div></div>
+    <div class="hc-rows">
+      <div class="hc-row">
+        <span class="hc-row-label">ROI em tráfego pago</span>
+        <span class="hc-row-val">3.8×</span>
+      </div>
+      <div class="hc-row">
+        <span class="hc-row-label">Taxa de conversão</span>
+        <span class="hc-row-val">+64%</span>
+      </div>
+      <div class="hc-row">
+        <span class="hc-row-label">Tempo de resposta</span>
+        <span class="hc-row-val">−68%</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span class="marquee-item">CRM Automatizado</span>
+    <span class="marquee-item">Tráfego com IA</span>
+    <span class="marquee-item">Omnichannel</span>
+    <span class="marquee-item">Agente de IA</span>
+    <span class="marquee-item">Métricas em Tempo Real</span>
+    <span class="marquee-item">Sites de Alto Padrão</span>
+    <span class="marquee-item">Soluções Comerciais</span>
+    <span class="marquee-item">CRM Automatizado</span>
+    <span class="marquee-item">Tráfego com IA</span>
+    <span class="marquee-item">Omnichannel</span>
+    <span class="marquee-item">Agente de IA</span>
+    <span class="marquee-item">Métricas em Tempo Real</span>
+    <span class="marquee-item">Sites de Alto Padrão</span>
+    <span class="marquee-item">Soluções Comerciais</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="section-header">
+    <div>
+      <div class="section-index">01 — Serviços</div>
+      <h2 class="section-title">O que a<br>Moveis.pro faz</h2>
+    </div>
+    <div class="section-right">
+      <p>Da captação de leads à gestão completa do cliente — cobrimos toda a jornada com tecnologia própria para o setor moveleiro.</p>
+      <a href="#" class="link-more">Ver todos os serviços →</a>
+    </div>
+  </div>
+
+  <div class="svc-list">
+    <div class="svc-item">
+      <span class="svc-n">01</span>
+      <span class="svc-name">CRM Automatizado</span>
+      <span class="svc-desc">Gestão de clientes com IA para aumentar conversão e fidelização sem trabalho manual.</span>
+      <span class="svc-badge">IA & Automação</span>
+    </div>
+    <div class="svc-item">
+      <span class="svc-n">02</span>
+      <span class="svc-name">Tráfego com IA</span>
+      <span class="svc-desc">Google e Meta Ads otimizados por inteligência artificial para maximizar seu ROI.</span>
+      <span class="svc-badge">Performance</span>
+    </div>
+    <div class="svc-item">
+      <span class="svc-n">03</span>
+      <span class="svc-name">Omnichannel</span>
+      <span class="svc-desc">WhatsApp, Instagram, e-mail e loja física integrados em um único painel de controle.</span>
+      <span class="svc-badge">Integração</span>
+    </div>
+    <div class="svc-item">
+      <span class="svc-n">04</span>
+      <span class="svc-name">Agente de IA / Chatbot</span>
+      <span class="svc-desc">Atendimento 24/7 que qualifica leads, responde dúvidas e agenda visitas automaticamente.</span>
+      <span class="svc-badge">IA & Automação</span>
+    </div>
+    <div class="svc-item">
+      <span class="svc-n">05</span>
+      <span class="svc-name">Métricas em Tempo Real</span>
+      <span class="svc-desc">Dashboard com todos os indicadores da sua loja atualizados ao vivo, acessível de qualquer lugar.</span>
+      <span class="svc-badge">Analytics</span>
+    </div>
+    <div class="svc-item">
+      <span class="svc-n">06</span>
+      <span class="svc-name">Sites de Alto Padrão</span>
+      <span class="svc-desc">Sites rápidos, modernos e otimizados para converter visitantes em compradores reais.</span>
+      <span class="svc-badge">Web & Design</span>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<div class="numbers">
+  <div class="num-item">
+    <div class="num-val">+<em>200</em></div>
+    <div class="num-label">Lojas de móveis atendidas no Brasil</div>
+  </div>
+  <div class="num-item">
+    <div class="num-val"><em>3.8</em>×</div>
+    <div class="num-label">Retorno médio sobre investimento em tráfego</div>
+  </div>
+  <div class="num-item">
+    <div class="num-val"><em>98</em>%</div>
+    <div class="num-label">Taxa de satisfação dos clientes ativos</div>
+  </div>
+  <div class="num-item">
+    <div class="num-val"><em>24</em>h</div>
+    <div class="num-label">Suporte especializado sempre disponível</div>
+  </div>
+</div>
+
+<!-- CASES -->
+<section class="cases">
+  <div class="section-index">02 — Resultados</div>
+  <h2 class="section-title">Cases de sucesso</h2>
+
+  <div class="cases-grid">
+    <div class="case-card big">
+      <div>
+        <span class="case-tag">CRM + Tráfego com IA</span>
+        <h3>Móveis Alfa — São Paulo</h3>
+        <p>Implementação de CRM automatizado e campanhas de tráfego com IA em 45 dias. O resultado superou todas as metas do cliente no primeiro trimestre.</p>
+      </div>
+      <div class="case-result">
+        <div class="case-num">+187%</div>
+        <div class="case-label">Aumento em leads qualificados</div>
+      </div>
+    </div>
+    <div class="case-card">
+      <div>
+        <span class="case-tag">Omnichannel</span>
+        <h3>Casa & Design — BH</h3>
+        <p>Integração de todos os canais em painel único.</p>
+      </div>
+      <div class="case-result">
+        <div class="case-num-sm">4.2×</div>
+        <div class="case-label">Retorno sobre investimento</div>
+      </div>
+    </div>
+    <div class="case-card">
+      <div>
+        <span class="case-tag">Agente de IA</span>
+        <h3>Decor Prime — Rio</h3>
+        <p>Chatbot com IA para qualificação automática de leads.</p>
+      </div>
+      <div class="case-result">
+        <div class="case-num-sm">−68%</div>
+        <div class="case-label">Tempo de atendimento</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta">
+  <div class="cta-box">
+    <h2>Pronto para sua<br>loja vender com<br><em>tecnologia?</em></h2>
+    <div class="cta-right">
+      <p>Agende uma conversa gratuita com um especialista e receba um diagnóstico completo do seu negócio.</p>
+      <button class="btn-cta">Agendar conversa gratuita →</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">moveis<em>.pro</em></div>
+  <p>© 2025 Moveis.pro — Tecnologia para o mercado moveleiro</p>
+</footer>
+
+</body>
+</html>
