@@ -35,6 +35,8 @@ const transformacoes = [
     metricaLabel: 'tempo de atendimento',
     depois: '/images/cases/loja-3-depois.png',
     pos: 'center 40%',
+    antes: '/images/cases/loja-3-antes.png',
+    posAntes: 'center 45%',
   },
   {
     nome: 'Loja Caruaru',
@@ -161,12 +163,24 @@ const transformacoes = [
             <!-- ANTES -->
             <div class="transf-side">
               <div class="transf-label transf-label-antes">Antes</div>
-              <div class="transf-img-wrap transf-placeholder">
-                <div class="placeholder-inner">
-                  <div class="placeholder-icon">📷</div>
-                  <p class="placeholder-text">Foto em breve</p>
+              {t.antes ? (
+                <div class="transf-img-wrap">
+                  <img
+                    src={t.antes}
+                    alt={`${t.nome} — antes da Moveis.pro`}
+                    class="transf-img"
+                    style={`object-position: ${t.posAntes ?? 'center 50%'};`}
+                    loading="lazy"
+                  />
                 </div>
-              </div>
+              ) : (
+                <div class="transf-img-wrap transf-placeholder">
+                  <div class="placeholder-inner">
+                    <div class="placeholder-icon">📷</div>
+                    <p class="placeholder-text">Foto em breve</p>
+                  </div>
+                </div>
+              )}
             </div>
 
             <!-- DIVIDER -->
