@@ -14,8 +14,11 @@ const currentPath = Astro.url.pathname;
   class="fixed top-0 left-0 right-0 z-50 h-16 px-6 md:px-14 flex items-center justify-between"
   style="background: rgba(7,7,7,0.88); backdrop-filter: blur(18px) saturate(1.6); border-bottom: 1px solid var(--border);"
 >
-  <a href="/" class="font-display font-black text-xl tracking-tight text-white no-underline">
-    moveis<em class="not-italic" style="color: var(--gold);">.pro</em>
+  <a href="/" class="nav-logo no-underline flex items-center gap-2">
+    <img src="/logo.png" alt="Moveis.pro logo" class="nav-logo-img" />
+    <span class="nav-logo-text">
+      <span class="nav-logo-oveis">oveis</span><span class="nav-logo-dotpro">.pro</span>
+    </span>
   </a>
 
   <!-- Desktop links -->
@@ -83,6 +86,51 @@ const currentPath = Astro.url.pathname;
     Falar com especialista →
   </a>
 </div>
+
+<style>
+  .nav-logo-img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 8px rgba(200,121,42,0.5));
+    transition: filter 0.3s;
+  }
+  .nav-logo:hover .nav-logo-img {
+    filter: drop-shadow(0 0 14px rgba(200,121,42,0.85));
+  }
+
+  .nav-logo-text {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 900;
+    font-size: 20px;
+    letter-spacing: -0.5px;
+    line-height: 1;
+  }
+
+  .nav-logo-oveis {
+    color: #fff;
+    position: relative;
+  }
+
+  .nav-logo-dotpro {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--brown) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% 200%;
+    animation: logo-shimmer 3s ease infinite;
+  }
+
+  @keyframes logo-shimmer {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .nav-logo:hover .nav-logo-oveis {
+    color: rgba(255,255,255,0.85);
+  }
+</style>
 
 <script>
   const toggle = document.getElementById('nav-toggle');
