@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 
+const b = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const enviado = Astro.url.searchParams.get("enviado") === "1";
 ---
 
@@ -23,8 +24,34 @@ const enviado = Astro.url.searchParams.get("enviado") === "1";
       </section>
     ) : (
       <>
-        <section class="hero">
-          <div class="hero-glow"></div>
+        <!-- ① HERO CINEMATIC -->
+        <section class="hero" id="contato-hero">
+          <!-- vídeo de fundo -->
+          <video
+            id="contato-video"
+            class="hero-media hero-video"
+            autoplay
+            muted
+            playsinline
+            preload="auto"
+            poster={`${b}images/contato.png`}
+          >
+            <source src={`${b}videos/contato.mp4`} type="video/mp4" />
+          </video>
+
+          <!-- imagem de fallback (sempre visível em background) -->
+          <img
+            id="contato-poster"
+            class="hero-media hero-poster"
+            src={`${b}images/contato.png`}
+            alt=""
+          />
+
+          <!-- overlays de legibilidade -->
+          <div class="hero-vignette"></div>
+          <div class="hero-gradient"></div>
+
+          <!-- conteúdo -->
           <div class="hero-inner">
             <div class="eyebrow">
               <span class="line"></span>
@@ -47,6 +74,7 @@ const enviado = Astro.url.searchParams.get("enviado") === "1";
           </div>
         </section>
 
+        <!-- ② GRID: cards + formulário -->
         <section class="contato-grid">
           <aside class="left">
             <div class="card">
@@ -150,27 +178,97 @@ const enviado = Astro.url.searchParams.get("enviado") === "1";
   <Footer />
 </BaseLayout>
 
+<script>
+  const heroEl    = document.getElementById('contato-hero') as HTMLElement | null;
+  const videoEl   = document.getElementById('contato-video') as HTMLVideoElement | null;
+
+  if (heroEl && videoEl) {
+    videoEl.addEventListener('playing', () => {
+      heroEl.classList.add('playing');
+      heroEl.classList.remove('finished');
+    });
+    videoEl.addEventListener('ended', () => {
+      heroEl.classList.remove('playing');
+      heroEl.classList.add('finished');
+    });
+    videoEl.play().catch(() => {});
+  }
+</script>
+
 <style>
+  /* ── HERO CINEMATIC ── */
   .hero {
     position: relative;
-    padding: 88px 56px 26px;
+    width: 100%;
+    height: 78vh;
+    min-height: 500px;
+    max-height: 820px;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
   }
 
-  .hero-glow {
+  .hero-media {
     position: absolute;
-    top: -120px;
-    right: -80px;
-    width: 460px;
-    height: 460px;
-    background: radial-gradient(circle, rgba(184, 92, 58, 0.18) 0%, transparent 68%);
-    pointer-events: none;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+    display: block;
+    z-index: 0;
   }
 
+  /* poster: always visible as base layer */
+  .hero-poster {
+    z-index: 0;
+    opacity: 1;
+    animation: hero-zoom 24s ease-in-out infinite alternate;
+  }
+
+  /* video: hidden until playing */
+  .hero-video {
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+  }
+
+  .hero.playing .hero-video  { opacity: 1; }
+  .hero.finished .hero-video { opacity: 0; pointer-events: none; }
+
+  @keyframes hero-zoom {
+    from { transform: scale(1.02); }
+    to   { transform: scale(1.07); }
+  }
+
+  /* vinheta radial */
+  .hero-vignette {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background: radial-gradient(ellipse 110% 90% at 30% 55%, transparent 0%, rgba(7,7,7,0.45) 65%, rgba(7,7,7,0.88) 100%);
+  }
+
+  /* gradiente: escurece esquerda pra texto + base pra transição suave */
+  .hero-gradient {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    background:
+      linear-gradient(to right, rgba(7,7,7,0.92) 0%, rgba(7,7,7,0.65) 30%, rgba(7,7,7,0.2) 60%, transparent 85%),
+      linear-gradient(to bottom, transparent 30%, rgba(7,7,7,0.55) 70%, var(--dark) 100%);
+  }
+
+  /* conteúdo sobreposto */
   .hero-inner {
     position: relative;
-    z-index: 1;
-    max-width: 860px;
+    z-index: 5;
+    max-width: 1400px;
+    width: 100%;
+    padding: 0 56px 60px;
   }
 
   .eyebrow {
@@ -199,6 +297,7 @@ const enviado = Astro.url.searchParams.get("enviado") === "1";
     line-height: 0.93;
     color: #fff;
     margin-bottom: 16px;
+    text-shadow: 0 2px 40px rgba(0,0,0,0.4);
   }
 
   h1 em {
@@ -206,15 +305,17 @@ const enviado = Astro.url.searchParams.get("enviado") === "1";
     color: var(--gold);
   }
 
-  .hero p {
-    max-width: 620px;
-    color: var(--dim);
+  .hero-inner > p {
+    max-width: 560px;
+    color: rgba(247,240,232,0.8);
     font-size: 16px;
     line-height: 1.7;
+    text-shadow: 0 1px 16px rgba(0,0,0,0.5);
   }
 
+  /* ── GRID: cards + formulário ── */
   .contato-grid {
-    padding: 44px 56px 100px;
+    padding: 56px 56px 100px;
     display: grid;
     grid-template-columns: 1fr 1.1fr;
     gap: 48px;
@@ -389,10 +490,9 @@ const enviado = Astro.url.searchParams.get("enviado") === "1";
     cursor: pointer;
   }
 
-  .form button:hover {
-    opacity: 0.92;
-  }
+  .form button:hover { opacity: 0.92; }
 
+  /* ── SUCCESS ── */
   .success-wrap {
     min-height: calc(100vh - 64px);
     display: grid;
@@ -449,15 +549,38 @@ const enviado = Astro.url.searchParams.get("enviado") === "1";
     font-weight: 800;
   }
 
-  @media (max-width: 920px) {
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    .hero {
+      height: 72svh;
+      min-height: 480px;
+      max-height: none;
+    }
+
+    .hero-gradient {
+      background:
+        linear-gradient(to bottom, rgba(7,7,7,0.18) 0%, rgba(7,7,7,0.55) 45%, rgba(7,7,7,0.9) 75%, var(--dark) 100%);
+    }
+
+    .hero-inner {
+      padding: 0 20px 36px;
+    }
+
+    h1 {
+      font-size: clamp(30px, 8.5vw, 44px) !important;
+      letter-spacing: -0.04em !important;
+      line-height: 1.0 !important;
+    }
+
+    .hero-inner > p {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
     .contato-grid {
       grid-template-columns: 1fr;
       gap: 24px;
-      padding: 34px 24px 84px;
-    }
-
-    .hero {
-      padding: 72px 24px 16px;
+      padding: 40px 16px 80px;
     }
 
     .row,
