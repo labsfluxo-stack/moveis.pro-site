@@ -5,6 +5,10 @@ import Footer from "../components/Footer.astro";
 import NumbersBar from "../components/NumbersBar.astro";
 import CTABox from "../components/CTABox.astro";
 
+const b = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+
+const sobreImages = ['1.png','2.png','3.png','4.png','5.png','6.png','7.png','8.png'];
+
 const pilares = [
   {
     icon: "01",
@@ -42,35 +46,59 @@ const numbers = [
 >
   <Nav />
   <main style="padding-top: 64px;">
-    <section style="padding: 100px 56px 72px;">
-      <div class="inline-flex items-center gap-2.5 mb-8" style="color: var(--gold);">
-        <span class="block w-7 h-px" style="background: var(--gold);"></span>
-        <span class="text-xs font-medium tracking-widest uppercase" style="letter-spacing: 2px;">
-          Quem somos
-        </span>
+
+    <!-- ① HERO 2 colunas -->
+    <section class="sobre-hero">
+
+      <!-- esquerda: texto -->
+      <div class="sobre-hero-text">
+        <div class="inline-flex items-center gap-2.5 mb-8" style="color: var(--gold);">
+          <span class="block w-7 h-px" style="background: var(--gold);"></span>
+          <span class="text-xs font-medium tracking-widest uppercase" style="letter-spacing: 2px;">
+            Quem somos
+          </span>
+        </div>
+
+        <h1
+          class="font-display font-black text-white mb-7"
+          style="font-size: clamp(40px, 5.4vw, 74px); letter-spacing: -2.4px; line-height: 0.96;"
+        >
+          A única empresa que trabalha<br />
+          <em class="not-italic" style="color: var(--gold);">só com loja de móveis.</em>
+        </h1>
+
+        <p class="font-light" style="font-size: 17px; color: var(--dim); line-height: 1.75; max-width: 560px;">
+          A Moveis.pro nasceu com uma obsessão: entregar tráfego, IA e atendimento que funcionam
+          <b style="color: var(--cream); font-weight: 600;">pra loja de móveis</b>. Enquanto agência
+          genérica trata lojista de médio-alto ticket como se fosse Magazine Luiza, a gente fala a
+          linguagem do seu showroom. Resultado: campanha mais barata, cliente certo, vendedor que
+          fecha.
+        </p>
       </div>
 
-      <h1
-        class="font-display font-black text-white mb-7"
-        style="font-size: clamp(44px, 5.4vw, 74px); letter-spacing: -2.4px; line-height: 0.96; max-width: 920px;"
-      >
-        A única empresa que trabalha<br />
-        <em class="not-italic" style="color: var(--gold);">só com loja de móveis.</em>
-      </h1>
+      <!-- direita: slideshow automático -->
+      <div class="sobre-slides-wrap">
+        <!-- glow ambiente atrás das imagens -->
+        <div class="sobre-slides-glow"></div>
 
-      <p class="font-light max-w-2xl" style="font-size: 17px; color: var(--dim); line-height: 1.75;">
-        A Moveis.pro nasceu com uma obsessão: entregar tráfego, IA e atendimento que funcionam
-        <b style="color: var(--cream); font-weight: 600;">pra loja de móveis</b>. Enquanto agência
-        genérica trata lojista de médio-alto ticket como se fosse Magazine Luiza, a gente fala a
-        linguagem do seu showroom. Resultado: campanha mais barata, cliente certo, vendedor que
-        fecha.
-      </p>
+        {sobreImages.map((img, i) => (
+          <img
+            class={`sobre-slide${i === 0 ? ' active' : ''}`}
+            src={`${b}images/sobre/${img}`}
+            alt=""
+            loading={i === 0 ? 'eager' : 'lazy'}
+          />
+        ))}
+      </div>
+
     </section>
 
+    <!-- ② NUMBERS BAR -->
     <div style="padding: 0 56px 76px;">
       <NumbersBar items={numbers} />
     </div>
 
+    <!-- ③ DIFERENCIAIS -->
     <section style="padding: 0 56px 90px;">
       <div class="diferenciais-grid grid gap-4" style="grid-template-columns: repeat(2, 1fr);">
         {
@@ -94,6 +122,7 @@ const numbers = [
       </div>
     </section>
 
+    <!-- ④ GARANTIA -->
     <section style="padding: 0 56px 102px;">
       <div
         class="rounded-2xl p-8 md:p-10"
@@ -115,14 +144,105 @@ const numbers = [
       </div>
     </section>
 
+    <!-- ⑤ CTA -->
     <div style="padding: 0 56px 100px;">
       <CTABox
         title={"Topa uma conversa\nde 20 minutos?"}
         subtitle="Diagnóstico gratuito. A gente mapeia o gargalo da sua loja — captação, atendimento ou follow-up — e te entrega um plano prático, pago ou não."
         buttonLabel="Diagnóstico gratuito →"
-        buttonHref="/contato"
+        buttonHref={`${b}contato`}
       />
     </div>
+
   </main>
   <Footer />
 </BaseLayout>
+
+<script>
+  const slides = Array.from(document.querySelectorAll('.sobre-slide'));
+  let current = 0;
+
+  function nextSlide() {
+    slides[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+  }
+
+  if (slides.length > 1) {
+    setInterval(nextSlide, 3200);
+  }
+</script>
+
+<style>
+  /* ── HERO 2 COLUNAS ── */
+  .sobre-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    padding: 100px 56px 80px;
+    align-items: center;
+    min-height: 86vh;
+  }
+
+  /* ── SLIDESHOW ── */
+  .sobre-slides-wrap {
+    position: relative;
+    height: 560px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* glow ambiente atrás dos móveis */
+  .sobre-slides-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 75% 65% at 50% 55%, rgba(184,92,58,0.10) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* todas as imagens empilhadas — fade automático */
+  .sobre-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center center;
+    opacity: 0;
+    transition: opacity 1.4s ease;
+    z-index: 1;
+    /* drop-shadow sutil para dar profundidade nos PNGs sem fundo */
+    filter: drop-shadow(0 24px 48px rgba(0,0,0,0.55));
+  }
+
+  .sobre-slide.active {
+    opacity: 1;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .sobre-hero {
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      padding: 100px 40px 72px;
+      min-height: auto;
+    }
+    .sobre-slides-wrap { height: 420px; }
+  }
+
+  @media (max-width: 768px) {
+    .sobre-hero {
+      grid-template-columns: 1fr;
+      gap: 0;
+      padding: 72px 20px 0;
+      min-height: auto;
+    }
+
+    .sobre-slides-wrap {
+      height: 320px;
+      margin-top: 8px;
+    }
+  }
+</style>
