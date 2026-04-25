@@ -239,47 +239,12 @@ const numbers = [
 
   @media (max-width: 768px) {
     .sobre-hero {
-      display: block;
-      position: relative;
-      height: 100svh;
-      min-height: 560px;
-      padding: 0;
-      overflow: hidden;
-    }
-
-    /* slideshow preenche o hero como fundo */
-    .sobre-slides-wrap {
-      position: absolute;
-      inset: 0;
-      height: 100%;
-      margin-top: 0;
-    }
-
-    /* gradient vertical para legibilidade do texto */
-    .sobre-slides-wrap::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      pointer-events: none;
-      background: linear-gradient(
-        to bottom,
-        rgba(7,7,7,0.15) 0%,
-        rgba(7,7,7,0.45) 45%,
-        rgba(7,7,7,0.88) 74%,
-        var(--dark) 100%
-      );
-    }
-
-    /* texto sobreposto, ancorado no topo */
-    .sobre-hero-text {
-      position: relative;
-      z-index: 5;
-      height: 100%;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
-      padding: 70px 20px 40px;
+      grid-template-columns: unset;
+      gap: 0;
+      padding: 80px 20px 0;
+      min-height: auto;
     }
 
     .sobre-hero-text h1 {
@@ -290,10 +255,15 @@ const numbers = [
     .sobre-hero-text p {
       font-size: 14px !important;
       max-width: 100% !important;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
+    }
+
+    /* slideshow aparece abaixo do texto, no fluxo normal */
+    .sobre-slides-wrap {
+      position: relative;
+      height: 300px;
+      width: 100%;
+      margin-top: 32px;
+      flex-shrink: 0;
     }
   }
 </style>
