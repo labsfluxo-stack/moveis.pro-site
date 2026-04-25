@@ -251,15 +251,15 @@ const enviado = Astro.url.searchParams.get("enviado") === "1";
     background: radial-gradient(ellipse 110% 90% at 30% 55%, transparent 0%, rgba(7,7,7,0.45) 65%, rgba(7,7,7,0.88) 100%);
   }
 
-  /* gradiente: escurece esquerda pra texto + fade forte na base */
+  /* gradiente: escurece esquerda pra texto + fade natural na base */
   .hero-gradient {
     position: absolute;
     inset: 0;
     z-index: 3;
     pointer-events: none;
     background:
-      linear-gradient(to right, rgba(7,7,7,0.95) 0%, rgba(7,7,7,0.72) 30%, rgba(7,7,7,0.42) 60%, rgba(7,7,7,0.25) 100%),
-      linear-gradient(to bottom, transparent 10%, rgba(7,7,7,0.45) 48%, rgba(7,7,7,0.9) 76%, var(--dark) 92%, var(--dark) 100%);
+      linear-gradient(to right, rgba(7,7,7,0.92) 0%, rgba(7,7,7,0.65) 30%, rgba(7,7,7,0.2) 60%, transparent 85%),
+      linear-gradient(to bottom, transparent 20%, rgba(7,7,7,0.35) 52%, rgba(7,7,7,0.78) 80%, rgba(7,7,7,0.96) 100%);
   }
 
   /* conteúdo sobreposto */
@@ -314,26 +314,17 @@ const enviado = Astro.url.searchParams.get("enviado") === "1";
   }
 
   /* ── GRID: cards + formulário ── */
+  /* sobe 80px sobre a hero com fundo sólido — elimina a linha de transição */
   .contato-grid {
     position: relative;
-    padding: 56px 56px 100px;
+    z-index: 10;
+    margin-top: -80px;
+    padding: 80px 56px 100px;
+    background: var(--ink);
     display: grid;
     grid-template-columns: 1fr 1.1fr;
     gap: 48px;
     align-items: start;
-  }
-
-  /* fade que "puxa" a hero pra dentro da grid, eliminando a linha dura */
-  .contato-grid::before {
-    content: "";
-    position: absolute;
-    top: -80px;
-    left: 0;
-    right: 0;
-    height: 80px;
-    background: linear-gradient(to bottom, transparent 0%, var(--ink) 100%);
-    pointer-events: none;
-    z-index: 0;
   }
 
   .left {
@@ -605,7 +596,7 @@ const enviado = Astro.url.searchParams.get("enviado") === "1";
     .contato-grid {
       grid-template-columns: 1fr;
       gap: 24px;
-      padding: 40px 16px 80px;
+      padding: 80px 16px 80px;
     }
 
     .row,
