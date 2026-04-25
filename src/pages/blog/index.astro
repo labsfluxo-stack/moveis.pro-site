@@ -15,26 +15,48 @@ const posts = (await getCollection("blog")).sort(
   description="Conteúdo direto pra dono de loja de móveis parar de brigar no preço e começar a vender pelo valor."
 >
   <Nav />
-  <main style="padding-top: 64px;">
-    <section style="padding: 100px 56px;">
-      <div class="inline-flex items-center gap-2.5 mb-8" style="color: var(--gold);">
-        <span class="block w-7 h-px" style="background: var(--gold);"></span>
-        <span class="text-xs font-medium tracking-widest uppercase" style="letter-spacing: 2px;">
-          Leitura pra lojista
-        </span>
-      </div>
-      <h1
-        class="font-display font-black text-white mb-6"
-        style="font-size: clamp(44px, 5.5vw, 72px); letter-spacing: -2.5px; line-height: 1.0;"
-      >
-        Conteúdo de quem<br />
-        vive <em class="not-italic" style="color: var(--gold);">no showroom.</em>
-      </h1>
-      <p class="font-light mb-14" style="font-size: 16px; color: var(--dim); line-height: 1.7; max-width: 620px;">
-        Guia direto sobre captação, atendimento e follow-up. Sem palavrão técnico, sem receita de
-        Instagram viral. Só o que move venda em loja de móveis médio-alto ticket.
-      </p>
+  <main>
 
+    <!-- ① HERO FULL-BLEED (padrão home) -->
+    <section class="blog-hero">
+
+      <!-- imagem de fundo com zoom suave -->
+      <img
+        class="blog-hero-bg"
+        src={`${base}images/blog.png`}
+        alt=""
+      />
+
+      <!-- vinheta radial (escurece bordas) -->
+      <div class="blog-hero-vignette"></div>
+
+      <!-- gradiente lateral esquerdo + base para transição -->
+      <div class="blog-hero-gradient-left"></div>
+      <div class="blog-hero-gradient-bottom"></div>
+
+      <!-- conteúdo -->
+      <div class="blog-hero-content">
+        <div class="inline-flex items-center gap-2.5 mb-8" style="color: var(--gold);">
+          <span class="block w-7 h-px" style="background: var(--gold);"></span>
+          <span class="text-xs font-medium tracking-widest uppercase" style="letter-spacing: 2px;">
+            Leitura pra lojista
+          </span>
+        </div>
+
+        <h1 class="blog-hero-title font-display font-black text-white mb-6">
+          Conteúdo de quem<br />
+          vive <em class="not-italic" style="color: var(--gold);">no showroom.</em>
+        </h1>
+
+        <p class="font-light" style="font-size: 16px; color: rgba(247,240,232,0.82); line-height: 1.7; max-width: 560px; text-shadow: 0 1px 16px rgba(0,0,0,0.5);">
+          Guia direto sobre captação, atendimento e follow-up. Sem palavrão técnico, sem receita de
+          Instagram viral. Só o que move venda em loja de móveis médio-alto ticket.
+        </p>
+      </div>
+    </section>
+
+    <!-- ② LISTA DE POSTS -->
+    <section class="blog-posts">
       <div class="flex flex-col gap-4">
         {
           posts.map((post) => (
@@ -72,6 +94,139 @@ const posts = (await getCollection("blog")).sort(
         }
       </div>
     </section>
+
   </main>
   <Footer />
 </BaseLayout>
+
+<style>
+  /* ── HERO FULL-BLEED ── */
+  .blog-hero {
+    position: relative;
+    width: 100%;
+    height: 92vh;
+    min-height: 650px;
+    max-height: 900px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  /* imagem de fundo com zoom contínuo */
+  .blog-hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+    display: block;
+    z-index: 0;
+    animation: blog-hero-zoom 22s ease-in-out infinite alternate;
+  }
+
+  @keyframes blog-hero-zoom {
+    from { transform: scale(1.02); }
+    to   { transform: scale(1.07); }
+  }
+
+  /* vinheta radial — escurece as bordas */
+  .blog-hero-vignette {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse 110% 90% at 30% 50%,
+      transparent 0%,
+      rgba(7,7,7,0.4) 65%,
+      rgba(7,7,7,0.85) 100%
+    );
+  }
+
+  /* gradiente lateral — escurece esquerda onde está o texto */
+  .blog-hero-gradient-left {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    background: linear-gradient(
+      to right,
+      rgba(7,7,7,0.92) 0%,
+      rgba(7,7,7,0.75) 28%,
+      rgba(7,7,7,0.4) 52%,
+      transparent 78%
+    );
+  }
+
+  /* gradiente inferior — transição suave pro fundo da página */
+  .blog-hero-gradient-bottom {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 42%;
+    z-index: 4;
+    pointer-events: none;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(7,7,7,0.4) 40%,
+      rgba(7,7,7,0.85) 78%,
+      var(--dark) 100%
+    );
+  }
+
+  /* conteúdo sobreposto */
+  .blog-hero-content {
+    position: relative;
+    z-index: 5;
+    max-width: 1400px;
+    width: 100%;
+    padding: 140px 56px 60px;
+  }
+
+  .blog-hero-title {
+    font-size: clamp(40px, 5.5vw, 72px);
+    letter-spacing: -2.5px;
+    line-height: 1.0;
+    text-shadow: 0 2px 40px rgba(0,0,0,0.5);
+  }
+
+  /* ── LISTA DE POSTS ── */
+  .blog-posts {
+    padding: 72px 56px 100px;
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    .blog-hero {
+      height: 100svh;
+      min-height: 580px;
+      max-height: none;
+      justify-content: flex-end;
+    }
+
+    .blog-hero-gradient-left {
+      background: linear-gradient(
+        to bottom,
+        rgba(7,7,7,0.2) 0%,
+        rgba(7,7,7,0.55) 45%,
+        rgba(7,7,7,0.9) 75%,
+        var(--dark) 100%
+      );
+    }
+
+    .blog-hero-content {
+      padding: 0 20px 40px;
+    }
+
+    .blog-hero-title {
+      font-size: clamp(28px, 8.5vw, 44px) !important;
+      letter-spacing: -1.5px !important;
+    }
+
+    .blog-posts {
+      padding: 40px 16px 80px;
+    }
+  }
+</style>
