@@ -809,39 +809,98 @@ const faqItems = [
 
   @media (max-width: 768px) {
     .hero-cinematic {
-      height: auto;
-      min-height: 680px;
+      height: 100svh;
+      min-height: 620px;
+      max-height: none;
     }
-    .hero-content {
-      padding: 140px 24px 80px;
-    }
-    .hero-title {
-      font-size: clamp(26px, 7vw, 40px);
-      letter-spacing: -0.04em;
-    }
-    .hero-text {
-      font-size: 15px;
-    }
-    .hero-kpis {
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-top: 18px;
-    }
+
+    /* overlay vira full-screen escuro no mobile — fundo visível só no topo */
     .hero-gradient-left {
       background: linear-gradient(
-        to right,
-        rgba(7, 7, 7, 0.88) 0%,
-        rgba(7, 7, 7, 0.65) 60%,
-        rgba(7, 7, 7, 0.35) 100%
+        to bottom,
+        rgba(7,7,7,0.25) 0%,
+        rgba(7,7,7,0.55) 40%,
+        rgba(7,7,7,0.88) 70%,
+        var(--dark) 100%
       );
     }
+
+    .hero-content {
+      padding: 0 20px 40px;
+      justify-content: flex-end; /* ancora conteúdo na base */
+    }
+
+    .hero-title {
+      font-size: clamp(30px, 8.5vw, 44px);
+      letter-spacing: -0.04em;
+      line-height: 1.0;
+      margin-bottom: 12px;
+    }
+
+    .hero-text {
+      font-size: 14px;
+      line-height: 1.6;
+      max-width: 100%;
+    }
+
+    .hero-tags {
+      margin-top: 14px;
+      gap: 6px;
+    }
+
+    .hero-tags span {
+      font-size: 10px;
+      padding: 5px 10px;
+    }
+
+    .hero-ctas {
+      margin-top: 18px;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .hero-cta-primary,
+    .hero-cta-secondary {
+      width: 100%;
+      text-align: center;
+      padding: 15px 18px;
+      font-size: 11px;
+    }
+
+    .hero-kpis {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .hero-kpis b {
+      font-size: 17px;
+    }
+
+    .hero-kpis span {
+      font-size: 9px;
+    }
+
     .fit-grid { grid-template-columns: 1fr; }
     .faq-grid { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 480px) {
+    .hero-cinematic {
+      min-height: 580px;
+    }
+
+    .hero-title {
+      font-size: clamp(28px, 9vw, 38px);
+    }
+
     .hero-kpis {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .hero-kpis b {
+      font-size: 15px;
     }
   }
 </style>
