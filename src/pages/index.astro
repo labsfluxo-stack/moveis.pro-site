@@ -546,7 +546,6 @@ const faqItems = [
     font-size: 1.45em;
     line-height: 0.9;
     padding: 0 0.04em;
-    -webkit-text-stroke: 0.6px currentColor;
     background: linear-gradient(
       160deg,
       #f7e98e 0%,
@@ -560,8 +559,12 @@ const faqItems = [
     -webkit-text-fill-color: transparent;
     background-clip: text;
     filter:
-      drop-shadow(0 0 10px rgba(212, 168, 67, 0.38))
-      drop-shadow(0 2px 20px rgba(184, 129, 58, 0.24));
+      drop-shadow(0.5px 0 0 #d4a843)
+      drop-shadow(-0.5px 0 0 #d4a843)
+      drop-shadow(0 0.5px 0 #b8813a)
+      drop-shadow(0 -0.5px 0 #f0d060)
+      drop-shadow(0 0 10px rgba(212, 168, 67, 0.45))
+      drop-shadow(0 2px 22px rgba(184, 129, 58, 0.28));
     text-shadow: none;
   }
 
