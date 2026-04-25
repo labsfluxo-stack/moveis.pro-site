@@ -21,14 +21,12 @@ const isActive = (href: string) =>
       <span class="brand-text">moveis<span>.pro</span></span>
     </a>
 
-    <ul class="nav-links hidden lg:flex">
+    <!-- desktop + landscape: links centrais -->
+    <ul class="nav-links">
       {
         links.map((link) => (
           <li>
-            <a
-              href={link.href}
-              class={`nav-link ${isActive(link.href) ? "is-active" : ""}`}
-            >
+            <a href={link.href} class={`nav-link ${isActive(link.href) ? "is-active" : ""}`}>
               {link.label}
             </a>
           </li>
@@ -36,13 +34,14 @@ const isActive = (href: string) =>
       }
     </ul>
 
-    <div class="hidden lg:flex items-center gap-3">
+    <!-- desktop + landscape: botões direita -->
+    <div class="nav-actions">
       <a href={`${b}cases`} class="nav-ghost">Ver resultados</a>
       <a href={`${b}contato`} class="nav-cta">Diagnostico gratuito</a>
     </div>
 
-    <!-- mobile: links visíveis + hamburguer -->
-    <div class="mobile-actions lg:hidden">
+    <!-- portrait mobile only: Serviços + Contato + hamburguer -->
+    <div class="mobile-actions">
       <a href={`${b}servicos`} class="mobile-nav-link">Serviços</a>
       <a href={`${b}contato`} class="mobile-nav-link mobile-nav-link--cta">Contato</a>
       <button
@@ -148,7 +147,7 @@ const isActive = (href: string) =>
   }
 
   .nav-links {
-    display: flex;
+    display: none;
     align-items: center;
     gap: 26px;
     list-style: none;
@@ -235,9 +234,15 @@ const isActive = (href: string) =>
     transform: translateY(-6.8px) rotate(-45deg);
   }
 
-  /* ── MOBILE ACTIONS (CTA + hamburguer) ── */
+  .nav-actions {
+    display: none;
+    align-items: center;
+    gap: 12px;
+  }
+
+  /* ── MOBILE ACTIONS (Serviços + Contato + hamburguer) ── */
   .mobile-actions {
-    display: flex;
+    display: none;
     align-items: center;
     gap: 8px;
   }
@@ -348,19 +353,25 @@ const isActive = (href: string) =>
   }
 
 
-  @media (min-width: 768px) {
-    .site-nav {
-      padding: 16px 24px 0;
-    }
-    .nav-inner {
-      padding: 9px 14px;
-    }
+  /* ── PORTRAIT MOBILE: esconde desktop, mostra mobile-actions ── */
+  @media (max-width: 767px) and (orientation: portrait) {
+    .nav-links      { display: none !important; }
+    .nav-actions    { display: none !important; }
+    .mobile-actions { display: flex !important; }
+    .mobile-menu    { left: 14px; right: 14px; top: 74px; }
+  }
+
+  /* ── LANDSCAPE + DESKTOP: mostra tudo, esconde mobile-actions ── */
+  @media (min-width: 768px), (orientation: landscape) {
+    .nav-links      { display: flex; }
+    .nav-actions    { display: flex; }
+    .mobile-actions { display: none; }
+    .site-nav       { padding: 16px 24px 0; }
+    .nav-inner      { padding: 9px 14px; }
   }
 
   @media (min-width: 1080px) {
-    .site-nav {
-      padding-top: 18px;
-    }
+    .site-nav { padding-top: 18px; }
   }
 </style>
 
