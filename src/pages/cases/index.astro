@@ -7,6 +7,7 @@ import Footer from '../../components/Footer.astro';
 import CaseCard from '../../components/CaseCard.astro';
 import CTABox from '../../components/CTABox.astro';
 
+const b = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const cases = await getCollection('cases');
 const featured = cases.find((c) => c.data.featured);
 const rest = cases.filter((c) => !c.data.featured);
@@ -61,15 +62,15 @@ const rest = cases.filter((c) => !c.data.featured);
         <!-- left-edge fade to blend with background -->
         <div class="hero-slide-fade"></div>
         <!-- slides -->
-        <div class="hero-slide active" style="background-image: url('/Gemini_Generated_Image_x88ektx88ektx88e.png')"></div>
-        <div class="hero-slide" style="background-image: url('/Gemini_Generated_Image_evxw1eevxw1eevxw%20(1).png')"></div>
-        <div class="hero-slide" style="background-image: url('/Gemini_Generated_Image_soqcxxsoqcxxsoqc.png')"></div>
-        <div class="hero-slide" style="background-image: url('/Gemini_Generated_Image_g0y63yg0y63yg0y6%20(1).png')"></div>
-        <div class="hero-slide" style="background-image: url('/Gemini_Generated_Image_qkhwmkqkhwmkqkhw.png')"></div>
-        <div class="hero-slide" style="background-image: url('/Gemini_Generated_Image_jbmi89jbmi89jbmi.png')"></div>
-        <div class="hero-slide" style="background-image: url('/Gemini_Generated_Image_t80le9t80le9t80l.png')"></div>
-        <div class="hero-slide" style="background-image: url('/Gemini_Generated_Image_7lachq7lachq7lac.png')"></div>
-        <div class="hero-slide" style="background-image: url('/Gemini_Generated_Image_4obfuq4obfuq4obf.png')"></div>
+        <div class="hero-slide active" style={`background-image: url('${b}Gemini_Generated_Image_x88ektx88ektx88e.png')`}></div>
+        <div class="hero-slide" style={`background-image: url('${b}Gemini_Generated_Image_evxw1eevxw1eevxw%20(1).png')`}></div>
+        <div class="hero-slide" style={`background-image: url('${b}Gemini_Generated_Image_soqcxxsoqcxxsoqc.png')`}></div>
+        <div class="hero-slide" style={`background-image: url('${b}Gemini_Generated_Image_g0y63yg0y63yg0y6%20(1).png')`}></div>
+        <div class="hero-slide" style={`background-image: url('${b}Gemini_Generated_Image_qkhwmkqkhwmkqkhw.png')`}></div>
+        <div class="hero-slide" style={`background-image: url('${b}Gemini_Generated_Image_jbmi89jbmi89jbmi.png')`}></div>
+        <div class="hero-slide" style={`background-image: url('${b}Gemini_Generated_Image_t80le9t80le9t80l.png')`}></div>
+        <div class="hero-slide" style={`background-image: url('${b}Gemini_Generated_Image_7lachq7lachq7lac.png')`}></div>
+        <div class="hero-slide" style={`background-image: url('${b}Gemini_Generated_Image_4obfuq4obfuq4obf.png')`}></div>
         <!-- dots -->
         <div class="hero-slide-dots">
           <span class="hero-dot active"></span>
@@ -230,7 +231,7 @@ const rest = cases.filter((c) => !c.data.featured);
 
       <div class="cases-grid" style="display: grid; grid-template-columns: 1.5fr 1fr; grid-template-rows: auto auto; gap: 14px;">
         {featured && (
-          <a href={`/cases/${featured.slug}`} class="no-underline" style="grid-row: span 2;">
+          <a href={`${b}cases/${featured.slug}`} class="no-underline" style="grid-row: span 2;">
             <CaseCard
               tag={featured.data.service}
               title={`${featured.data.client} — ${featured.data.city}`}
@@ -242,7 +243,7 @@ const rest = cases.filter((c) => !c.data.featured);
           </a>
         )}
         {rest.map((c) => (
-          <a href={`/cases/${c.slug}`} class="no-underline">
+          <a href={`${b}cases/${c.slug}`} class="no-underline">
             <CaseCard
               tag={c.data.service}
               title={`${c.data.client} — ${c.data.city}`}

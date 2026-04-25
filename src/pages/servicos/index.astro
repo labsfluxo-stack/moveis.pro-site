@@ -7,6 +7,7 @@ import Footer from "../../components/Footer.astro";
 import CTABox from "../../components/CTABox.astro";
 import IconService from "../../components/IconService.astro";
 
+const b = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const services = (await getCollection("servicos")).sort(
   (a, b) => a.data.order - b.data.order
 );
@@ -69,7 +70,7 @@ const services = (await getCollection("servicos")).sort(
         {
           services.map((service) => (
             <a
-              href={`/servicos/${service.slug}`}
+              href={`${b}servicos/${service.slug}`}
               class="service-card relative rounded-[18px] p-10 no-underline transition-all duration-300"
               style="background: var(--dark-3); border: 1px solid var(--border);"
             >
