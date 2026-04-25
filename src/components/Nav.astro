@@ -41,9 +41,10 @@ const isActive = (href: string) =>
       <a href={`${b}contato`} class="nav-cta">Diagnostico gratuito</a>
     </div>
 
-    <!-- mobile: CTA compacto + hamburguer -->
+    <!-- mobile: links visíveis + hamburguer -->
     <div class="mobile-actions lg:hidden">
-      <a href={`${b}contato`} class="mobile-nav-cta">Diagnóstico</a>
+      <a href={`${b}servicos`} class="mobile-nav-link">Serviços</a>
+      <a href={`${b}contato`} class="mobile-nav-link mobile-nav-link--cta">Contato</a>
       <button
         id="nav-toggle"
         class="nav-toggle"
@@ -241,18 +242,32 @@ const isActive = (href: string) =>
     gap: 8px;
   }
 
-  .mobile-nav-cta {
+  .mobile-nav-link {
     text-decoration: none;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.07em;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--cream);
-    background: linear-gradient(135deg, var(--terra-deep), var(--terra));
-    border: 1px solid rgba(247, 240, 232, 0.2);
+    color: var(--text-muted);
+    padding: 7px 10px;
     border-radius: 8px;
-    padding: 8px 12px;
     white-space: nowrap;
+    transition: color 0.15s;
+  }
+
+  .mobile-nav-link:hover {
+    color: var(--cream);
+  }
+
+  .mobile-nav-link--cta {
+    color: var(--terra);
+    border: 1px solid rgba(200, 121, 42, 0.35);
+    background: rgba(200, 121, 42, 0.08);
+  }
+
+  .mobile-nav-link--cta:hover {
+    color: var(--cream);
+    background: rgba(200, 121, 42, 0.18);
   }
 
   .mobile-backdrop {
