@@ -1,59 +1,187 @@
 ---
 // src/pages/servicos/index.astro
-import { getCollection } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Nav from '../../components/Nav.astro';
-import Footer from '../../components/Footer.astro';
-import CTABox from '../../components/CTABox.astro';
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import CTABox from "../../components/CTABox.astro";
+import IconService from "../../components/IconService.astro";
 
-const services = (await getCollection('servicos')).sort((a, b) => a.data.order - b.data.order);
+const services = (await getCollection("servicos")).sort(
+  (a, b) => a.data.order - b.data.order
+);
 ---
 
-<BaseLayout title="Serviços" description="Conheça todos os serviços da Moveis.pro para lojas de móveis.">
+<BaseLayout
+  title="O sistema — Moveis.pro"
+  description="Tráfego + IA + CRM num stack único pra loja de móveis médio-alto ticket. Setup em 14 dias, resultado em 45."
+>
   <Nav />
-  <main style="padding-top: 64px;">
+  <main>
+    <section class="servicos-hero">
+      <img src="/images/servicos/hero-servicos.png" alt="" class="servicos-hero-bg" />
+      <div class="servicos-hero-vignette"></div>
+      <div class="servicos-hero-gradient"></div>
 
-    <section style="padding: 100px 56px 60px;">
-      <div class="inline-flex items-center gap-2.5 mb-8" style="color: var(--gold);">
-        <span class="block w-7 h-px" style="background: var(--gold);"></span>
-        <span class="text-xs font-medium tracking-widest uppercase" style="letter-spacing: 2px;">Nossos serviços</span>
+      <div class="servicos-hero-content">
+        <div class="inline-flex items-center gap-2.5 mb-8" style="color: var(--gold);">
+          <span class="block w-7 h-px" style="background: var(--gold);"></span>
+          <span class="text-xs font-medium tracking-widest uppercase" style="letter-spacing: 2px;">
+            Sistema Moveis.pro
+          </span>
+        </div>
+        <h1
+          class="font-display font-black text-white mb-6"
+          style="font-size: clamp(44px, 5.4vw, 74px); letter-spacing: -2.4px; line-height: 0.96;"
+        >
+          Tráfego + IA + CRM<br />
+          num <em class="not-italic" style="color: var(--gold);">pacote só.</em>
+        </h1>
+        <p class="font-light max-w-2xl" style="font-size: 16px; color: rgba(247,240,232,0.75); line-height: 1.75;">
+          Em vez de contratar 4 fornecedores que não conversam, você contrata um stack que já veio
+          montado pra vender móvel. Cada bloco existe por um motivo — gerar lead qualificado,
+          acelerar atendimento ou subir fechamento. Sem enrolação, sem guerra de preço.
+        </p>
       </div>
-      <h1 class="font-display font-black text-white mb-6" style="font-size: clamp(44px, 5.5vw, 72px); letter-spacing: -2.5px; line-height: 1.0;">
-        Tecnologia completa<br />para sua loja.
-      </h1>
-      <p class="font-light max-w-lg" style="font-size: 16px; color: var(--dim); line-height: 1.7;">
-        8 soluções integradas, desenvolvidas exclusivamente para o mercado moveleiro do Nordeste.
-      </p>
+    </section>
+
+    <section style="padding: 0 0 34px;">
+      <div
+        class="rounded-none"
+        style="border: 1px solid var(--border); background: rgba(247,240,232,0.02); padding: 28px 40px; display: flex; align-items: center; gap: 48px;"
+      >
+        <p class="text-xs uppercase tracking-widest shrink-0" style="letter-spacing: 0.15em; color: var(--gold); font-weight: 700;">
+          Como funciona
+        </p>
+        <p class="text-sm font-light leading-relaxed" style="color: var(--dim); margin: 0;">
+          <b style="color: var(--cream); font-weight: 600;">Dia 1–14:</b> setup completo — tráfego
+          rodando, CRM configurado, IA treinada pra sua loja.
+          <b style="color: var(--cream); font-weight: 600;">Dia 14–45:</b> campanha afinada, funil
+          enchendo, vendedor recebendo lead quente.
+          <b style="color: var(--cream); font-weight: 600;">Dia 45+:</b> showroom cheio, dashboard
+          pro dono, ajuste mensal pra escalar.
+        </p>
+      </div>
     </section>
 
     <section style="padding: 0 56px 100px;">
       <div class="services-cards-grid grid gap-4" style="grid-template-columns: repeat(2, 1fr);">
-        {services.map((service) => (
-          <a
-            href={`/servicos/${service.slug}`}
-            class="relative rounded-[18px] p-10 no-underline group transition-all duration-200"
-            style="background: var(--dark-3); border: 1px solid var(--border);"
-          >
-            <div class="absolute top-0 left-0 right-0 h-0.5 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" style="background: var(--brown);"></div>
-            <div class="text-3xl mb-6">{service.data.icon}</div>
-            <div class="text-xs font-semibold tracking-widest uppercase mb-3" style="color: var(--gold); letter-spacing: 1.5px;">{service.data.badge}</div>
-            <h2 class="font-display font-black text-white mb-3" style="font-size: 22px; letter-spacing: -0.5px;">{service.data.title}</h2>
-            <p class="text-sm font-light leading-relaxed" style="color: var(--muted);">{service.data.description}</p>
-            <div class="mt-6 text-sm font-medium" style="color: var(--gold);">Saiba mais →</div>
-          </a>
-        ))}
+        {
+          services.map((service) => (
+            <a
+              href={`/servicos/${service.slug}`}
+              class="service-card relative rounded-[18px] p-10 no-underline transition-all duration-300"
+              style="background: var(--dark-3); border: 1px solid var(--border);"
+            >
+              <div class="mb-6"><IconService slug={service.slug} /></div>
+              <div
+                class="text-xs font-semibold tracking-widest uppercase mb-3"
+                style="color: var(--gold); letter-spacing: 1.5px;"
+              >
+                {service.data.badge}
+              </div>
+              <h2 class="font-display font-black text-white mb-3" style="font-size: 22px; letter-spacing: -0.5px;">
+                {service.data.title}
+              </h2>
+              <p class="text-sm font-light leading-relaxed" style="color: var(--muted);">
+                {service.data.description}
+              </p>
+              <div class="mt-6 text-sm font-medium" style="color: var(--gold);">Ver mais →</div>
+            </a>
+          ))
+        }
       </div>
     </section>
 
     <div style="padding: 0 56px 100px;">
       <CTABox
-        title={"Não sabe por onde\ncomeçar? Fale\nconosco."}
-        subtitle="Nossa equipe faz um diagnóstico gratuito e indica qual solução faz mais sentido para o seu momento."
-        buttonLabel="Agendar conversa gratuita →"
+        title={"Pronto pra montar\nseu plano de 45 dias?"}
+        subtitle="20 minutos de conversa. A gente sai com prioridade, canais e rotina comercial definidos pra sua loja. Sem proposta genérica."
+        buttonLabel="Diagnóstico gratuito →"
         buttonHref="/contato"
       />
     </div>
-
   </main>
   <Footer />
 </BaseLayout>
+
+<style>
+  /* ── HERO FULL-BLEED ── */
+  .servicos-hero {
+    position: relative;
+    width: 100%;
+    height: 82vh;
+    min-height: 560px;
+    max-height: 820px;
+    overflow: hidden;
+    margin-bottom: 0;
+  }
+
+  .servicos-hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+    display: block;
+    z-index: 0;
+    animation: hero-subtle-zoom 18s ease-in-out infinite alternate;
+  }
+
+  @keyframes hero-subtle-zoom {
+    from { transform: scale(1.02); }
+    to   { transform: scale(1.07); }
+  }
+
+  .servicos-hero-vignette {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: radial-gradient(ellipse 100% 80% at 30% 55%, transparent 0%, rgba(7,7,7,0.5) 70%, rgba(7,7,7,0.88) 100%);
+  }
+
+  .servicos-hero-gradient {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background:
+      linear-gradient(to right, rgba(7,7,7,0.92) 0%, rgba(7,7,7,0.65) 30%, rgba(7,7,7,0.25) 60%, transparent 85%);
+  }
+
+
+  .servicos-hero-content {
+    position: relative;
+    z-index: 5;
+    max-width: 1400px;
+    margin: 0 auto;
+    height: 100%;
+    padding: 160px 56px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .service-card {
+    box-shadow: 0 0 0 1px transparent, 0 0 0 0 transparent;
+  }
+  .service-card:hover {
+    border-color: transparent;
+    box-shadow:
+      0 0 0 1px rgba(212, 168, 67, 0.7),
+      0 0 18px 0 rgba(212, 168, 67, 0.15);
+  }
+
+  @media (max-width: 768px) {
+    .servicos-hero {
+      height: auto;
+      min-height: 520px;
+      max-height: none;
+    }
+    .servicos-hero-content {
+      padding: 140px 24px 80px;
+    }
+  }
+</style>

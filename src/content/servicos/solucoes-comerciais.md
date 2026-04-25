@@ -1,19 +1,19 @@
 ---
-title: Soluções Comerciais
-description: Estratégia e consultoria comercial integrada para ampliar suas vendas no Nordeste.
-badge: Estratégia
+title: Solucoes Comerciais
+description: Estrategia comercial para aumentar fechamento e reduzir perda de lead.
+badge: Estrategia
 icon: 💼
 order: 7
 ---
 
 ## Como funciona
 
-Nossa equipe analisa o seu mercado local, a concorrência e o comportamento dos seus clientes para montar uma estratégia comercial personalizada — do primeiro contato ao fechamento da venda.
+Mapeamos sua rotina de vendas, ajustamos processo de atendimento e estruturamos scripts de follow-up para ticket medio e alto.
 
-## Benefícios
+## Beneficios
 
-- Diagnóstico completo do seu negócio
-- Estratégia de vendas personalizada
-- Treinamento da equipe comercial
-- Scripts de atendimento e follow-up
-- Acompanhamento semanal de resultados
+- Diagnostico comercial detalhado
+- Script de atendimento por etapa
+- Rotina de follow-up com prazos
+- Treinamento pratico de equipe
+- Revisao semanal com foco em venda

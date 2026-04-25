@@ -1,680 +1,468 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Nav from '../components/Nav.astro';
-import Footer from '../components/Footer.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
 
-const enviado = Astro.url.searchParams.get('enviado') === '1';
+const enviado = Astro.url.searchParams.get("enviado") === "1";
 ---
 
 <BaseLayout
-  title="Contato"
-  description="Agende uma conversa gratuita com um especialista da Moveis.pro."
+  title="Diagnóstico gratuito — Moveis.pro"
+  description="20 minutos de conversa. A gente mapeia onde sua loja está vazando lead e te entrega um plano prático. Pago ou não."
 >
   <Nav />
   <main style="padding-top: 64px;">
-
-    <!-- SUCCESS STATE -->
-    {enviado && (
-      <div class="contato-success">
-        <div class="success-icon">✓</div>
-        <h2 class="success-title">Mensagem enviada!</h2>
-        <p class="success-body">
-          Recebemos seu contato. Nossa equipe retorna em até 24 horas úteis.
-        </p>
-        <a href="/" class="success-btn">Voltar para o início →</a>
-      </div>
-    )}
-
-    <!-- MAIN CONTACT PAGE -->
-    {!enviado && (
+    {enviado ? (
+      <section class="success-wrap">
+        <div class="success-card">
+          <span class="success-icon">OK</span>
+          <h1>Recebido.</h1>
+          <p>A gente retorna em até 24h úteis pra agendar o diagnóstico. Se der vontade de adiantar, chama no WhatsApp.</p>
+          <a href="/">← Voltar pra home</a>
+        </div>
+      </section>
+    ) : (
       <>
-        <!-- HERO HEADER -->
-        <section class="contato-hero">
-          <div class="contato-hero-glow"></div>
-          <div class="contato-hero-inner">
-            <div class="contato-eyebrow">
-              <span class="eyebrow-line"></span>
-              <span class="eyebrow-text">Diagnóstico Gratuito</span>
+        <section class="hero">
+          <div class="hero-glow"></div>
+          <div class="hero-inner">
+            <div class="eyebrow">
+              <span class="line"></span>
+              <span>Diagnóstico gratuito</span>
             </div>
-            <h1 class="contato-h1">
-              Vamos transformar<br />
-              <em class="contato-h1-outline">sua loja</em><br />
-              juntos.
+
+            <h1>
+              45 dias pra encher
+              <br />
+              seu showroom de
+              <br />
+              <em>cliente qualificado.</em>
             </h1>
-            <p class="contato-sub">
-              30 minutos. Sem compromisso. Com diagnóstico real do seu negócio.
+
+            <p>
+              20 minutos de conversa. A gente mapeia o gargalo da sua loja —
+              captação, atendimento ou follow-up — e te entrega um plano prático.
+              Pago ou não.
             </p>
-          </div>
-          <div class="contato-divider">
-            <span class="divider-line"></span>
           </div>
         </section>
 
-        <!-- BODY -->
-        <section class="contato-body">
+        <section class="contato-grid">
+          <aside class="left">
+            <div class="card">
+              <p class="card-kicker">O que você sai com</p>
+              <ul>
+                <li>Diagnóstico honesto da sua operação atual</li>
+                <li>Onde está vazando lead e faturamento</li>
+                <li>Prioridade pros próximos 14 dias</li>
+                <li>Plano prático pra meta em 45 dias</li>
+              </ul>
+            </div>
 
-          <!-- LEFT COLUMN -->
-          <div class="contato-left">
+            <div class="card">
+              <p class="card-kicker">Garantia comercial</p>
+              <h2>Mínimo de 30 leads qualificados com CPL ≤ R$100 no primeiro ciclo.</h2>
+              <p class="small">
+                Se a gente não entregar, o segundo mês é por nossa conta. Simples
+                assim — se não vender, a gente não dorme.
+              </p>
+            </div>
 
-            <!-- Steps -->
-            <div class="steps-block">
-              <p class="steps-label">O que acontece a seguir</p>
-              <div class="steps-list">
-                <div class="step">
-                  <div class="step-num">01</div>
-                  <div class="step-content">
-                    <h3 class="step-title">Você preenche o formulário</h3>
-                    <p class="step-desc">Conta sobre sua loja e seu principal desafio atual.</p>
-                  </div>
-                </div>
-                <div class="step">
-                  <div class="step-num">02</div>
-                  <div class="step-content">
-                    <h3 class="step-title">Nossa equipe entra em contato</h3>
-                    <p class="step-desc">Respondemos em até 24h para agendar a conversa.</p>
-                  </div>
-                </div>
-                <div class="step">
-                  <div class="step-num">03</div>
-                  <div class="step-content">
-                    <h3 class="step-title">Diagnóstico personalizado</h3>
-                    <p class="step-desc">Analisamos seu negócio e apresentamos as soluções certas para o seu momento.</p>
-                  </div>
-                </div>
+            <div class="mini-grid">
+              <div>
+                <b>14 dias</b>
+                <span>setup</span>
+              </div>
+              <div>
+                <b>45 dias</b>
+                <span>showroom cheio</span>
+              </div>
+              <div>
+                <b>30 leads</b>
+                <span>garantidos</span>
               </div>
             </div>
+          </aside>
 
-            <!-- Info cards -->
-            <div class="info-cards">
-              <div class="info-card">
-                <span class="info-icon">📍</span>
-                <div>
-                  <p class="info-label">Atuação</p>
-                  <p class="info-value">Campina Grande · Caruaru<br />João Pessoa · Recife</p>
-                </div>
+          <section class="form-card" aria-label="Formulário de contato">
+            <p class="form-kicker">Conta pra gente</p>
+
+            <form action="https://formspree.io/f/SEU_FORM_ID" method="POST" class="form">
+              <input type="hidden" name="_gotcha" style="display:none" />
+              <input type="hidden" name="_next" value="https://moveis.pro/contato?enviado=1" />
+
+              <label>
+                <span>Seu nome *</span>
+                <input type="text" name="nome" required />
+              </label>
+
+              <label>
+                <span>Nome da loja *</span>
+                <input type="text" name="loja" required />
+              </label>
+
+              <div class="row">
+                <label>
+                  <span>Cidade *</span>
+                  <input type="text" name="cidade" required />
+                </label>
+                <label>
+                  <span>WhatsApp *</span>
+                  <input type="tel" name="whatsapp" required />
+                </label>
               </div>
-              <div class="info-card">
-                <span class="info-icon">⚡</span>
-                <div>
-                  <p class="info-label">Tempo de resposta</p>
-                  <p class="info-value">Até 24 horas úteis</p>
-                </div>
-              </div>
-            </div>
 
-            <!-- Social proof metric -->
-            <div class="proof-card">
-              <div class="proof-top-line"></div>
-              <div class="proof-metric">+200</div>
-              <p class="proof-label">lojas de móveis já transformadas com nossa tecnologia</p>
-            </div>
+              <label>
+                <span>Ticket médio da loja *</span>
+                <select name="ticket" required>
+                  <option value="" disabled selected>Selecione</option>
+                  <option value="ate-3k">Até R$3 mil</option>
+                  <option value="3k-8k">R$3 mil a R$8 mil</option>
+                  <option value="8k-15k">R$8 mil a R$15 mil (médio)</option>
+                  <option value="15k-plus">Acima de R$15 mil (alto)</option>
+                </select>
+              </label>
 
-          </div>
+              <label>
+                <span>Onde está travando hoje? *</span>
+                <select name="desafio" required>
+                  <option value="" disabled selected>Selecione</option>
+                  <option value="lead">Não chega lead qualificado</option>
+                  <option value="followup">Vendedor perde venda por falta de follow-up</option>
+                  <option value="atendimento">Demora pra responder WhatsApp / Instagram</option>
+                  <option value="gestao">Não sei o que está funcionando no marketing</option>
+                  <option value="preco">Cliente entra só pra pechinchar</option>
+                </select>
+              </label>
 
-          <!-- RIGHT COLUMN — FORM -->
-          <div class="contato-right">
-            <div class="form-card">
-              <div class="form-card-top-line"></div>
-              <p class="form-card-title">Preencha seus dados</p>
+              <label>
+                <span>Quer contar mais algo? (opcional)</span>
+                <textarea name="mensagem" rows="4" placeholder="Fique à vontade — quanto mais contexto, mais afiado o diagnóstico."></textarea>
+              </label>
 
-              <form
-                action="https://formspree.io/f/SEU_FORM_ID"
-                method="POST"
-                class="contato-form"
-              >
-                <input type="hidden" name="_gotcha" style="display:none" />
-                <input type="hidden" name="_next" value="https://moveis.pro/contato?enviado=1" />
-
-                <!-- Nome -->
-                <div class="field-float">
-                  <input
-                    type="text"
-                    name="nome"
-                    id="nome"
-                    required
-                    placeholder=" "
-                    class="field-input"
-                  />
-                  <label for="nome" class="field-label">Nome completo *</label>
-                </div>
-
-                <!-- Loja -->
-                <div class="field-float">
-                  <input
-                    type="text"
-                    name="loja"
-                    id="loja"
-                    required
-                    placeholder=" "
-                    class="field-input"
-                  />
-                  <label for="loja" class="field-label">Nome da loja *</label>
-                </div>
-
-                <!-- Cidade + WhatsApp -->
-                <div class="field-row">
-                  <div class="field-float">
-                    <input
-                      type="text"
-                      name="cidade"
-                      id="cidade"
-                      required
-                      placeholder=" "
-                      class="field-input"
-                    />
-                    <label for="cidade" class="field-label">Cidade *</label>
-                  </div>
-                  <div class="field-float">
-                    <input
-                      type="tel"
-                      name="whatsapp"
-                      id="whatsapp"
-                      required
-                      placeholder=" "
-                      class="field-input"
-                    />
-                    <label for="whatsapp" class="field-label">WhatsApp *</label>
-                  </div>
-                </div>
-
-                <!-- Desafio -->
-                <div class="field-float field-select-wrap">
-                  <select
-                    name="desafio"
-                    id="desafio"
-                    required
-                    class="field-input field-select"
-                  >
-                    <option value="" disabled selected></option>
-                    <option value="leads">Gerar mais leads</option>
-                    <option value="crm">Organizar meus clientes</option>
-                    <option value="atendimento">Automatizar atendimento</option>
-                    <option value="online">Aumentar vendas online</option>
-                    <option value="3d">Implementar visualização 3D</option>
-                    <option value="outro">Outro</option>
-                  </select>
-                  <label for="desafio" class="field-label field-label-select">Principal desafio *</label>
-                  <span class="select-arrow">↓</span>
-                </div>
-
-                <!-- Mensagem -->
-                <div class="field-float">
-                  <textarea
-                    name="mensagem"
-                    id="mensagem"
-                    rows="3"
-                    placeholder=" "
-                    class="field-input field-textarea"
-                  ></textarea>
-                  <label for="mensagem" class="field-label">Mensagem (opcional)</label>
-                </div>
-
-                <button type="submit" class="form-btn">
-                  <span class="form-btn-text">Agendar conversa gratuita</span>
-                  <span class="form-btn-arrow">→</span>
-                  <span class="form-btn-shine"></span>
-                </button>
-              </form>
-            </div>
-          </div>
-
+              <button type="submit">Quero o diagnóstico gratuito →</button>
+            </form>
+          </section>
         </section>
       </>
     )}
-
   </main>
   <Footer />
 </BaseLayout>
 
 <style>
-  /* ── SUCCESS ───────────────────────────────── */
-  .contato-success {
-    min-height: calc(100vh - 64px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 40px 24px;
-  }
-  .success-icon {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    background: rgba(139,69,19,0.15);
-    border: 1px solid rgba(139,69,19,0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    margin-bottom: 24px;
-    color: var(--gold);
-  }
-  .success-title {
-    font-family: 'Urbanist', sans-serif;
-    font-weight: 900;
-    font-size: clamp(28px, 4vw, 40px);
-    letter-spacing: -1.5px;
-    color: #fff;
-    margin-bottom: 12px;
-  }
-  .success-body {
-    font-size: 15px;
-    font-weight: 300;
-    color: var(--muted);
-    line-height: 1.7;
-    max-width: 340px;
-    margin-bottom: 32px;
-  }
-  .success-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-    font-weight: 600;
-    color: #fff;
-    text-decoration: none;
-    background: var(--brown);
-    padding: 13px 28px;
-    border-radius: 10px;
-    transition: opacity 0.15s;
-  }
-  .success-btn:hover { opacity: 0.88; }
-
-  /* ── HERO ──────────────────────────────────── */
-  .contato-hero {
+  .hero {
     position: relative;
-    padding: 80px 56px 0;
+    padding: 88px 56px 26px;
     overflow: hidden;
   }
-  .contato-hero-glow {
+
+  .hero-glow {
     position: absolute;
     top: -120px;
-    right: -60px;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(139,69,19,0.18) 0%, transparent 65%);
+    right: -80px;
+    width: 460px;
+    height: 460px;
+    background: radial-gradient(circle, rgba(184, 92, 58, 0.18) 0%, transparent 68%);
     pointer-events: none;
   }
-  .contato-hero-inner {
+
+  .hero-inner {
     position: relative;
     z-index: 1;
-    max-width: 720px;
+    max-width: 860px;
   }
-  .contato-eyebrow {
+
+  .eyebrow {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 28px;
+    margin-bottom: 20px;
     color: var(--gold);
-  }
-  .eyebrow-line {
-    display: block;
-    width: 28px;
-    height: 1px;
-    background: var(--gold);
-  }
-  .eyebrow-text {
     font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 2.5px;
+    font-weight: 700;
+    letter-spacing: 0.11em;
     text-transform: uppercase;
   }
-  .contato-h1 {
-    font-family: 'Urbanist', sans-serif;
-    font-weight: 900;
-    font-size: clamp(48px, 7vw, 96px);
-    line-height: 0.95;
-    letter-spacing: -3px;
-    color: #fff;
-    margin-bottom: 20px;
-  }
-  .contato-h1-outline {
-    font-style: normal;
-    -webkit-text-stroke: 1.8px var(--gold);
-    color: transparent;
-  }
-  .contato-sub {
-    font-size: 15px;
-    font-weight: 300;
-    color: var(--dim);
-    line-height: 1.7;
-    margin-bottom: 56px;
-  }
-  .contato-divider {
-    position: relative;
+
+  .line {
+    width: 30px;
     height: 1px;
-    overflow: visible;
-  }
-  .divider-line {
+    background: var(--gold);
     display: block;
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, rgba(139,69,19,0.7), rgba(200,121,42,0.4), transparent);
   }
 
-  /* ── BODY LAYOUT ───────────────────────────── */
-  .contato-body {
+  h1 {
+    font-family: "Satoshi", "Inter", sans-serif;
+    font-size: clamp(44px, 6vw, 84px);
+    letter-spacing: -0.05em;
+    line-height: 0.93;
+    color: #fff;
+    margin-bottom: 16px;
+  }
+
+  h1 em {
+    font-style: normal;
+    color: var(--gold);
+  }
+
+  .hero p {
+    max-width: 620px;
+    color: var(--dim);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .contato-grid {
+    padding: 44px 56px 100px;
     display: grid;
     grid-template-columns: 1fr 1.1fr;
-    gap: 72px;
-    padding: 64px 56px 100px;
+    gap: 48px;
     align-items: start;
   }
 
-  /* ── LEFT ──────────────────────────────────── */
-  .steps-block {
-    margin-bottom: 48px;
-  }
-  .steps-label {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--brown);
-    margin-bottom: 28px;
-  }
-  .steps-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-  .step {
-    display: flex;
-    gap: 20px;
-    padding: 20px 0;
-    border-bottom: 1px solid var(--border);
-    position: relative;
-  }
-  .step:first-child { padding-top: 0; }
-  .step-num {
-    font-family: 'Urbanist', sans-serif;
-    font-weight: 900;
-    font-size: 11px;
-    color: var(--brown);
-    letter-spacing: 1px;
-    padding-top: 3px;
-    flex-shrink: 0;
-    width: 24px;
-  }
-  .step-title {
-    font-family: 'Urbanist', sans-serif;
-    font-weight: 800;
-    font-size: 15px;
-    letter-spacing: -0.3px;
-    color: #fff;
-    margin-bottom: 4px;
-  }
-  .step-desc {
-    font-size: 13px;
-    font-weight: 300;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-
-  .info-cards {
+  .left {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    margin-bottom: 32px;
   }
-  .info-card {
+
+  .card {
+    border: 1px solid var(--border);
+    background: rgba(247, 240, 232, 0.02);
+    border-radius: 18px;
+    padding: 22px;
+  }
+
+  .card-kicker {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.13em;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .card ul {
+    list-style: none;
     display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    padding: 16px 18px;
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .card li {
+    position: relative;
+    color: var(--dim);
+    font-size: 14px;
+    line-height: 1.5;
+    padding-left: 14px;
+  }
+
+  .card li::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 2px;
+    background: var(--gold);
+    position: absolute;
+    top: 7px;
+    left: 0;
+    transform: rotate(45deg);
+  }
+
+  .card h2 {
+    font-family: "Satoshi", "Inter", sans-serif;
+    font-size: clamp(22px, 3.2vw, 32px);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: #fff;
+    margin-bottom: 9px;
+  }
+
+  .small {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .mini-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .mini-grid > div {
+    border: 1px solid var(--border);
     border-radius: 12px;
     background: var(--dark-3);
-    border: 1px solid var(--border);
+    padding: 12px;
   }
-  .info-icon {
-    font-size: 18px;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-  .info-label {
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--brown);
+
+  .mini-grid b {
+    display: block;
+    color: var(--gold);
+    font-family: "Satoshi", "Inter", sans-serif;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: -0.03em;
     margin-bottom: 4px;
   }
-  .info-value {
-    font-size: 13px;
-    font-weight: 300;
-    color: var(--dim);
-    line-height: 1.55;
-  }
 
-  .proof-card {
-    position: relative;
-    padding: 28px 24px;
-    border-radius: 16px;
-    background: var(--dark-2);
-    border: 1px solid var(--border);
-    overflow: hidden;
-  }
-  .proof-top-line {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--brown), var(--gold-light), transparent);
-  }
-  .proof-metric {
-    font-family: 'Urbanist', sans-serif;
-    font-weight: 900;
-    font-size: 52px;
-    letter-spacing: -3px;
-    color: var(--gold);
-    line-height: 1;
-    margin-bottom: 6px;
-  }
-  .proof-label {
-    font-size: 12px;
-    font-weight: 300;
+  .mini-grid span {
     color: var(--muted);
-    line-height: 1.5;
-  }
-
-  /* ── FORM CARD ─────────────────────────────── */
-  .form-card {
-    background: var(--dark-3);
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    padding: 40px;
-    position: relative;
-    overflow: hidden;
-  }
-  .form-card-top-line {
-    position: absolute;
-    top: 0;
-    left: 10%;
-    right: 10%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(200,121,42,0.8), transparent);
-  }
-  .form-card-title {
     font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 2.5px;
     text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 28px;
+    letter-spacing: 0.08em;
   }
 
-  /* ── FLOATING LABEL FIELDS ─────────────────── */
-  .contato-form {
+  .form-card {
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    background: var(--dark-3);
+    padding: 28px;
+  }
+
+  .form-kicker {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.13em;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .form label {
     display: flex;
     flex-direction: column;
     gap: 6px;
   }
-  .field-float {
-    position: relative;
-    padding-top: 18px;
-  }
-  .field-input {
-    width: 100%;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid rgba(255,255,255,0.12);
-    border-radius: 0;
-    padding: 10px 0 10px;
-    font-size: 14px;
-    font-weight: 400;
-    color: #fff;
-    font-family: 'DM Sans', sans-serif;
-    outline: none;
-    transition: border-color 0.2s;
-    -webkit-appearance: none;
-    appearance: none;
-  }
-  .field-input:focus {
-    border-bottom-color: var(--gold);
-  }
-  .field-label {
-    position: absolute;
-    top: 28px;
-    left: 0;
-    font-size: 13px;
-    font-weight: 300;
-    color: var(--muted);
-    pointer-events: none;
-    transition: top 0.18s ease, font-size 0.18s ease, color 0.18s ease;
-  }
-  /* Float label when focused or filled */
-  .field-input:focus + .field-label,
-  .field-input:not(:placeholder-shown) + .field-label {
-    top: 0;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 1.5px;
+
+  .form label span {
+    color: var(--text-muted);
+    font-size: 11px;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--gold);
+    font-weight: 700;
   }
 
-  /* Select */
-  .field-select-wrap { position: relative; }
-  .field-select {
-    cursor: pointer;
-    background: transparent;
-    color: #fff;
-  }
-  .field-select option {
-    background: #131313;
-    color: #fff;
-  }
-  .field-label-select {
-    top: 28px;
-  }
-  .field-select:focus + .field-label-select,
-  .field-select:not([value=""]) + .field-label-select,
-  .field-select.has-value + .field-label-select {
-    top: 0;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--gold);
-  }
-  .select-arrow {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%) translateY(9px);
-    font-size: 12px;
-    color: var(--muted);
-    pointer-events: none;
-  }
-
-  .field-textarea {
-    resize: none;
-    min-height: 72px;
-  }
-
-  .field-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-
-  /* ── SUBMIT BUTTON ─────────────────────────── */
-  .form-btn {
-    position: relative;
+  .form input,
+  .form select,
+  .form textarea {
     width: 100%;
-    margin-top: 12px;
-    padding: 16px 28px;
-    background: var(--brown);
-    border: none;
+    border: 1px solid rgba(247, 240, 232, 0.18);
     border-radius: 10px;
-    font-size: 14px;
-    font-weight: 600;
+    background: rgba(247, 240, 232, 0.02);
     color: #fff;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  .form textarea {
+    resize: vertical;
+    min-height: 90px;
+  }
+
+  .row {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .form button {
+    margin-top: 6px;
+    border: 1px solid rgba(247, 240, 232, 0.26);
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--brown), var(--gold));
+    color: #fff;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    font-weight: 800;
+    padding: 14px;
     cursor: pointer;
-    display: flex;
+  }
+
+  .form button:hover {
+    opacity: 0.92;
+  }
+
+  .success-wrap {
+    min-height: calc(100vh - 64px);
+    display: grid;
+    place-items: center;
+    padding: 30px;
+  }
+
+  .success-card {
+    width: min(92vw, 520px);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: var(--dark-3);
+    padding: 30px;
+    text-align: center;
+  }
+
+  .success-icon {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    overflow: hidden;
-    transition: opacity 0.15s;
-    font-family: 'DM Sans', sans-serif;
+    width: 58px;
+    height: 58px;
+    border-radius: 999px;
+    border: 1px solid rgba(247, 240, 232, 0.26);
+    color: var(--gold);
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    margin-bottom: 16px;
   }
-  .form-btn:hover { opacity: 0.9; }
-  .form-btn-shine {
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 60%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
-    transform: skewX(-20deg);
-    transition: left 0.5s ease;
-  }
-  .form-btn:hover .form-btn-shine { left: 160%; }
-  .form-btn-arrow {
-    font-size: 16px;
-    transition: transform 0.2s;
-  }
-  .form-btn:hover .form-btn-arrow { transform: translateX(4px); }
 
-  /* ── RESPONSIVE ────────────────────────────── */
-  @media (max-width: 768px) {
-    .contato-hero {
-      padding: 60px 24px 0;
-    }
-    .contato-body {
+  .success-card h1 {
+    font-size: clamp(30px, 4.4vw, 46px);
+    margin-bottom: 8px;
+  }
+
+  .success-card p {
+    color: var(--dim);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .success-card a {
+    display: inline-flex;
+    text-decoration: none;
+    color: #fff;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(247, 240, 232, 0.26);
+    background: linear-gradient(135deg, var(--brown), var(--gold));
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 800;
+  }
+
+  @media (max-width: 920px) {
+    .contato-grid {
       grid-template-columns: 1fr;
-      gap: 48px;
-      padding: 48px 24px 80px;
+      gap: 24px;
+      padding: 34px 24px 84px;
     }
-    .form-card {
-      padding: 28px 20px;
+
+    .hero {
+      padding: 72px 24px 16px;
     }
-    .field-row {
+
+    .row,
+    .mini-grid {
       grid-template-columns: 1fr;
-      gap: 6px;
-    }
-    .contato-h1 {
-      letter-spacing: -2px;
     }
   }
 </style>
-
-<script>
-  // Float select label when a value is selected
-  const select = document.getElementById('desafio') as HTMLSelectElement | null;
-  const selectLabel = select?.nextElementSibling as HTMLElement | null;
-  if (select && selectLabel) {
-    const update = () => {
-      if (select.value) {
-        select.classList.add('has-value');
-      } else {
-        select.classList.remove('has-value');
-      }
-    };
-    select.addEventListener('change', update);
-    update();
-  }
-</script>

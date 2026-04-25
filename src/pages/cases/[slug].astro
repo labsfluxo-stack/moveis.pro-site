@@ -15,7 +15,10 @@ const { case: caseEntry } = Astro.props;
 const { Content } = await caseEntry.render();
 ---
 
-<BaseLayout title={caseEntry.data.title} description={`Case: ${caseEntry.data.client} — ${caseEntry.data.service}`}>
+<BaseLayout
+  title={caseEntry.data.title}
+  description={`Case real de loja de moveis com o sistema Moveis.pro: ${caseEntry.data.client} - ${caseEntry.data.service}`}
+>
   <Nav />
   <main style="padding-top: 64px;">
     <section style="padding: 100px 56px 80px; max-width: 860px;">
@@ -41,8 +44,8 @@ const { Content } = await caseEntry.render();
     <div style="padding: 0 56px 100px;">
       <CTABox
         title={"Quer resultados\nassim na sua\nloja?"}
-        subtitle="Agende uma conversa e descubra como podemos transformar o seu negócio."
-        buttonLabel="Falar com especialista →"
+        subtitle="Agende um diagnostico e receba um plano pratico de captacao, atendimento e follow-up para os proximos 45 dias."
+        buttonLabel="Agendar diagnostico"
         buttonHref="/contato"
       />
     </div>

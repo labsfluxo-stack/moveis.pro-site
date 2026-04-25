@@ -1,0 +1,379 @@
+
+> moveis-pro@0.0.1 dev
+> astro dev --host 0.0.0.0 --port 4321
+
+[2m14:58:03[22m [34m[types][39m Generated [2m1ms[22m
+[2m14:58:04[22m [34m[content][39m Syncing content
+[2m14:58:04[22m [34m[content][39m Astro config changed
+[2m14:58:04[22m [34m[content][39m Clearing content store
+[2m14:58:04[22m [34m[content][39m Synced content
+
+[42m[1m astro [22m[49m [32mv5.18.1[39m [2mready in[22m 2061 [2mms[22m
+
+[2m┃[22m Local    [36mhttp://localhost:4321/[39m
+[2m┃[22m Network  [36mhttp://192.168.0.150:4321/[39m
+
+[2m14:58:04[22m [32mwatching for file changes...[39m
+
+[43m[30m update [39m[49m [33m▶ New version of Astro available: 6.1.9[39m
+  Run [36mnpx @astrojs/upgrade[39m to update
+
+[2m14:58:52[22m [34m[200][39m / [2m301ms[22m
+[2m14:59:23[22m [34m[200][39m / [2m7ms[22m
+[2m14:59:44[22m [34m[200][39m /sobre [2m6ms[22m
+[2m14:59:54[22m [34m[200][39m /servicos [2m12ms[22m
+[2m14:59:55[22m [34m[200][39m / [2m5ms[22m
+[2m14:59:56[22m [34m[200][39m /cases [2m12ms[22m
+[2m14:59:56[22m [34m[200][39m /blog [2m4ms[22m
+[2m14:59:57[22m [34m[200][39m /cases [2m4ms[22m
+[2m15:00:05[22m [34m[200][39m /contato [2m12ms[22m
+[2m15:00:06[22m [34m[200][39m /blog [2m4ms[22m
+[2m15:00:07[22m [34m[200][39m / [2m4ms[22m
+[2m15:06:53[22m [34m[watch][39m src/layouts/BaseLayout.astro
+[2m15:06:53[22m [34m[watch][39m src/layouts/BaseLayout.astro
+[2m15:06:54[22m [34m[200][39m / [2m73ms[22m
+[2m15:06:55[22m [34m[200][39m / [2m4ms[22m
+[2m15:07:05[22m [34m[watch][39m src/pages/sobre.astro
+[2m15:07:05[22m [34m[watch][39m src/pages/sobre.astro
+[2m15:07:06[22m [34m[200][39m / [2m71ms[22m
+[2m15:07:06[22m [34m[200][39m / [2m4ms[22m
+[2m15:08:25[22m [34m[watch][39m src/pages/sobre.astro
+[2m15:08:25[22m [34m[watch][39m src/pages/sobre.astro
+[2m15:08:26[22m [34m[200][39m / [2m4ms[22m
+[2m15:08:26[22m [34m[200][39m / [2m6ms[22m
+[2m15:08:30[22m [34m[watch][39m src/pages/servicos/index.astro
+[2m15:08:30[22m [34m[watch][39m src/pages/servicos/index.astro
+[2m15:08:30[22m [34m[200][39m / [2m84ms[22m
+[2m15:08:30[22m [34m[200][39m / [2m4ms[22m
+[2m15:09:30[22m [34m[watch][39m src/pages/servicos/index.astro
+[2m15:09:30[22m [34m[watch][39m src/pages/servicos/index.astro
+[2m15:09:31[22m [34m[200][39m / [2m5ms[22m
+[2m15:09:31[22m [34m[200][39m / [2m5ms[22m
+[2m15:09:38[22m [34m[watch][39m src/pages/contato.astro
+[2m15:09:38[22m [34m[200][39m / [2m5ms[22m
+[2m15:09:38[22m [34m[200][39m / [2m5ms[22m
+[2m15:12:33[22m [34m[watch][39m src/pages/contato.astro
+[2m15:12:33[22m [34m[200][39m / [2m6ms[22m
+[2m15:12:34[22m [34m[200][39m / [2m4ms[22m
+[2m15:13:08[22m [34m[watch][39m src/pages/cases/index.astro
+[2m15:13:08[22m [34m[200][39m / [2m106ms[22m
+[2m15:13:08[22m [34m[200][39m / [2m7ms[22m
+[2m15:13:24[22m [34m[watch][39m src/pages/blog/index.astro
+[2m15:13:24[22m [34m[watch][39m src/pages/blog/index.astro
+[2m15:13:25[22m [34m[200][39m / [2m99ms[22m
+[2m15:13:25[22m [34m[200][39m / [2m103ms[22m
+[2m15:14:06[22m [34m[watch][39m src/pages/blog/index.astro
+[2m15:14:06[22m [34m[watch][39m src/pages/blog/index.astro
+[2m15:14:06[22m [34m[200][39m / [2m4ms[22m
+[2m15:14:06[22m [34m[200][39m / [2m7ms[22m
+[2m15:14:11[22m [34m[watch][39m src/pages/blog/[slug].astro
+[2m15:14:11[22m [34m[watch][39m src/pages/blog/[slug].astro
+[2m15:14:12[22m [34m[200][39m / [2m83ms[22m
+[2m15:14:12[22m [34m[200][39m / [2m84ms[22m
+[2m15:14:42[22m [34m[watch][39m src/pages/blog/[slug].astro
+[2m15:14:42[22m [34m[watch][39m src/pages/blog/[slug].astro
+[2m15:14:43[22m [34m[200][39m / [2m4ms[22m
+[2m15:14:43[22m [34m[200][39m / [2m5ms[22m
+[2m15:14:57[22m [34m[watch][39m src/pages/cases/[slug].astro
+[2m15:14:57[22m [34m[watch][39m src/pages/cases/[slug].astro
+[2m15:14:58[22m [34m[200][39m / [2m95ms[22m
+[2m15:14:58[22m [34m[200][39m / [2m97ms[22m
+[2m15:15:10[22m [34m[watch][39m src/pages/servicos/[slug].astro
+[2m15:15:10[22m [34m[watch][39m src/pages/servicos/[slug].astro
+[2m15:15:11[22m [34m[200][39m / [2m73ms[22m
+[2m15:15:11[22m [34m[200][39m / [2m74ms[22m
+[2m15:16:25[22m [34m[watch][39m src/pages/cases/index.astro
+[2m15:16:26[22m [34m[200][39m / [2m90ms[22m
+[2m15:16:26[22m [34m[200][39m / [2m92ms[22m
+[2m15:16:46[22m [34m[watch][39m src/pages/cases/index.astro
+[2m15:16:48[22m [34m[200][39m / [2m79ms[22m
+[2m15:16:48[22m [34m[200][39m / [2m80ms[22m
+[2m15:19:41[22m [34m[watch][39m src/content/servicos/agente-ia.md
+[2m15:19:41[22m [34m[watch][39m src/content/servicos/agente-ia.md
+[2m15:19:41[22m [34m[200][39m / [2m94ms[22m
+[2m15:19:42[22m [34m[200][39m / [2m5ms[22m
+[2m15:19:52[22m [34m[watch][39m src/content/servicos/agente-ia.md
+[2m15:19:52[22m [34m[watch][39m src/content/servicos/agente-ia.md
+[2m15:19:52[22m [34m[glob-loader][39m Reloaded data from [32magente-ia.md[39m
+[2m15:19:53[22m [34m[200][39m / [2m5ms[22m
+[2m15:19:53[22m [34m[200][39m / [2m5ms[22m
+[2m15:19:53[22m [34m[200][39m / [2m4ms[22m
+[2m15:20:02[22m [34m[watch][39m src/content/servicos/crm-automatizado.md
+[2m15:20:02[22m [34m[watch][39m src/content/servicos/crm-automatizado.md
+[2m15:20:03[22m [34m[200][39m / [2m89ms[22m
+[2m15:20:03[22m [34m[200][39m / [2m44ms[22m
+[2m15:20:17[22m [34m[watch][39m src/content/servicos/crm-automatizado.md
+[2m15:20:17[22m [34m[watch][39m src/content/servicos/crm-automatizado.md
+[2m15:20:17[22m [34m[glob-loader][39m Reloaded data from [32mcrm-automatizado.md[39m
+[2m15:20:17[22m [34m[200][39m / [2m6ms[22m
+[2m15:20:17[22m [34m[200][39m / [2m5ms[22m
+[2m15:20:18[22m [34m[200][39m / [2m4ms[22m
+[2m15:20:24[22m [34m[watch][39m src/content/servicos/metricas.md
+[2m15:20:24[22m [34m[watch][39m src/content/servicos/metricas.md
+[2m15:20:24[22m [34m[200][39m / [2m84ms[22m
+[2m15:20:24[22m [34m[200][39m / [2m84ms[22m
+[2m15:20:38[22m [34m[watch][39m src/content/servicos/metricas.md
+[2m15:20:38[22m [34m[watch][39m src/content/servicos/metricas.md
+[2m15:20:38[22m [34m[glob-loader][39m Reloaded data from [32mmetricas.md[39m
+[2m15:20:38[22m [34m[200][39m / [2m6ms[22m
+[2m15:20:38[22m [34m[200][39m / [2m4ms[22m
+[2m15:20:38[22m [34m[200][39m / [2m5ms[22m
+[2m15:20:43[22m [34m[watch][39m src/content/servicos/omnichannel.md
+[2m15:20:43[22m [34m[watch][39m src/content/servicos/omnichannel.md
+[2m15:20:43[22m [34m[200][39m / [2m101ms[22m
+[2m15:20:43[22m [34m[200][39m / [2m102ms[22m
+[2m15:20:54[22m [34m[watch][39m src/content/servicos/omnichannel.md
+[2m15:20:54[22m [34m[watch][39m src/content/servicos/omnichannel.md
+[2m15:20:54[22m [34m[glob-loader][39m Reloaded data from [32momnichannel.md[39m
+[2m15:20:55[22m [34m[200][39m / [2m6ms[22m
+[2m15:20:55[22m [34m[200][39m / [2m5ms[22m
+[2m15:20:59[22m [34m[watch][39m src/content/servicos/sites.md
+[2m15:20:59[22m [34m[watch][39m src/content/servicos/sites.md
+[2m15:21:00[22m [34m[200][39m / [2m71ms[22m
+[2m15:21:00[22m [34m[200][39m / [2m71ms[22m
+[2m15:21:11[22m [34m[watch][39m src/content/servicos/sites.md
+[2m15:21:11[22m [34m[watch][39m src/content/servicos/sites.md
+[2m15:21:11[22m [34m[glob-loader][39m Reloaded data from [32msites.md[39m
+[2m15:21:11[22m [34m[200][39m / [2m5ms[22m
+[2m15:21:11[22m [34m[200][39m / [2m5ms[22m
+[2m15:21:17[22m [34m[watch][39m src/content/servicos/solucoes-comerciais.md
+[2m15:21:17[22m [34m[watch][39m src/content/servicos/solucoes-comerciais.md
+[2m15:21:17[22m [34m[200][39m / [2m91ms[22m
+[2m15:21:17[22m [34m[200][39m / [2m92ms[22m
+[2m15:21:28[22m [34m[watch][39m src/content/servicos/solucoes-comerciais.md
+[2m15:21:28[22m [34m[watch][39m src/content/servicos/solucoes-comerciais.md
+[2m15:21:28[22m [34m[glob-loader][39m Reloaded data from [32msolucoes-comerciais.md[39m
+[2m15:21:28[22m [34m[200][39m / [2m7ms[22m
+[2m15:21:28[22m [34m[200][39m / [2m4ms[22m
+[2m15:21:38[22m [34m[watch][39m src/content/servicos/trafego-com-ia.md
+[2m15:21:38[22m [34m[watch][39m src/content/servicos/trafego-com-ia.md
+[2m15:21:38[22m [34m[200][39m / [2m70ms[22m
+[2m15:21:38[22m [34m[200][39m / [2m71ms[22m
+[2m15:21:49[22m [34m[watch][39m src/content/servicos/trafego-com-ia.md
+[2m15:21:49[22m [34m[watch][39m src/content/servicos/trafego-com-ia.md
+[2m15:21:49[22m [34m[glob-loader][39m Reloaded data from [32mtrafego-com-ia.md[39m
+[2m15:21:49[22m [34m[200][39m / [2m6ms[22m
+[2m15:21:49[22m [34m[200][39m / [2m7ms[22m
+[2m15:21:50[22m [34m[200][39m / [2m5ms[22m
+[2m15:21:55[22m [34m[watch][39m src/content/servicos/visualizacao-3d.md
+[2m15:21:55[22m [34m[watch][39m src/content/servicos/visualizacao-3d.md
+[2m15:21:55[22m [34m[200][39m / [2m96ms[22m
+[2m15:21:55[22m [34m[200][39m / [2m97ms[22m
+[2m15:22:08[22m [34m[watch][39m src/content/servicos/visualizacao-3d.md
+[2m15:22:08[22m [34m[watch][39m src/content/servicos/visualizacao-3d.md
+[2m15:22:08[22m [34m[glob-loader][39m Reloaded data from [32mvisualizacao-3d.md[39m
+[2m15:22:08[22m [34m[200][39m / [2m5ms[22m
+[2m15:22:08[22m [34m[200][39m / [2m4ms[22m
+[2m15:22:16[22m [34m[watch][39m src/content/cases/casa-design.md
+[2m15:22:16[22m [34m[watch][39m src/content/cases/casa-design.md
+[2m15:22:16[22m [34m[200][39m / [2m67ms[22m
+[2m15:22:16[22m [34m[200][39m / [2m69ms[22m
+[2m15:22:31[22m [34m[watch][39m src/content/cases/casa-design.md
+[2m15:22:31[22m [34m[watch][39m src/content/cases/casa-design.md
+[2m15:22:31[22m [34m[glob-loader][39m Reloaded data from [32mcasa-design.md[39m
+[2m15:22:31[22m [34m[200][39m / [2m5ms[22m
+[2m15:22:31[22m [34m[200][39m / [2m6ms[22m
+[2m15:22:32[22m [34m[200][39m / [2m6ms[22m
+[2m15:22:37[22m [34m[watch][39m src/content/cases/decor-prime.md
+[2m15:22:37[22m [34m[watch][39m src/content/cases/decor-prime.md
+[2m15:22:37[22m [34m[200][39m / [2m83ms[22m
+[2m15:22:37[22m [34m[200][39m / [2m85ms[22m
+[2m15:22:50[22m [34m[watch][39m src/content/cases/decor-prime.md
+[2m15:22:50[22m [34m[watch][39m src/content/cases/decor-prime.md
+[2m15:22:50[22m [34m[glob-loader][39m Reloaded data from [32mdecor-prime.md[39m
+[2m15:22:50[22m [34m[200][39m / [2m5ms[22m
+[2m15:22:50[22m [34m[200][39m / [2m7ms[22m
+[2m15:22:56[22m [34m[watch][39m src/content/cases/moveis-alfa.md
+[2m15:22:56[22m [34m[watch][39m src/content/cases/moveis-alfa.md
+[2m15:22:56[22m [34m[200][39m / [2m75ms[22m
+[2m15:22:56[22m [34m[200][39m / [2m76ms[22m
+[2m15:23:10[22m [34m[watch][39m src/content/cases/moveis-alfa.md
+[2m15:23:10[22m [34m[watch][39m src/content/cases/moveis-alfa.md
+[2m15:23:10[22m [34m[glob-loader][39m Reloaded data from [32mmoveis-alfa.md[39m
+[2m15:23:11[22m [34m[200][39m / [2m4ms[22m
+[2m15:23:11[22m [34m[200][39m / [2m4ms[22m
+[2m15:23:18[22m [34m[watch][39m src/content/blog/como-aumentar-vendas-loja-moveis.md
+[2m15:23:18[22m [34m[watch][39m src/content/blog/como-aumentar-vendas-loja-moveis.md
+[2m15:23:19[22m [34m[200][39m / [2m97ms[22m
+[2m15:23:19[22m [34m[200][39m / [2m98ms[22m
+[2m15:23:42[22m [34m[watch][39m src/content/blog/como-aumentar-vendas-loja-moveis.md
+[2m15:23:42[22m [34m[watch][39m src/content/blog/como-aumentar-vendas-loja-moveis.md
+[2m15:23:43[22m [34m[glob-loader][39m Reloaded data from [32mcomo-aumentar-vendas-loja-moveis.md[39m
+[2m15:23:43[22m [34m[200][39m / [2m5ms[22m
+[2m15:23:43[22m [34m[200][39m / [2m13ms[22m
+[2m15:23:43[22m [34m[200][39m / [2m5ms[22m
+[2m15:24:09[22m [34m[watch][39m src/pages/index.astro
+[2m15:24:10[22m [34m[200][39m / [2m84ms[22m
+[2m15:24:10[22m [34m[200][39m / [2m6ms[22m
+[2m15:25:01[22m [34m[watch][39m src/pages/servicos/[slug].astro
+[2m15:25:01[22m [34m[watch][39m src/pages/servicos/[slug].astro
+[2m15:25:01[22m [34m[200][39m / [2m85ms[22m
+[2m15:25:01[22m [34m[200][39m / [2m4ms[22m
+[2m15:25:58[22m [34m[watch][39m src/pages/index.astro
+[2m15:25:59[22m [34m[200][39m / [2m91ms[22m
+[2m15:25:59[22m [34m[200][39m / [2m91ms[22m
+[2m15:27:42[22m [34m[watch][39m src/pages/blog/[slug].astro
+[2m15:27:42[22m [34m[watch][39m src/pages/blog/[slug].astro
+[2m15:27:43[22m [34m[200][39m / [2m75ms[22m
+[2m15:27:43[22m [34m[200][39m / [2m76ms[22m
+[2m15:30:55[22m [34m[200][39m / [2m4ms[22m
+[2m15:31:08[22m [34m[200][39m /servicos [2m9ms[22m
+[2m15:31:14[22m [34m[200][39m /sobre [2m3ms[22m
+[2m15:31:15[22m [34m[200][39m /cases [2m11ms[22m
+[2m15:31:18[22m [34m[200][39m /contato [2m2ms[22m
+[2m15:31:20[22m [34m[200][39m / [2m4ms[22m
+[2m15:33:43[22m [34m[200][39m /servicos [2m3ms[22m
+[2m15:33:53[22m [34m[200][39m /servicos/solucoes-comerciais [2m6ms[22m
+[2m15:34:06[22m [34m[200][39m /servicos/visualizacao-3d [2m4ms[22m
+[2m15:34:18[22m [34m[200][39m /cases [2m3ms[22m
+[2m15:34:28[22m [34m[200][39m /blog [2m3ms[22m
+[2m15:34:37[22m [34m[200][39m /cases [2m3ms[22m
+[2m13:40:57[22m [34m[200][39m / [2m25ms[22m
+[2m13:45:31[22m [34m[200][39m /cases [2m5ms[22m
+[2m14:13:35[22m [34m[watch][39m src/pages/index.astro
+[2m14:13:36[22m [34m[200][39m /cases [2m69ms[22m
+[2m14:13:36[22m [34m[200][39m / [2m70ms[22m
+[2m14:14:07[22m [34m[watch][39m src/pages/index.astro
+[2m14:14:07[22m [34m[200][39m / [2m64ms[22m
+[2m14:14:07[22m [34m[200][39m /cases [2m3ms[22m
+[2m14:14:33[22m [34m[watch][39m src/pages/index.astro
+[2m14:14:34[22m [34m[200][39m /cases [2m67ms[22m
+[2m14:14:34[22m [34m[200][39m / [2m9ms[22m
+[2m14:14:49[22m [34m[watch][39m src/pages/index.astro
+[2m14:14:49[22m [34m[200][39m /cases [2m65ms[22m
+[2m14:14:49[22m [34m[200][39m / [2m67ms[22m
+[2m14:15:06[22m [34m[200][39m / [2m3ms[22m
+[2m14:15:08[22m [34m[watch][39m src/pages/index.astro
+[2m14:15:08[22m [34m[200][39m / [2m63ms[22m
+[2m14:15:09[22m [34m[200][39m / [2m3ms[22m
+[2m14:15:16[22m [34m[200][39m / [2m5ms[22m
+[2m14:15:17[22m [34m[watch][39m src/pages/index.astro
+[2m14:15:17[22m [34m[200][39m / [2m63ms[22m
+[2m14:15:18[22m [34m[200][39m / [2m3ms[22m
+[2m14:15:28[22m [34m[watch][39m src/pages/index.astro
+[2m14:15:29[22m [34m[200][39m / [2m61ms[22m
+[2m14:15:29[22m [34m[200][39m / [2m3ms[22m
+[2m14:15:43[22m [34m[watch][39m /src/pages/index.astro?astro&type=style&index=0&lang.css
+[2m14:15:43[22m [34m[watch][39m /src/pages/index.astro?astro&type=style&index=0&lang.css
+[2m14:16:09[22m [34m[200][39m /cases [2m61ms[22m
+[2m14:16:26[22m [34m[watch][39m src/pages/sobre.astro
+[2m14:16:26[22m [34m[watch][39m src/pages/sobre.astro
+[2m14:16:26[22m [34m[200][39m /cases [2m53ms[22m
+[2m14:16:26[22m [34m[200][39m / [2m7ms[22m
+[2m14:16:42[22m [34m[watch][39m src/pages/sobre.astro
+[2m14:16:42[22m [34m[watch][39m src/pages/sobre.astro
+[2m14:16:42[22m [34m[200][39m /cases [2m73ms[22m
+[2m14:16:43[22m [34m[200][39m / [2m3ms[22m
+[2m14:17:09[22m [34m[watch][39m src/pages/servicos/index.astro
+[2m14:17:09[22m [34m[watch][39m src/pages/servicos/index.astro
+[2m14:17:09[22m [34m[200][39m /cases [2m54ms[22m
+[2m14:17:09[22m [34m[200][39m / [2m4ms[22m
+[2m14:17:19[22m [34m[watch][39m src/pages/servicos/index.astro
+[2m14:17:19[22m [34m[watch][39m src/pages/servicos/index.astro
+[2m14:17:19[22m [34m[200][39m /cases [2m50ms[22m
+[2m14:17:19[22m [34m[200][39m / [2m4ms[22m
+[2m14:17:28[22m [34m[200][39m / [2m3ms[22m
+[2m14:17:41[22m [34m[200][39m /servicos/trafego-com-ia [2m3ms[22m
+[2m14:17:46[22m [34m[200][39m / [2m3ms[22m
+[2m14:17:52[22m [34m[watch][39m src/pages/contato.astro
+[2m14:17:52[22m [34m[200][39m / [2m77ms[22m
+[2m14:17:52[22m [34m[200][39m / [2m3ms[22m
+[2m14:18:24[22m [34m[watch][39m src/pages/contato.astro
+[2m14:18:24[22m [34m[200][39m / [2m56ms[22m
+[2m14:18:24[22m [34m[200][39m / [2m26ms[22m
+[2m14:18:48[22m [34m[watch][39m src/pages/cases/index.astro
+[2m14:18:49[22m [34m[200][39m / [2m65ms[22m
+[2m14:18:49[22m [34m[200][39m / [2m3ms[22m
+[2m14:19:13[22m [34m[watch][39m src/pages/cases/index.astro
+[2m14:19:14[22m [34m[200][39m / [2m83ms[22m
+[2m14:19:14[22m [34m[200][39m / [2m85ms[22m
+[2m14:19:24[22m [34m[watch][39m src/pages/cases/index.astro
+[2m14:19:24[22m [34m[200][39m / [2m61ms[22m
+[2m14:19:25[22m [34m[200][39m / [2m3ms[22m
+[2m14:19:50[22m [34m[watch][39m src/pages/cases/index.astro
+[2m14:19:50[22m [34m[200][39m / [2m60ms[22m
+[2m14:19:50[22m [34m[200][39m / [2m3ms[22m
+[2m14:20:02[22m [34m[watch][39m src/pages/cases/index.astro
+[2m14:20:02[22m [34m[200][39m / [2m73ms[22m
+[2m14:20:02[22m [34m[200][39m / [2m74ms[22m
+[2m14:20:05[22m [34m[200][39m /servicos [2m3ms[22m
+[2m14:20:08[22m [34m[200][39m /sobre [2m3ms[22m
+[2m14:20:09[22m [34m[200][39m /servicos [2m3ms[22m
+[2m14:20:14[22m [34m[200][39m /servicos/crm-automatizado [2m2ms[22m
+[2m14:20:17[22m [34m[watch][39m src/components/Footer.astro
+[2m14:20:18[22m [34m[200][39m /servicos/crm-automatizado [2m48ms[22m
+[2m14:20:18[22m [34m[200][39m / [2m3ms[22m
+[2m14:20:39[22m [34m[watch][39m src/pages/blog/index.astro
+[2m14:20:39[22m [34m[watch][39m src/pages/blog/index.astro
+[2m14:20:40[22m [34m[200][39m /blog [2m47ms[22m
+[2m14:20:40[22m [34m[200][39m / [2m3ms[22m
+[2m14:20:43[22m [34m[200][39m /contato [2m7ms[22m
+[2m14:21:19[22m [34m[200][39m /blog [2m2ms[22m
+[2m14:21:26[22m [34m[200][39m / [2m6ms[22m
+[2m14:21:41[22m [34m[200][39m /servicos [2m3ms[22m
+[2m14:21:43[22m [34m[200][39m /servicos/trafego-com-ia [2m3ms[22m
+[2m15:56:40[22m [34m[200][39m / [2m5ms[22m
+[2m16:12:23[22m [34m[watch][39m docs/mockup-transformacao.html
+[2m16:13:57[22m [34m[200][39m /servicos/trafego-com-ia [2m3ms[22m
+[2m16:14:53[22m [34m[200][39m /servicos [2m3ms[22m
+[2m16:14:57[22m [34m[200][39m /servicos/crm-automatizado [2m3ms[22m
+[2m16:15:56[22m [34m[watch][39m src/content/config.ts
+[2m16:15:56[22m [34m[watch][39m src/content/config.ts
+[2m16:15:56[22m [34m[content][39m Syncing content
+[2m16:15:56[22m [34m[content][39m Content config changed
+[2m16:15:56[22m [34m[content][39m Clearing content store
+[2m16:15:56[22m [34m[content][39m Synced content
+[2m16:15:57[22m [34m[200][39m /servicos/crm-automatizado [2m55ms[22m
+[2m16:15:57[22m [34m[200][39m / [2m5ms[22m
+[2m16:16:11[22m [34m[watch][39m src/content/servicos/trafego-com-ia.md
+[2m16:16:11[22m [34m[watch][39m src/content/servicos/trafego-com-ia.md
+[33m[1m16:16:11[22m [WARN] [glob-loader][39m Duplicate id "trafego-com-ia" found in G:\documentos\moveis.pro site\src\content\servicos\trafego-com-ia.md. Later items with the same id will overwrite earlier ones.
+[2m16:16:11[22m [34m[glob-loader][39m Reloaded data from [32mtrafego-com-ia.md[39m
+[2m16:16:12[22m [34m[200][39m /servicos/crm-automatizado [2m58ms[22m
+[2m16:16:12[22m [34m[200][39m / [2m81ms[22m
+[2m16:16:43[22m [34m[watch][39m src/pages/servicos/[slug].astro
+[2m16:16:43[22m [34m[200][39m /servicos/crm-automatizado [2m62ms[22m
+[2m16:16:43[22m [34m[200][39m / [2m5ms[22m
+[2m16:19:27[22m [34m[200][39m /servicos/trafego-com-ia [2m4ms[22m
+[2m16:20:38[22m [34m[watch][39m src/pages/servicos/[slug].astro
+[2m16:20:40[22m [34m[200][39m / [2m63ms[22m
+[2m16:20:40[22m [34m[200][39m /servicos/trafego-com-ia [2m68ms[22m
+[2m16:21:23[22m [34m[watch][39m /src/pages/servicos/[slug].astro?astro&type=style&index=0&lang.css, /src/pages/servicos/[slug].astro?astro&type=style&index=1&lang.css
+[2m16:21:23[22m [34m[watch][39m /src/pages/servicos/[slug].astro?astro&type=style&index=0&lang.css, /src/pages/servicos/[slug].astro?astro&type=style&index=1&lang.css
+[2m16:22:05[22m [34m[200][39m /servicos [2m68ms[22m
+[2m16:22:09[22m [34m[200][39m / [2m7ms[22m
+[2m16:22:20[22m [34m[200][39m /servicos [2m2ms[22m
+[2m16:22:23[22m [34m[200][39m /servicos/trafego-com-ia [2m9ms[22m
+[2m16:24:11[22m [34m[200][39m / [2m3ms[22m
+[2m16:59:25[22m [34m[watch][39m src/pages/index.astro
+[2m16:59:26[22m [34m[200][39m / [2m84ms[22m
+[2m16:59:26[22m [34m[200][39m / [2m85ms[22m
+[2m16:59:33[22m [34m[watch][39m src/pages/index.astro
+[2m16:59:33[22m [34m[200][39m / [2m63ms[22m
+[2m16:59:33[22m [34m[200][39m / [2m3ms[22m
+[2m16:59:59[22m [34m[watch][39m /src/pages/index.astro?astro&type=style&index=0&lang.css
+[2m16:59:59[22m [34m[watch][39m /src/pages/index.astro?astro&type=style&index=0&lang.css
+[2m17:00:08[22m [34m[watch][39m /src/pages/index.astro?astro&type=style&index=0&lang.css
+[2m17:00:08[22m [34m[watch][39m /src/pages/index.astro?astro&type=style&index=0&lang.css
+[2m17:00:20[22m [34m[watch][39m /src/pages/index.astro?astro&type=style&index=0&lang.css
+[2m17:00:20[22m [34m[watch][39m /src/pages/index.astro?astro&type=style&index=0&lang.css
+[2m17:00:31[22m [34m[watch][39m /src/pages/index.astro?astro&type=style&index=0&lang.css
+[2m17:00:31[22m [34m[watch][39m /src/pages/index.astro?astro&type=style&index=0&lang.css
+[2m17:00:42[22m [34m[watch][39m /src/pages/index.astro?astro&type=style&index=0&lang.css
+[2m17:00:42[22m [34m[watch][39m /src/pages/index.astro?astro&type=style&index=0&lang.css
+[2m17:00:54[22m [34m[watch][39m /src/pages/index.astro?astro&type=style&index=0&lang.css
+[2m17:00:54[22m [34m[watch][39m /src/pages/index.astro?astro&type=style&index=0&lang.css
+[2m17:01:23[22m [34m[watch][39m src/pages/index.astro
+[2m17:01:25[22m [34m[200][39m / [2m106ms[22m
+[2m17:01:25[22m [34m[200][39m / [2m107ms[22m
+[2m17:02:12[22m [34m[200][39m / [2m3ms[22m
+[2m17:02:49[22m [34m[200][39m /servicos [2m4ms[22m
+[2m17:02:50[22m [34m[200][39m /servicos/trafego-com-ia [2m3ms[22m
+[2m17:05:00[22m [34m[200][39m / [2m5ms[22m
+[2m17:08:47[22m [34m[200][39m / [2m4ms[22m
+[2m17:09:16[22m [34m[200][39m / [2m4ms[22m
+[2m17:18:36[22m [34m[200][39m / [2m4ms[22m
+[2m17:18:46[22m [34m[200][39m /servicos [2m4ms[22m
+[2m17:18:50[22m [34m[200][39m /servicos/trafego-com-ia [2m3ms[22m
+[2m17:18:59[22m [34m[200][39m / [2m4ms[22m
+[2m18:03:25[22m [34m[200][39m /servicos/trafego-com-ia [2m4ms[22m

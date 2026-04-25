@@ -10,106 +10,224 @@ import CTABox from '../../components/CTABox.astro';
 const cases = await getCollection('cases');
 const featured = cases.find((c) => c.data.featured);
 const rest = cases.filter((c) => !c.data.featured);
-
-const transformacoes = [
-  {
-    nome: 'Loja Campina Grande',
-    servico: 'CRM + Tráfego com IA',
-    metrica: '+187%',
-    metricaLabel: 'leads em 45 dias',
-    depois: '/images/cases/loja-1-depois.png',
-    pos: 'center 55%',
-  },
-  {
-    nome: 'Loja Recife',
-    servico: 'Sites de Alto Padrão',
-    metrica: '3.2×',
-    metricaLabel: 'retorno sobre investimento',
-    depois: '/images/cases/loja-2-depois.png',
-    pos: 'center 50%',
-  },
-  {
-    nome: 'Loja João Pessoa',
-    servico: 'Omnichannel',
-    metrica: '−62%',
-    metricaLabel: 'tempo de atendimento',
-    depois: '/images/cases/loja-3-depois.png',
-    pos: 'center 40%',
-    antes: '/images/cases/loja-3-antes.png',
-    posAntes: 'center 45%',
-  },
-  {
-    nome: 'Loja Caruaru',
-    servico: 'Agente de IA',
-    metrica: '+94%',
-    metricaLabel: 'agendamentos de visita',
-    depois: '/images/cases/loja-4-depois.png',
-    pos: 'center 45%',
-  },
-  {
-    nome: 'Loja Campina Grande II',
-    servico: 'Métricas em Tempo Real',
-    metrica: '4.1×',
-    metricaLabel: 'ROI médio',
-    depois: '/images/cases/loja-5-depois.png',
-    pos: 'center 50%',
-  },
-  {
-    nome: 'Loja Recife II',
-    servico: 'Visualização 3D / RA',
-    metrica: '+40%',
-    metricaLabel: 'taxa de conversão',
-    depois: '/images/cases/loja-6-depois.png',
-    pos: 'center 55%',
-  },
-  {
-    nome: 'Loja João Pessoa II',
-    servico: 'Tráfego com IA',
-    metrica: '−38%',
-    metricaLabel: 'custo por lead',
-    depois: '/images/cases/loja-7-depois.png',
-    pos: 'center 50%',
-  },
-  {
-    nome: 'Loja Caruaru II',
-    servico: 'Sites de Alto Padrão',
-    metrica: '2.8×',
-    metricaLabel: 'retorno sobre investimento',
-    depois: '/images/cases/loja-8-depois.png',
-    pos: 'center 48%',
-  },
-  {
-    nome: 'Loja Recife III',
-    servico: 'Soluções Comerciais',
-    metrica: '+112%',
-    metricaLabel: 'faturamento em 3 meses',
-    depois: '/images/cases/loja-9-depois.png',
-    pos: 'center 52%',
-  },
-];
 ---
 
-<BaseLayout title="Cases de Sucesso" description="Resultados reais de lojas de móveis que transformaram seus negócios com a Moveis.pro.">
+<BaseLayout title="Cases — Moveis.pro" description="Loja de móveis que parou de brigar no preço e começou a vender pelo valor. Número real, operação real.">
   <Nav />
   <main style="padding-top: 64px;">
 
-    <!-- HERO -->
-    <section style="padding: 100px 56px 60px; position: relative; overflow: hidden;">
-      <div style="position: absolute; top: -100px; right: -80px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(139,69,19,0.14) 0%, transparent 65%); pointer-events: none;"></div>
-      <div class="inline-flex items-center gap-2.5 mb-8" style="color: var(--gold);">
-        <span class="block w-7 h-px" style="background: var(--gold);"></span>
-        <span class="text-xs font-medium tracking-widest uppercase" style="letter-spacing: 2px;">Resultados reais</span>
+    <!-- ① HERO -->
+    <section class="page-hero">
+
+      <!-- left: text content -->
+      <div class="hero-content">
+        <div class="inline-flex items-center gap-2.5 mb-8" style="color: var(--gold);">
+          <span class="block w-7 h-px" style="background: var(--gold);"></span>
+          <span class="text-xs font-medium tracking-widest uppercase" style="letter-spacing: 2px;">Resultado de verdade</span>
+        </div>
+        <h1 class="font-display font-black text-white mb-5" style="font-size: clamp(40px, 4.5vw, 68px); letter-spacing: -2.5px; line-height: 1.0;">
+          Showroom cheio.<br/>Vendedor fechando.
+        </h1>
+        <p class="font-light" style="font-size: 16px; color: var(--dim); line-height: 1.7; max-width: 440px; margin-bottom: 40px;">
+          Lojista que parou de brigar no preço e começou a vender pelo valor. Aplicou o sistema em
+          14 dias, viu o showroom encher em 45. Número real, não promessa.
+        </p>
+        <!-- aggregate stats strip -->
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-num">40+</span>
+            <span class="hero-stat-lbl">lojas no sistema</span>
+          </div>
+          <div class="hero-stat-div"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">3.2×</span>
+            <span class="hero-stat-lbl">ROI médio</span>
+          </div>
+          <div class="hero-stat-div"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">−58%</span>
+            <span class="hero-stat-lbl">custo por lead</span>
+          </div>
+          <div class="hero-stat-div"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">45 dias</span>
+            <span class="hero-stat-lbl">até encher</span>
+          </div>
+        </div>
       </div>
-      <h1 class="font-display font-black text-white mb-6" style="font-size: clamp(44px, 5.5vw, 72px); letter-spacing: -2.5px; line-height: 1.0;">
-        Cases de sucesso.
-      </h1>
-      <p class="font-light max-w-lg" style="font-size: 16px; color: var(--dim); line-height: 1.7;">
-        Lojas de móveis que transformaram seus resultados com tecnologia da Moveis.pro.
-      </p>
+
+      <!-- right: auto slideshow -->
+      <div class="hero-slide-wrap">
+        <!-- left-edge fade to blend with background -->
+        <div class="hero-slide-fade"></div>
+        <!-- slides -->
+        <div class="hero-slide active" style="background-image: url('/Gemini_Generated_Image_x88ektx88ektx88e.png')"></div>
+        <div class="hero-slide" style="background-image: url('/Gemini_Generated_Image_evxw1eevxw1eevxw%20(1).png')"></div>
+        <div class="hero-slide" style="background-image: url('/Gemini_Generated_Image_soqcxxsoqcxxsoqc.png')"></div>
+        <div class="hero-slide" style="background-image: url('/Gemini_Generated_Image_g0y63yg0y63yg0y6%20(1).png')"></div>
+        <div class="hero-slide" style="background-image: url('/Gemini_Generated_Image_qkhwmkqkhwmkqkhw.png')"></div>
+        <div class="hero-slide" style="background-image: url('/Gemini_Generated_Image_jbmi89jbmi89jbmi.png')"></div>
+        <div class="hero-slide" style="background-image: url('/Gemini_Generated_Image_t80le9t80le9t80l.png')"></div>
+        <div class="hero-slide" style="background-image: url('/Gemini_Generated_Image_7lachq7lachq7lac.png')"></div>
+        <div class="hero-slide" style="background-image: url('/Gemini_Generated_Image_4obfuq4obfuq4obf.png')"></div>
+        <!-- dots -->
+        <div class="hero-slide-dots">
+          <span class="hero-dot active"></span>
+          <span class="hero-dot"></span>
+          <span class="hero-dot"></span>
+          <span class="hero-dot"></span>
+          <span class="hero-dot"></span>
+          <span class="hero-dot"></span>
+          <span class="hero-dot"></span>
+          <span class="hero-dot"></span>
+          <span class="hero-dot"></span>
+        </div>
+      </div>
+
     </section>
 
-    <!-- METRICS CARDS -->
-    <section style="padding: 0 56px 80px;">
+    <!-- ② TRANSFORMAÇÃO FULL SECTION -->
+    <section class="transf-section">
+
+      <!-- image scene (full width) -->
+      <div class="transf-scene" id="transf-scene">
+
+        <!-- progress bar -->
+        <div class="transf-progress" id="transf-progress"></div>
+
+        <!-- depois = base layer -->
+        <img
+          class="transf-img transf-img-depois"
+          src="/images/cases/loja-3-depois.png"
+          alt="Loja João Pessoa depois"
+        />
+        <!-- antes = top layer, dissolve out -->
+        <img
+          class="transf-img transf-img-antes"
+          id="transf-antes"
+          src="/images/cases/loja-3-antes.png"
+          alt="Loja João Pessoa antes"
+        />
+
+        <!-- bottom scrim -->
+        <div class="transf-scrim"></div>
+
+        <!-- top-left heading overlay -->
+        <div class="transf-heading">
+          <div class="transf-eyebrow">
+            <span class="transf-eyebrow-line"></span>
+            <span class="transf-eyebrow-text">Transformação real</span>
+          </div>
+          <h2 class="transf-title">
+            Antes &amp; depois<br />
+            <em>com a Moveis.pro.</em>
+          </h2>
+          <span class="transf-phase" id="transf-phase">Antes</span>
+        </div>
+
+        <!-- replay button -->
+        <button class="transf-replay" id="transf-replay" aria-label="Rever transformação">
+          ↺ Rever
+        </button>
+
+        <!-- metrics grid bottom -->
+        <div class="transf-metrics">
+
+          <div class="transf-metric" id="tm0">
+            <span class="tm-label">Tempo de atendimento</span>
+            <div class="tm-values">
+              <span class="tm-antes">120 min</span>
+              <span class="tm-depois">
+                <span class="tm-num" data-from="120" data-to="46" data-dec="0">120</span> min
+                <span class="tm-delta">−62%</span>
+              </span>
+            </div>
+            <span class="tm-desc">Atendimento automatizado 24/7</span>
+          </div>
+
+          <div class="transf-metric" id="tm1">
+            <span class="tm-label">Leads por mês</span>
+            <div class="tm-values">
+              <span class="tm-antes">45</span>
+              <span class="tm-depois">
+                <span class="tm-num" data-from="45" data-to="187" data-dec="0">45</span>
+                <span class="tm-delta">+315%</span>
+              </span>
+            </div>
+            <span class="tm-desc">Via tráfego pago com IA</span>
+          </div>
+
+          <div class="transf-metric" id="tm2">
+            <span class="tm-label">Taxa de conversão</span>
+            <div class="tm-values">
+              <span class="tm-antes">2,1%</span>
+              <span class="tm-depois">
+                <span class="tm-num" data-from="2.1" data-to="6.8" data-dec="1">2.1</span>%
+                <span class="tm-delta">+224%</span>
+              </span>
+            </div>
+            <span class="tm-desc">Visitante → orçamento solicitado</span>
+          </div>
+
+          <div class="transf-metric" id="tm3">
+            <span class="tm-label">Canais de venda</span>
+            <div class="tm-values">
+              <span class="tm-antes">3 canais</span>
+              <span class="tm-depois">
+                <span class="tm-num" data-from="3" data-to="6" data-dec="0">3</span> canais
+                <span class="tm-delta">+100%</span>
+              </span>
+            </div>
+            <span class="tm-desc">Canais integrados em um unico historico</span>
+          </div>
+
+          <div class="transf-metric" id="tm4">
+            <span class="tm-label">Tempo de resposta</span>
+            <div class="tm-values">
+              <span class="tm-antes">4 horas</span>
+              <span class="tm-depois">
+                <span class="tm-num" data-from="240" data-to="8" data-dec="0">240</span> min
+                <span class="tm-delta">−97%</span>
+              </span>
+            </div>
+            <span class="tm-desc">Agente de IA ativo 24h</span>
+          </div>
+
+          <div class="transf-metric" id="tm5">
+            <span class="tm-label">ROI tráfego pago</span>
+            <div class="tm-values">
+              <span class="tm-antes">indefinido</span>
+              <span class="tm-depois">
+                <span class="tm-num" data-from="0" data-to="3.8" data-dec="1">0</span>×
+                <span class="tm-delta">comprovado</span>
+              </span>
+            </div>
+            <span class="tm-desc">Retorno desde o 1º mês</span>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ③ CASES GRID -->
+    <section class="cases-section">
+      <div class="cases-section-header">
+        <div>
+          <div class="inline-flex items-center gap-2.5 mb-5" style="color: var(--gold);">
+            <span class="block w-7 h-px" style="background: var(--gold);"></span>
+            <span class="text-xs font-medium tracking-widest uppercase" style="letter-spacing: 2px;">Quem já virou o jogo</span>
+          </div>
+          <h2 class="font-display font-black text-white" style="font-size: clamp(28px, 3.5vw, 44px); letter-spacing: -1.8px; line-height: 1.0;">
+            Lojas que lideram<br/>no seu mercado.
+          </h2>
+        </div>
+        <p style="font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.7; max-width: 260px; text-align: right; flex-shrink: 0;">
+          Cada número abaixo é uma loja real, com dono real, que abriu a porta e deixou a gente
+          mexer na operação. Se não vender, a gente não dorme.
+        </p>
+      </div>
+
       <div class="cases-grid" style="display: grid; grid-template-columns: 1.5fr 1fr; grid-template-rows: auto auto; gap: 14px;">
         {featured && (
           <a href={`/cases/${featured.slug}`} class="no-underline" style="grid-row: span 2;">
@@ -138,93 +256,12 @@ const transformacoes = [
       </div>
     </section>
 
-    <!-- BEFORE / AFTER TRANSFORMAÇÕES -->
-    <section class="transformacoes-section">
-      <div class="transformacoes-header">
-        <div>
-          <div class="inline-flex items-center gap-2.5 mb-5" style="color: var(--gold);">
-            <span class="block w-7 h-px" style="background: var(--gold);"></span>
-            <span class="text-xs font-medium tracking-widest uppercase" style="letter-spacing: 2px;">Galeria</span>
-          </div>
-          <h2 class="font-display font-black text-white" style="font-size: clamp(32px, 4vw, 52px); letter-spacing: -2px; line-height: 1.0;">
-            Transformações<br />
-            <em class="not-italic" style="color: var(--gold);">antes & depois.</em>
-          </h2>
-        </div>
-        <p class="transformacoes-sub">
-          Veja o impacto visual e de negócio nas lojas que adotaram a plataforma Moveis.pro.
-        </p>
-      </div>
-
-      <div class="transformacoes-grid">
-        {transformacoes.map((t) => (
-          <div class="transf-card">
-
-            <!-- ANTES -->
-            <div class="transf-side">
-              <div class="transf-label transf-label-antes">Antes</div>
-              {t.antes ? (
-                <div class="transf-img-wrap">
-                  <img
-                    src={t.antes}
-                    alt={`${t.nome} — antes da Moveis.pro`}
-                    class="transf-img"
-                    style={`object-position: ${t.posAntes ?? 'center 50%'};`}
-                    loading="lazy"
-                  />
-                </div>
-              ) : (
-                <div class="transf-img-wrap transf-placeholder">
-                  <div class="placeholder-inner">
-                    <div class="placeholder-icon">📷</div>
-                    <p class="placeholder-text">Foto em breve</p>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            <!-- DIVIDER -->
-            <div class="transf-divider">
-              <div class="transf-arrow">→</div>
-            </div>
-
-            <!-- DEPOIS -->
-            <div class="transf-side">
-              <div class="transf-label transf-label-depois">Depois</div>
-              <div class="transf-img-wrap">
-                <img
-                  src={t.depois}
-                  alt={`${t.nome} — depois da Moveis.pro`}
-                  class="transf-img"
-                  style={`object-position: ${t.pos};`}
-                  loading="lazy"
-                />
-              </div>
-            </div>
-
-            <!-- INFO -->
-            <div class="transf-info">
-              <div>
-                <p class="transf-servico">{t.servico}</p>
-                <p class="transf-nome">{t.nome}</p>
-              </div>
-              <div class="transf-metrica-wrap">
-                <span class="transf-metrica">{t.metrica}</span>
-                <span class="transf-metrica-label">{t.metricaLabel}</span>
-              </div>
-            </div>
-
-          </div>
-        ))}
-      </div>
-    </section>
-
-    <!-- CTA -->
+    <!-- ④ CTA -->
     <div style="padding: 0 56px 100px;">
       <CTABox
-        title={"Quer ser o\npróximo case\nde sucesso?"}
-        subtitle="Fale com um especialista e receba um diagnóstico gratuito do potencial digital do seu negócio."
-        buttonLabel="Agendar conversa →"
+        title={"Sua loja é\na próxima?"}
+        subtitle="Conversa de 20 minutos. Plano prático em 14 dias. Showroom cheio em 45. Se não funcionar, o segundo mês é por nossa conta."
+        buttonLabel="Diagnóstico gratuito →"
         buttonHref="/contato"
       />
     </div>
@@ -234,227 +271,517 @@ const transformacoes = [
 </BaseLayout>
 
 <style>
-  /* ── TRANSFORMAÇÕES SECTION ──────────────────── */
-  .transformacoes-section {
-    padding: 0 56px 100px;
+  /* ── ① HERO ── */
+  .page-hero {
+    display: grid;
+    grid-template-columns: 1fr 42%;
+    align-items: center;
+    min-height: 480px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
   }
 
-  .transformacoes-header {
+  .hero-content {
+    padding: 96px 56px 72px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ── SLIDESHOW ── */
+  .hero-slide-wrap {
+    position: relative;
+    height: 100%;
+    min-height: 480px;
+    overflow: hidden;
+  }
+
+  /* left edge fade: blends slide into dark background */
+  .hero-slide-fade {
+    position: absolute;
+    top: 0; left: 0;
+    width: 120px;
+    height: 100%;
+    background: linear-gradient(to right, #070707 0%, transparent 100%);
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .hero-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center 40%;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+  }
+  .hero-slide.active { opacity: 1; }
+
+  /* dots */
+  .hero-slide-dots {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 6px;
+    z-index: 3;
+  }
+  .hero-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    transition: background 0.3s, transform 0.3s;
+  }
+  .hero-dot.active {
+    background: var(--gold);
+    transform: scale(1.3);
+  }
+
+  .hero-stats {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    background: var(--dark-3);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 16px 28px;
+  }
+  .hero-stat-num {
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 900;
+    font-size: 24px;
+    letter-spacing: -1px;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .hero-stat-lbl {
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+  }
+  .hero-stat-div {
+    width: 1px;
+    height: 40px;
+    background: var(--border);
+    flex-shrink: 0;
+  }
+
+  /* ── ③ CASES SECTION ── */
+  .cases-section {
+    padding: 80px 56px 100px;
+  }
+  .cases-section-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    padding-bottom: 48px;
-    margin-bottom: 48px;
+    margin-bottom: 40px;
+    padding-bottom: 40px;
     border-bottom: 1px solid var(--border);
     gap: 40px;
   }
 
-  .transformacoes-sub {
-    font-size: 14px;
-    font-weight: 300;
-    color: var(--muted);
-    line-height: 1.7;
-    max-width: 280px;
-    flex-shrink: 0;
-    text-align: right;
-  }
-
-  .transformacoes-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  /* ── CARD ─────────────────────────────────────── */
-  .transf-card {
-    display: grid;
-    grid-template-columns: 1fr 40px 1fr auto;
-    gap: 0;
-    align-items: stretch;
-    height: 200px;
-    background: var(--dark-3);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-    transition: border-color 0.2s;
-  }
-  .transf-card:hover {
-    border-color: rgba(139,69,19,0.4);
-  }
-
-  .transf-side {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .transf-label {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    z-index: 2;
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 4px 10px;
-    border-radius: 20px;
-  }
-  .transf-label-antes {
-    background: rgba(255,255,255,0.08);
-    color: var(--muted);
-    border: 1px solid var(--border);
-  }
-  .transf-label-depois {
-    background: rgba(139,69,19,0.25);
-    color: var(--gold);
-    border: 1px solid rgba(200,121,42,0.3);
-  }
-
-  .transf-img-wrap {
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
-    flex-shrink: 0;
-  }
-
-  .transf-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.5s ease;
-  }
-  .transf-card:hover .transf-img {
-    transform: scale(1.05);
-  }
-
-  /* Placeholder for "antes" */
-  .transf-placeholder {
-    background: var(--dark-2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 200px;
-  }
-  .placeholder-inner {
-    text-align: center;
-    opacity: 0.5;
-  }
-  .placeholder-icon {
-    font-size: 28px;
-    margin-bottom: 8px;
-  }
-  .placeholder-text {
-    font-size: 11px;
-    font-weight: 400;
-    color: var(--muted);
-    letter-spacing: 1px;
-  }
-
-  /* ── DIVIDER ARROW ───────────────────────────── */
-  .transf-divider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--dark-2);
-    border-left: 1px solid var(--border);
-    border-right: 1px solid var(--border);
-  }
-  .transf-arrow {
-    font-size: 16px;
-    color: var(--gold);
-    opacity: 0.6;
-  }
-
-  /* ── INFO BAR ────────────────────────────────── */
-  .transf-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 10px;
-    padding: 20px 24px;
-    width: 200px;
-    border-left: 1px solid var(--border);
-    background: var(--dark-2);
-    overflow: hidden;
-  }
-
-  .transf-servico {
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--brown);
-    margin-bottom: 4px;
-  }
-  .transf-nome {
-    font-family: 'Urbanist', sans-serif;
-    font-weight: 800;
-    font-size: 15px;
-    letter-spacing: -0.3px;
-    color: #fff;
-    line-height: 1.2;
-  }
-
-  .transf-metrica-wrap {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    padding-top: 12px;
-    border-top: 1px solid var(--border);
-  }
-  .transf-metrica {
-    font-family: 'Urbanist', sans-serif;
-    font-weight: 900;
-    font-size: 28px;
-    letter-spacing: -1.5px;
-    color: var(--gold);
-    line-height: 1;
-  }
-  .transf-metrica-label {
-    font-size: 11px;
-    font-weight: 300;
-    color: var(--muted);
-    line-height: 1.4;
-  }
-
-  /* ── RESPONSIVE ──────────────────────────────── */
   @media (max-width: 768px) {
-    .transformacoes-section {
-      padding: 0 24px 80px;
-    }
-    .transformacoes-header {
+    .page-hero { grid-template-columns: 1fr; }
+    .hero-slide-wrap { display: none; }
+    .hero-content { padding: 72px 24px 52px; }
+    .hero-stats { flex-wrap: wrap; width: 100%; }
+    .hero-stat { flex: 1; min-width: 120px; }
+    .hero-stat-div { display: none; }
+    .cases-section { padding: 60px 24px 80px; }
+    .cases-section-header {
       flex-direction: column;
       align-items: flex-start;
       gap: 16px;
     }
-    .transformacoes-sub {
-      text-align: left;
-      max-width: 100%;
-    }
-    .transf-card {
-      grid-template-columns: 1fr 32px 1fr;
+    .cases-section-header p { text-align: left; max-width: 100%; }
+  }
+
+  /* ── ② TRANSFORMAÇÃO SECTION ── */
+  .transf-section {
+    position: relative;
+    width: 100%;
+    margin-bottom: 100px;
+  }
+
+  /* full-bleed scene */
+  .transf-scene {
+    position: relative;
+    width: 100%;
+    height: 85vh;
+    min-height: 580px;
+    max-height: 820px;
+    overflow: hidden;
+    cursor: default;
+  }
+
+  /* images */
+  .transf-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+    display: block;
+  }
+  .transf-img-depois { z-index: 1; object-position: center 38%; }
+  .transf-img-antes  {
+    z-index: 2;
+    transition: opacity 3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* scrim */
+  .transf-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    background:
+      linear-gradient(to top,  rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.3) 45%, transparent 68%),
+      linear-gradient(to right, rgba(0,0,0,0.55) 0%, transparent 50%);
+  }
+
+  /* progress bar */
+  .transf-progress {
+    position: absolute;
+    top: 0; left: 0;
+    height: 3px;
+    width: 0%;
+    z-index: 10;
+    background: linear-gradient(90deg, var(--brown), var(--gold-light));
+    box-shadow: 0 0 14px rgba(200,121,42,0.8);
+    transition: width 0.1s linear;
+  }
+
+  /* heading overlay */
+  .transf-heading {
+    position: absolute;
+    top: 56px;
+    left: 56px;
+    z-index: 5;
+    max-width: 480px;
+  }
+
+  .transf-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .transf-eyebrow-line { display: block; width: 28px; height: 1px; background: var(--gold); }
+  .transf-eyebrow-text { font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; }
+
+  .transf-title {
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 900;
+    font-size: clamp(32px, 4.5vw, 58px);
+    letter-spacing: -2.5px;
+    line-height: 1.0;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+  .transf-title em { font-style: normal; color: var(--gold); }
+
+  .transf-phase {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+    transition: all 0.6s ease;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.55);
+  }
+  .transf-phase.depois {
+    background: rgba(139,69,19,0.3);
+    border-color: rgba(200,121,42,0.4);
+    color: var(--gold-light);
+  }
+
+  /* replay */
+  .transf-replay {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    z-index: 10;
+    background: rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.45);
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 7px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    transition: opacity 0.4s ease, border-color 0.2s, color 0.2s;
+  }
+  .transf-replay.visible { opacity: 1; }
+  .transf-replay:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ── METRICS GRID ── */
+  .transf-metrics {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .transf-metric {
+    padding: 24px 20px 28px;
+    border-right: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .transf-metric:last-child { border-right: none; }
+
+  .tm-label {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    line-height: 1.3;
+    min-height: 26px;
+  }
+
+  .tm-values {
+    position: relative;
+    height: 46px;
+    overflow: hidden;
+  }
+
+  /* antes value — fades up and out */
+  .tm-antes {
+    position: absolute;
+    bottom: 0; left: 0;
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 700;
+    font-size: 26px;
+    letter-spacing: -1px;
+    color: rgba(255,255,255,0.28);
+    text-decoration: line-through;
+    text-decoration-color: rgba(255,255,255,0.12);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    white-space: nowrap;
+  }
+
+  /* depois value — fades up and in */
+  .tm-depois {
+    position: absolute;
+    bottom: 0; left: 0;
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 900;
+    font-size: 28px;
+    letter-spacing: -1.2px;
+    color: var(--gold-light);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    white-space: nowrap;
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+  }
+
+  /* revealed state */
+  .transf-metric.revealed .tm-antes {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  .transf-metric.revealed .tm-depois {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .tm-delta {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    color: #4ade80;
+    background: rgba(74,222,128,0.12);
+    border: 1px solid rgba(74,222,128,0.22);
+    padding: 2px 6px;
+    border-radius: 8px;
+    letter-spacing: 0.3px;
+    opacity: 0;
+    transition: opacity 0.4s 0.4s ease;
+  }
+  .transf-metric.revealed .tm-delta { opacity: 1; }
+
+  .tm-desc {
+    font-size: 10px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.28);
+    line-height: 1.4;
+    opacity: 0;
+    transform: translateY(5px);
+    transition: opacity 0.5s 0.3s ease, transform 0.5s 0.3s ease;
+  }
+  .transf-metric.revealed .tm-desc {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .transf-scene { height: auto; max-height: none; }
+    .transf-metrics {
+      grid-template-columns: repeat(3, 1fr);
       grid-template-rows: auto auto;
     }
-    .transf-info {
-      grid-column: 1 / -1;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      min-width: unset;
-      border-left: none;
+    .transf-metric:nth-child(3) { border-right: none; }
+    .transf-heading { left: 24px; top: 32px; }
+    .transf-title { font-size: clamp(28px, 6vw, 40px); }
+  }
+
+  @media (max-width: 600px) {
+    .transf-metrics {
+      position: relative;
+      grid-template-columns: repeat(2, 1fr);
+      background: var(--dark-2);
       border-top: 1px solid var(--border);
-      padding: 16px 20px;
     }
-    .transf-metrica-wrap {
-      border-top: none;
-      padding-top: 0;
-      align-items: flex-end;
-    }
-    .transf-img-wrap,
-    .transf-placeholder {
-      height: 150px;
-    }
+    .transf-metric:nth-child(odd) { border-right: 1px solid var(--border); }
+    .transf-metric:nth-child(even) { border-right: none; }
+    .transf-scene { height: 60vw; min-height: 320px; }
+    .transf-heading { left: 20px; top: 20px; max-width: 260px; }
+    .transf-eyebrow { display: none; }
+    .transf-title { font-size: 22px; letter-spacing: -1px; }
   }
 </style>
+
+<script>
+  const scene      = document.getElementById('transf-scene');
+  const imgAntes   = document.getElementById('transf-antes') as HTMLImageElement;
+  const progress   = document.getElementById('transf-progress');
+  const phaseTag   = document.getElementById('transf-phase');
+  const replayBtn  = document.getElementById('transf-replay');
+  const metrics    = Array.from(document.querySelectorAll('.transf-metric'));
+  const numEls     = Array.from(document.querySelectorAll('.tm-num')) as HTMLElement[];
+
+  const DELAY      = 1000;   // ms before animation starts
+  const TRANS_DUR  = 3000;   // ms — image fade duration
+  const STAGGER    = 260;    // ms between each metric
+
+  let running = false;
+
+  function reset() {
+    if (!imgAntes || !progress || !phaseTag || !replayBtn) return;
+    imgAntes.style.opacity = '1';
+    progress.style.transition = 'none';
+    progress.style.width = '0%';
+    phaseTag.textContent = 'Antes';
+    phaseTag.classList.remove('depois');
+    metrics.forEach((m) => m.classList.remove('revealed'));
+    numEls.forEach((el) => {
+      el.textContent = el.dataset.from ?? '0';
+    });
+    replayBtn.classList.remove('visible');
+    running = false;
+  }
+
+  function animateNum(el: HTMLElement, duration: number) {
+    const from = parseFloat(el.dataset.from ?? '0');
+    const to   = parseFloat(el.dataset.to   ?? '0');
+    const dec  = parseInt(el.dataset.dec     ?? '0', 10);
+    const start = performance.now();
+    function tick(now: number) {
+      const t = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      const val = from + (to - from) * eased;
+      el.textContent = dec > 0 ? val.toFixed(dec) : String(Math.round(val));
+      if (t < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function play() {
+    if (running) return;
+    running = true;
+    reset();
+    running = true;
+
+    setTimeout(() => {
+      if (!imgAntes || !progress || !phaseTag || !replayBtn) return;
+
+      // fade image
+      imgAntes.style.opacity = '0';
+
+      // progress bar
+      progress.style.transition = `width ${TRANS_DUR}ms linear`;
+      progress.style.width = '100%';
+
+      // phase tag switches mid-way
+      setTimeout(() => {
+        if (phaseTag) {
+          phaseTag.textContent = 'Depois';
+          phaseTag.classList.add('depois');
+        }
+      }, TRANS_DUR * 0.45);
+
+      // reveal metrics staggered
+      metrics.forEach((m, i) => {
+        setTimeout(() => {
+          m.classList.add('revealed');
+          const numEl = m.querySelector('.tm-num') as HTMLElement | null;
+          if (numEl) animateNum(numEl, 1400);
+        }, TRANS_DUR * 0.25 + i * STAGGER);
+      });
+
+      // show replay
+      setTimeout(() => {
+        if (replayBtn) replayBtn.classList.add('visible');
+        running = false;
+      }, TRANS_DUR + 600);
+
+    }, DELAY);
+  }
+
+  // trigger when section enters viewport
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) { play(); obs.disconnect(); }
+    });
+  }, { threshold: 0.2 });
+  if (scene) obs.observe(scene);
+
+  replayBtn?.addEventListener('click', () => play());
+
+  // ── HERO SLIDESHOW ──
+  const slides = Array.from(document.querySelectorAll('.hero-slide'));
+  const dots   = Array.from(document.querySelectorAll('.hero-dot'));
+  let current  = 0;
+
+  function goTo(n: number) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = n % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+
+  if (slides.length > 1) {
+    setInterval(() => goTo(current + 1), 3500);
+  }
+</script>

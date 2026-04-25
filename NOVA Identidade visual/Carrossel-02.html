@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Carrossel 02 — moveis.pro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+<script>
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "headlineFont": "Satoshi",
+  "bodyFont": "Inter",
+  "accent": "#B85C3A",
+  "dark": "#100C09",
+  "cream": "#F7F0E8",
+  "showNumbers": true,
+  "showBrand": true
+}/*EDITMODE-END*/;
+</script>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing: antialiased; }
+  :root {
+    --dark: #100C09;
+    --cream: #F7F0E8;
+    --terra: #B85C3A;
+    --terra-soft: #c97656;
+    --terra-deep: #9a4a2d;
+    --muted-dark: #2a211c;
+    --muted-cream: #ece2d3;
+    --display: 'Satoshi', system-ui, sans-serif;
+    --body: 'Inter', system-ui, sans-serif;
+  }
+  html, body { background:#1a1a1a; min-height:100vh; font-family: var(--body); }
+  body {
+    padding: 48px 24px 120px;
+    display:flex; flex-direction:column; align-items:center; gap: 48px;
+  }
+
+  .header {
+    width:100%; max-width:1200px;
+    display:flex; justify-content:space-between; align-items:flex-end;
+    color: #8a8a8a; font-family: var(--body); font-size:13px;
+    border-bottom:1px solid #2a2a2a; padding-bottom:16px;
+  }
+  .header h1 {
+    font-family: var(--display); font-weight:900; font-size:28px; color:#f0ebe4;
+    letter-spacing:-0.02em;
+  }
+  .header .meta { text-align:right; letter-spacing:0.08em; text-transform:uppercase; font-size:11px; }
+  .header .meta b { color:var(--terra); font-weight:600; }
+
+  .stack {
+    display:flex; flex-direction:column; gap:32px;
+    width: min(100%, 1100px);
+  }
+  .slide-wrap { display:flex; flex-direction:column; gap:10px; }
+  .slide-label {
+    font-family: var(--body); font-size:11px; color:#666;
+    letter-spacing:0.14em; text-transform:uppercase;
+    display:flex; justify-content:space-between;
+  }
+  .slide-label b { color:#bbb; font-weight:500; }
+
+  .slide {
+    width:100%; aspect-ratio: 4/5;
+    position:relative; overflow:hidden;
+    border-radius: 2px;
+    box-shadow: 0 30px 80px -20px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
+    container-type: inline-size;
+  }
+  .slide > .canvas {
+    position:absolute; inset:0;
+    padding: 8cqw;
+    display:flex; flex-direction:column;
+    font-size: 3.1cqw;
+  }
+
+  .v-dark   { background: var(--dark); color: var(--cream); }
+  .v-cream  { background: var(--cream); color: var(--dark); }
+  .v-terra  { background: var(--terra); color: var(--cream); }
+
+  .eyebrow {
+    font-family: var(--body); font-weight:500;
+    font-size: 1.25cqw; letter-spacing: 0.22em; text-transform: uppercase;
+    opacity: 0.65;
+    display:flex; align-items:center; gap:0.8em;
+  }
+  .eyebrow .dot { width:0.5em; height:0.5em; background:var(--terra); border-radius:0; }
+  .v-terra .eyebrow .dot { background: var(--cream); }
+
+  h2.headline {
+    font-family: var(--display); font-weight:900;
+    font-size: 7.5cqw; line-height: 0.98; letter-spacing: -0.035em;
+    text-wrap: balance;
+  }
+  h2.headline em { font-style: normal; color: var(--terra); }
+  .v-terra h2.headline em { color: var(--dark); }
+  .v-cream h2.headline em { color: var(--terra); }
+
+  .body-lg {
+    font-family: var(--display); font-weight:500;
+    font-size: 4.2cqw; line-height: 1.12; letter-spacing:-0.02em;
+    text-wrap: balance;
+  }
+  .body-md {
+    font-family: var(--body); font-weight:400;
+    font-size: 2.4cqw; line-height: 1.35; letter-spacing:-0.005em;
+  }
+  .body-sm {
+    font-family: var(--body); font-weight:400;
+    font-size: 1.8cqw; line-height: 1.4; opacity: 0.75;
+  }
+
+  .foot {
+    margin-top:auto;
+    display:flex; justify-content:space-between; align-items:flex-end;
+    padding-top: 4cqw;
+  }
+  .logo-mark {
+    font-family: var(--display); font-weight:900;
+    font-size: 3cqw; letter-spacing:-0.04em; line-height:1;
+    display:inline-flex; align-items:baseline;
+  }
+  .logo-mark .dot { color: var(--terra); }
+  .v-terra .logo-mark .dot { color: var(--dark); }
+  .brand-word {
+    font-family: var(--body); font-weight:600;
+    font-size: 1.35cqw; letter-spacing:0.06em;
+    opacity: 0.7;
+  }
+  .num {
+    font-family: var(--display); font-weight:500;
+    font-size: 1.4cqw; letter-spacing:0.14em;
+    opacity:0.55;
+  }
+  .num b { font-weight:900; opacity:1; }
+
+  .rule { height:1px; background:currentColor; opacity:0.15; }
+  .rule-terra { height:2px; background:var(--terra); width:7cqw; }
+
+  /* SLIDE 01 — hook com big number */
+  .slide-01 .canvas { justify-content:space-between; }
+  .slide-01 .stamp {
+    align-self:flex-start;
+    font-family:var(--body); font-size:1.3cqw; font-weight:500;
+    letter-spacing:0.2em; text-transform:uppercase;
+    padding: 0.8em 1.2em; border:1px solid currentColor; opacity:0.85;
+  }
+  .slide-01 .time-chip {
+    display:inline-flex; align-items:baseline; gap:0.3em;
+    font-family:var(--display); font-weight:900;
+    color: var(--terra); letter-spacing:-0.04em;
+    font-size: 16cqw; line-height:0.9;
+  }
+  .slide-01 .time-chip .unit { font-size:0.28em; font-weight:500; letter-spacing:0; opacity:0.9; align-self:center; }
+
+  /* SLIDE 02 — resposta / answer */
+  .slide-02 .canvas { justify-content:space-between; }
+
+  /* SLIDE 03 — como funciona (3 passos) */
+  .slide-03 .canvas { justify-content:space-between; }
+  .slide-03 .steps { display:flex; flex-direction:column; gap:2.5cqw; margin-top:3cqw; }
+  .slide-03 .step {
+    display:grid; grid-template-columns: 5cqw 1fr; gap: 2.5cqw; align-items:start;
+    padding-bottom:2.5cqw; border-bottom:1px solid rgba(247,240,232,0.12);
+  }
+  .slide-03 .step:last-child { border-bottom:none; }
+  .slide-03 .step .n {
+    font-family:var(--display); font-weight:900; font-size: 2.2cqw;
+    color:var(--terra);
+  }
+  .slide-03 .step .txt {
+    font-family:var(--display); font-weight:500; font-size: 3.4cqw;
+    line-height:1.1; letter-spacing:-0.015em;
+  }
+  .slide-03 .step .txt b { font-weight:900; }
+
+  /* SLIDE 04 — stat pct (cream) */
+  .slide-04 .canvas { justify-content:space-between; }
+  .stat-pct {
+    font-family: var(--display); font-weight:900;
+    font-size: 36cqw; line-height:0.82; letter-spacing:-0.06em;
+    color: var(--terra);
+    display:flex; align-items:flex-start;
+  }
+  .stat-pct .sym { font-size: 0.32em; font-weight:500; margin-top: 0.3em; margin-left:0.05em; letter-spacing:0; }
+
+  /* SLIDE 05 — diagnóstico (dark) */
+  .slide-05 .canvas { justify-content:space-between; }
+  .slide-05 .diag {
+    font-family:var(--display); font-weight:900;
+    font-size: 8cqw; line-height:0.98; letter-spacing:-0.035em;
+  }
+  .slide-05 .tags { display:flex; flex-wrap:wrap; gap:0.8cqw; margin-top:3cqw; }
+  .slide-05 .tag {
+    font-family:var(--body); font-weight:500; font-size:1.5cqw;
+    letter-spacing:0.08em; text-transform:uppercase;
+    padding:0.7em 1em; border:1px solid currentColor; border-radius:999px;
+  }
+  .slide-05 .tag.on { background:var(--terra); color:var(--cream); border-color:var(--terra); }
+
+  /* SLIDE 06 — solução (terracota) */
+  .slide-06 .canvas { justify-content:space-between; }
+  .slide-06 .eq {
+    display:grid; grid-template-columns: 1fr; gap: 2cqw;
+    margin-top: 3cqw;
+  }
+  .slide-06 .eq .row {
+    display:flex; align-items:center; gap:2cqw;
+    padding-bottom:2cqw;
+    border-bottom:1px solid rgba(16,12,9,0.2);
+  }
+  .slide-06 .eq .row:last-child { border-bottom:none; }
+  .slide-06 .eq .k {
+    font-family:var(--display); font-weight:900; font-size: 3cqw;
+    color: var(--dark); min-width: 4ch;
+  }
+  .slide-06 .eq .v {
+    font-family:var(--display); font-weight:500; font-size: 3cqw; letter-spacing:-0.02em;
+    color: var(--dark);
+  }
+
+  /* SLIDE 07 — CTA */
+  .slide-07 .canvas { justify-content:space-between; }
+  .slide-07 .cta-btn {
+    align-self:flex-start;
+    font-family:var(--display); font-weight:700;
+    font-size: 2.6cqw; letter-spacing:-0.01em;
+    padding: 1em 1.6em;
+    background: var(--terra); color: var(--cream);
+    border-radius: 999px;
+    display:inline-flex; align-items:center; gap:0.6em;
+  }
+  .slide-07 .cta-btn .arrow {
+    width:1.4em; height:1.4em; border-radius:50%;
+    background:var(--cream); color:var(--terra);
+    display:inline-flex; align-items:center; justify-content:center;
+    font-weight:900; font-size:0.9em;
+  }
+  .slide-07 .promise {
+    display:grid; grid-template-columns: 1fr 1fr; gap: 2cqw 3cqw;
+    margin-top:3cqw; padding-top:3cqw;
+    border-top:1px solid rgba(247,240,232,0.15);
+  }
+  .slide-07 .promise .k { font-family:var(--body); font-size:1.3cqw; letter-spacing:0.14em; text-transform:uppercase; opacity:0.55; margin-bottom:0.6em;}
+  .slide-07 .promise .v { font-family:var(--display); font-weight:500; font-size:2.3cqw; letter-spacing:-0.015em; }
+
+  /* TWEAKS */
+  .tweaks {
+    position:fixed; right:20px; bottom:20px;
+    background: #14110f; color:#e9e2d6;
+    border:1px solid #2a251f; border-radius: 14px;
+    padding: 14px 16px; width: 280px;
+    font-family: var(--body); font-size:12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    z-index:1000; display:none;
+  }
+  .tweaks h3 {
+    font-family:var(--display); font-weight:900; font-size:13px;
+    letter-spacing:0.08em; text-transform:uppercase; color:var(--terra);
+    margin-bottom:12px; display:flex; justify-content:space-between; align-items:center;
+  }
+  .tweaks h3 span:last-child { color:#666; font-weight:500; font-size:10px; }
+  .tweaks label {
+    display:flex; justify-content:space-between; align-items:center;
+    padding: 8px 0; border-top:1px solid #241f1a; gap:12px;
+  }
+  .tweaks label span { opacity:0.7; }
+  .tweaks select, .tweaks input[type=color] {
+    background:#0b0907; color:#e9e2d6; border:1px solid #2a251f;
+    border-radius:6px; padding:4px 8px; font-family:var(--body); font-size:12px;
+  }
+  .tweaks input[type=color] { width:46px; height:26px; padding:2px; }
+  .tweaks input[type=checkbox] { accent-color: var(--terra); width:16px; height:16px; }
+  .tweaks.active { display:block; }
+
+  @media print {
+    body { background:white; padding:0; gap:0; }
+    .header, .slide-label, .tweaks { display:none !important; }
+    .slide { box-shadow:none; page-break-after: always; border-radius:0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <h1>Carrossel 02 — O vendedor que nunca dorme</h1>
+  <div class="meta">
+    7 slides &nbsp;·&nbsp; 1080 × 1350 &nbsp;·&nbsp; <b>moveis.pro</b>
+  </div>
+</header>
+
+<div class="stack" id="stack">
+
+  <!-- ========== SLIDE 1 — HOOK ========== -->
+  <div class="slide-wrap">
+    <div class="slide-label"><span>01 · Hook</span><b>Pergunta que para o scroll</b></div>
+    <div class="slide slide-01 v-dark" data-screen-label="01 Hook">
+      <div class="canvas">
+        <div class="stamp">Sistema · moveis.pro</div>
+        <div style="margin-top: 4cqw">
+          <div class="eyebrow"><span class="dot"></span> TEMPO DE PRIMEIRA RESPOSTA</div>
+          <div class="time-chip" style="margin-top: 1cqw">
+            1<span class="unit">min</span>
+          </div>
+          <h2 class="headline" style="margin-top: 3cqw">
+            E se sua loja<br>
+            respondesse todo lead<br>
+            <em>em menos de 1 minuto?</em>
+          </h2>
+        </div>
+        <div class="foot">
+          <span class="logo-mark">m<span class="dot">.</span> &nbsp;<span class="brand-word">moveis.pro</span></span>
+          <span class="num"><b>01</b> / 07 &nbsp; → &nbsp; arraste</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== SLIDE 2 — RESPOSTA ========== -->
+  <div class="slide-wrap">
+    <div class="slide-label"><span>02 · Contexto</span><b>Não é mágica. É sistema.</b></div>
+    <div class="slide slide-02 v-cream" data-screen-label="02 Contexto">
+      <div class="canvas">
+        <div class="eyebrow" style="opacity:0.5"><span class="dot"></span> A REALIDADE</div>
+        <h2 class="headline" style="margin-top: auto; margin-bottom: auto; font-size: 9cqw">
+          Mesmo de<br>
+          madrugada.<br>
+          Mesmo no<br>
+          <em>domingo.</em>
+        </h2>
+        <div class="body-lg" style="color:var(--terra); font-weight:700; margin-bottom:2cqw">
+          Sem atendente extra. Sem custo de hora extra.
+        </div>
+        <div class="foot" style="margin-top: 4cqw">
+          <span class="logo-mark">m<span class="dot">.</span> &nbsp;<span class="brand-word">moveis.pro</span></span>
+          <span class="num"><b>02</b> / 07</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== SLIDE 3 — COMO FUNCIONA ========== -->
+  <div class="slide-wrap">
+    <div class="slide-label"><span>03 · Funcionamento</span><b>O sistema em 3 passos</b></div>
+    <div class="slide slide-03 v-dark" data-screen-label="03 Sistema">
+      <div class="canvas">
+        <div>
+          <div class="eyebrow"><span class="dot"></span> Quando um lead chega</div>
+          <h2 class="headline" style="margin-top:2cqw; font-size:6cqw">
+            O agente responde.<br>
+            Qualifica. Triagem.<br>
+            <em>Vendedor só entra quando está quente.</em>
+          </h2>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <div class="n">01</div>
+            <div class="txt">Agente responde na hora — <b>entende o que o cliente quer.</b></div>
+          </div>
+          <div class="step">
+            <div class="n">02</div>
+            <div class="txt">Qualifica o interesse e <b>filtra o curioso do comprador.</b></div>
+          </div>
+          <div class="step">
+            <div class="n">03</div>
+            <div class="txt">Chama o vendedor <b>só quando o cliente já decidiu comprar.</b></div>
+          </div>
+        </div>
+        <div class="foot">
+          <span class="logo-mark">m<span class="dot">.</span> &nbsp;<span class="brand-word">moveis.pro</span></span>
+          <span class="num"><b>03</b> / 07</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== SLIDE 4 — STAT (cream) ========== -->
+  <div class="slide-wrap">
+    <div class="slide-label"><span>04 · Dado</span><b>Prova / autoridade</b></div>
+    <div class="slide slide-04 v-cream" data-screen-label="04 Dado">
+      <div class="canvas">
+        <div>
+          <div class="eyebrow" style="opacity:0.55"><span class="dot"></span> Comportamento do comprador de alto ticket</div>
+          <div class="body-md" style="margin-top:2cqw; max-width: 80%; opacity:0.7">
+            Ele pesquisa por semanas. Compara em 4 lojas.<br>
+            Mas fecha com <strong>quem apareceu na hora certa.</strong>
+          </div>
+        </div>
+        <div class="stat-pct">
+          1<span class="sym">min</span>
+        </div>
+        <div style="margin-top: 2cqw; display:grid; gap: 1cqw;">
+          <div class="body-lg" style="max-width: 90%">
+            é tudo que separa <em style="color:var(--terra); font-style:normal; font-weight:900">venda fechada</em> de lead perdido.
+          </div>
+          <div class="body-md" style="opacity:0.6">
+            Não é exagero. É o comportamento real de quem compra móvel de valor.
+          </div>
+        </div>
+        <div class="foot">
+          <span class="logo-mark">m<span class="dot">.</span> &nbsp;<span class="brand-word">moveis.pro</span></span>
+          <span class="num"><b>04</b> / 07</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== SLIDE 5 — DIAGNÓSTICO ========== -->
+  <div class="slide-wrap">
+    <div class="slide-label"><span>05 · Diagnóstico</span><b>Nomeia o problema</b></div>
+    <div class="slide slide-05 v-dark" data-screen-label="05 Diagnostico">
+      <div class="canvas">
+        <div>
+          <div class="eyebrow"><span class="dot"></span> O nome do problema</div>
+          <div class="diag" style="margin-top: 3cqw; color:var(--cream)">
+            Seu vendedor<br>
+            é humano.<br>
+            <span style="color:var(--terra)">Esquece.</span><br>
+            Dorme. Almoça.
+          </div>
+        </div>
+        <div>
+          <div class="tags">
+            <span class="tag on">lead perdido</span>
+            <span class="tag on">sem follow-up</span>
+            <span class="tag on">venda da concorrência</span>
+          </div>
+          <div class="body-md" style="margin-top:3cqw; opacity:0.6; max-width:80%">
+            Ninguém culpa o vendedor. Mas o problema existe — e tem solução.
+          </div>
+        </div>
+        <div class="foot">
+          <span class="logo-mark">m<span class="dot">.</span> &nbsp;<span class="brand-word">moveis.pro</span></span>
+          <span class="num"><b>05</b> / 07</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== SLIDE 6 — SOLUÇÃO (terracota) ========== -->
+  <div class="slide-wrap">
+    <div class="slide-label"><span>06 · Solução</span><b>Oferta como afirmação</b></div>
+    <div class="slide slide-06 v-terra" data-screen-label="06 Solucao">
+      <div class="canvas">
+        <div>
+          <div class="eyebrow"><span class="dot"></span> O sistema moveis.pro</div>
+          <h2 class="headline" style="margin-top: 2cqw; color:var(--dark); font-size:8.5cqw">
+            Construído só<br>
+            pra loja de móveis.<br>
+            <em style="color:var(--cream); font-style:normal">Não é CRM genérico.</em>
+          </h2>
+        </div>
+        <div class="eq">
+          <div class="row">
+            <div class="k">01</div>
+            <div class="v">Agente no WhatsApp que responde e qualifica sozinho.</div>
+          </div>
+          <div class="row">
+            <div class="k">02</div>
+            <div class="v">Tráfego qualificado que traz comprador, não curioso.</div>
+          </div>
+          <div class="row">
+            <div class="k">03</div>
+            <div class="v">Dashboard em tempo real — você vê tudo sem depender de relatório.</div>
+          </div>
+        </div>
+        <div class="foot" style="color:var(--dark)">
+          <span class="logo-mark" style="color:var(--dark)">m<span class="dot">.</span> &nbsp;<span class="brand-word" style="color:var(--dark); opacity:0.7">moveis.pro</span></span>
+          <span class="num" style="color:var(--dark); opacity:0.6"><b>06</b> / 07</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== SLIDE 7 — CTA ========== -->
+  <div class="slide-wrap">
+    <div class="slide-label"><span>07 · CTA</span><b>Diagnóstico grátis, link na bio</b></div>
+    <div class="slide slide-07 v-dark" data-screen-label="07 CTA">
+      <div class="canvas">
+        <div>
+          <div class="eyebrow"><span class="dot"></span> Diagnóstico gratuito</div>
+          <h2 class="headline" style="margin-top: 3cqw; font-size:7.5cqw">
+            Quantos leads<br>
+            <em>sua loja perdeu</em><br>
+            essa semana?
+          </h2>
+          <div class="body-md" style="margin-top:3cqw; max-width:85%; opacity:0.7">
+            A gente calcula pra você em 20 minutos — e mostra como o sistema funciona na prática, com os números da sua loja.
+          </div>
+        </div>
+        <div>
+          <div class="cta-btn">
+            Link na bio <span class="arrow">→</span>
+          </div>
+          <div class="promise">
+            <div>
+              <div class="k">Tempo</div>
+              <div class="v">20 min</div>
+            </div>
+            <div>
+              <div class="k">Custo</div>
+              <div class="v">R$ 0</div>
+            </div>
+            <div>
+              <div class="k">Formato</div>
+              <div class="v">Call de diagnóstico</div>
+            </div>
+            <div>
+              <div class="k">Saída</div>
+              <div class="v">Plano de ação</div>
+            </div>
+          </div>
+        </div>
+        <div class="foot">
+          <span class="logo-mark">m<span class="dot">.</span> &nbsp;<span class="brand-word">moveis.pro · salve pra depois</span></span>
+          <span class="num"><b>07</b> / 07 ✓</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="tweaks" id="tweaks">
+  <h3><span>Tweaks</span><span>Moveis.pro</span></h3>
+  <label><span>Cor de acento</span><input type="color" id="t-accent" value="#B85C3A"></label>
+  <label><span>Fonte do corpo</span>
+    <select id="t-body"><option value="Inter">Inter</option><option value="Satoshi">Satoshi</option></select>
+  </label>
+  <label><span>Fonte display</span>
+    <select id="t-display"><option value="Satoshi">Satoshi</option><option value="Inter">Inter</option></select>
+  </label>
+  <label><span>Mostrar numeração</span><input type="checkbox" id="t-nums" checked></label>
+  <label><span>Mostrar marca no rodapé</span><input type="checkbox" id="t-brand" checked></label>
+</div>
+
+<script>
+  (function(){
+    const panel = document.getElementById('tweaks');
+    const root  = document.documentElement;
+    window.addEventListener('message', (e) => {
+      const d = e.data || {};
+      if (d.type === '__activate_edit_mode')   panel.classList.add('active');
+      if (d.type === '__deactivate_edit_mode') panel.classList.remove('active');
+    });
+    try { window.parent.postMessage({type:'__edit_mode_available'}, '*'); } catch(_){}
+    function applyTweaks(t) {
+      root.style.setProperty('--terra', t.accent);
+      root.style.setProperty('--display', `'${t.headlineFont}', system-ui, sans-serif`);
+      root.style.setProperty('--body', `'${t.bodyFont}', system-ui, sans-serif`);
+      document.querySelectorAll('.num').forEach(n => n.style.display = t.showNumbers ? '' : 'none');
+      document.querySelectorAll('.logo-mark').forEach(n => n.style.display = t.showBrand ? '' : 'none');
+    }
+    const t = Object.assign({}, TWEAK_DEFAULTS);
+    document.getElementById('t-accent').value = t.accent;
+    document.getElementById('t-body').value = t.bodyFont;
+    document.getElementById('t-display').value = t.headlineFont;
+    document.getElementById('t-nums').checked = t.showNumbers;
+    document.getElementById('t-brand').checked = t.showBrand;
+    applyTweaks(t);
+    function persist(edits) {
+      Object.assign(t, edits);
+      applyTweaks(t);
+      try { window.parent.postMessage({type:'__edit_mode_set_keys', edits}, '*'); } catch(_){}
+    }
+    document.getElementById('t-accent').addEventListener('input', e => persist({accent: e.target.value}));
+    document.getElementById('t-body').addEventListener('change', e => persist({bodyFont: e.target.value}));
+    document.getElementById('t-display').addEventListener('change', e => persist({headlineFont: e.target.value}));
+    document.getElementById('t-nums').addEventListener('change', e => persist({showNumbers: e.target.checked}));
+    document.getElementById('t-brand').addEventListener('change', e => persist({showBrand: e.target.checked}));
+  })();
+</script>
+</body>
+</html>

@@ -4,16 +4,18 @@ export default {
   theme: {
     extend: {
       colors: {
-        brown: '#8B4513',
-        gold: '#C8792A',
-        'gold-light': '#e8a855',
-        dark: '#070707',
-        'dark-2': '#0d0d0d',
-        'dark-3': '#131313',
+        brown: '#8E4429',
+        gold: '#B85C3A',
+        'gold-light': '#CD7D5E',
+        dark: '#100C09',
+        'dark-2': '#17110E',
+        'dark-3': '#1F1713',
+        cream: '#F7F0E8',
+        'cream-2': '#EFE5D8',
       },
       fontFamily: {
-        display: ['Urbanist', 'sans-serif'],
-        body: ['DM Sans', 'sans-serif'],
+        display: ['Satoshi', 'Inter', 'sans-serif'],
+        body: ['Inter', 'sans-serif'],
       },
       letterSpacing: {
         tighter: '-0.05em',

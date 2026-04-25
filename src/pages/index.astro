@@ -1,174 +1,875 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Nav from '../components/Nav.astro';
-import Footer from '../components/Footer.astro';
-import Marquee from '../components/Marquee.astro';
-import HeroCard from '../components/HeroCard.astro';
-import SectionHeader from '../components/SectionHeader.astro';
-import ServiceRow from '../components/ServiceRow.astro';
-import NumbersBar from '../components/NumbersBar.astro';
-import CaseCard from '../components/CaseCard.astro';
-import CTABox from '../components/CTABox.astro';
-import '../styles/global.css';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import Marquee from "../components/Marquee.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import ServiceRow from "../components/ServiceRow.astro";
+import NumbersBar from "../components/NumbersBar.astro";
+import CaseCard from "../components/CaseCard.astro";
+import CTABox from "../components/CTABox.astro";
+import "../styles/global.css";
 
 const services = [
-  { number: '01', name: 'CRM Automatizado', description: 'Gestão de clientes com IA para aumentar conversão e fidelização sem trabalho manual.', badge: 'IA & Automação', slug: 'crm-automatizado' },
-  { number: '02', name: 'Tráfego com IA', description: 'Google e Meta Ads otimizados por inteligência artificial para maximizar seu ROI.', badge: 'Performance', slug: 'trafego-com-ia' },
-  { number: '03', name: 'Omnichannel', description: 'WhatsApp, Instagram, e-mail e loja física integrados em um único painel de controle.', badge: 'Integração', slug: 'omnichannel' },
-  { number: '04', name: 'Agente de IA / Chatbot', description: 'Atendimento 24/7 que qualifica leads, responde dúvidas e agenda visitas automaticamente.', badge: 'IA & Automação', slug: 'agente-ia' },
-  { number: '05', name: 'Métricas em Tempo Real', description: 'Dashboard com todos os indicadores da sua loja atualizados ao vivo, acessível de qualquer lugar.', badge: 'Analytics', slug: 'metricas' },
-  { number: '06', name: 'Sites de Alto Padrão', description: 'Sites rápidos, modernos e otimizados para converter visitantes em compradores reais.', badge: 'Web & Design', slug: 'sites' },
-  { number: '07', name: 'Soluções Comerciais', description: 'Estratégia e consultoria comercial integrada para ampliar suas vendas no Nordeste.', badge: 'Estratégia', slug: 'solucoes-comerciais' },
-  { number: '08', name: 'Visualização 3D / RA', description: 'Configurador 3D e realidade aumentada para móveis — nenhum concorrente no Nordeste oferece.', badge: '3D & RA', slug: 'visualizacao-3d' },
+  {
+    number: "01",
+    name: "Tráfego com IA",
+    description:
+      "Google e Meta otimizados todo dia pra trazer comprador — não curioso. Gastou R$1, voltou R$7. É isso que a gente persegue.",
+    badge: "Performance",
+    slug: "trafego-com-ia",
+  },
+  {
+    number: "02",
+    name: "CRM Automatizado",
+    description:
+      "Lead entrou, o sistema distribui, cobra follow-up e mostra onde a venda travou. Seu vendedor para de perder venda por esquecimento.",
+    badge: "IA + CRM",
+    slug: "crm-automatizado",
+  },
+  {
+    number: "03",
+    name: "Agente de IA 24h",
+    description:
+      "Responde WhatsApp às 2 da manhã, filtra curioso, agenda visita. Vende enquanto seu vendedor dorme.",
+    badge: "Atendimento",
+    slug: "agente-ia",
+  },
+  {
+    number: "04",
+    name: "Atendimento Omnichannel",
+    description:
+      "WhatsApp, Instagram, telefone e showroom rodando numa operação só. Lead não cai por vão de canal.",
+    badge: "Integração",
+    slug: "omnichannel",
+  },
+  {
+    number: "05",
+    name: "Métricas em Tempo Real",
+    description:
+      "Dashboard pro dono: quanto entrou, quanto custou, quanto voltou, onde cada lead está. Decisão baseada em número, não em achismo.",
+    badge: "Gestão",
+    slug: "metricas",
+  },
+  {
+    number: "06",
+    name: "Sites que Convertem",
+    description:
+      "Landing page pra diagnóstico e captura de demanda com foco em venda de ticket alto — sem blá-blá-blá institucional.",
+    badge: "Web",
+    slug: "sites",
+  },
+  {
+    number: "07",
+    name: "Soluções Comerciais",
+    description:
+      "Script, cadência e rotina de follow-up pra subir taxa de fechamento sem entrar em guerra de preço.",
+    badge: "Comercial",
+    slug: "solucoes-comerciais",
+  },
+  {
+    number: "08",
+    name: "Visualização 3D / RA",
+    description:
+      "Cliente vê o móvel na casa dele antes de comprar. Decisão vem mais rápida, devolução cai.",
+    badge: "3D + RA",
+    slug: "visualizacao-3d",
+  },
 ];
 
 const numbers = [
-  { value: '+200', label: 'Lojas de móveis atendidas no Brasil' },
-  { value: '3.8×', label: 'Retorno médio sobre investimento em tráfego' },
-  { value: '98%', label: 'Taxa de satisfação dos clientes ativos' },
-  { value: '24h', label: 'Suporte especializado sempre disponível' },
+  { value: "14 dias", label: "Setup do sistema completo rodando" },
+  { value: "45 dias", label: "Showroom começando a encher de cliente qualificado" },
+  { value: "30 leads", label: "Mínimo garantido no primeiro ciclo (CPL ≤ R$100)" },
+  { value: "1 stack", label: "Tráfego + IA + CRM no mesmo fluxo" },
+];
+
+const pilares = [
+  {
+    num: "01",
+    title: "Especialização",
+    desc: "Só loja de móveis médio-alto ticket. Fabricante e revendedor. Ponto.",
+    img: "/images/pilares/especializacao.png",
+  },
+  {
+    num: "02",
+    title: "Sistema",
+    desc: "Tráfego + IA + CRM em pacote fechado. Sem contratar 4 fornecedores diferentes.",
+    img: "/images/pilares/sistema.png",
+  },
+  {
+    num: "03",
+    title: "Resultado",
+    desc: "Métrica de negócio — venda e faturamento. Não seguidor e clique.",
+    img: "/images/pilares/resultado.png",
+  },
+  {
+    num: "04",
+    title: "Velocidade",
+    desc: "Setup em 14 dias. Resultado em 45. Sem enrolação.",
+    img: "/images/pilares/velocidade.png",
+  },
 ];
 
 const cases = [
-  { tag: 'CRM + Tráfego com IA', title: 'Móveis Alfa — São Paulo', description: 'Implementação de CRM automatizado e campanhas de tráfego com IA em 45 dias. O resultado superou todas as metas no primeiro trimestre.', metric: '+187%', metricLabel: 'Aumento em leads qualificados', featured: true },
-  { tag: 'Omnichannel', title: 'Casa & Design — BH', description: 'Integração de todos os canais em painel único.', metric: '4.2×', metricLabel: 'Retorno sobre investimento', featured: false },
-  { tag: 'Agente de IA', title: 'Decor Prime — Rio', description: 'Chatbot com IA para qualificação automática de leads.', metric: '−68%', metricLabel: 'Tempo de atendimento', featured: false },
+  {
+    tag: "CRM + Tráfego",
+    title: "Móveis Alfa — São Paulo",
+    description:
+      "Reestruturação do funil: cadência automática, follow-up na hora certa, campanha afinada por etapa.",
+    metric: "+187%",
+    metricLabel: "Leads qualificados em 90 dias",
+    featured: true,
+  },
+  {
+    tag: "Omnichannel",
+    title: "Casa & Design — BH",
+    description:
+      "Todos os canais respondendo com SLA único. Lead não esfria mais entre WhatsApp, Instagram e loja.",
+    metric: "4.2×",
+    metricLabel: "Retorno sobre o investimento",
+    featured: false,
+  },
+  {
+    tag: "Agente IA",
+    title: "Decor Prime — Rio",
+    description:
+      "IA atende 24h, filtra curioso e agenda visita. Vendedor humano só entra no lead quente.",
+    metric: "−68%",
+    metricLabel: "Tempo de primeira resposta",
+    featured: false,
+  },
 ];
 
-const marqueeItems = ['CRM Automatizado', 'Tráfego com IA', 'Omnichannel', 'Agente de IA', 'Métricas em Tempo Real', 'Sites de Alto Padrão', 'Soluções Comerciais', 'Visualização 3D'];
+const marqueeItems = [
+  "Só loja de móveis",
+  "Tráfego + IA + CRM",
+  "Setup em 14 dias",
+  "Resultado em 45 dias",
+  "Se não vender, a gente não dorme",
+  "Marketing pra móvel que vende pelo valor",
+];
+
+const faqItems = [
+  {
+    q: "Em quanto tempo começa a operar?",
+    a: "14 dias. Setup completo: tráfego no ar, CRM configurado, IA treinada e rotina comercial rodando.",
+  },
+  {
+    q: "Quando os primeiros resultados aparecem?",
+    a: "45 dias. Esse é o ciclo pra afinar campanha, encher o funil e começar a mostrar venda qualificada no showroom.",
+  },
+  {
+    q: "Tem garantia comercial?",
+    a: "Tem. No primeiro ciclo: mínimo de 30 leads qualificados com CPL ≤ R$100. Se não entregarmos, o segundo mês é por nossa conta.",
+  },
+  {
+    q: "Qual verba mínima de marketing?",
+    a: "Depende do ticket e da praça. No diagnóstico gratuito a gente já sai com faixa de investimento recomendada pro seu caso.",
+  },
+  {
+    q: "Precisa trocar minha equipe?",
+    a: "Não. A proposta é destravar sua equipe atual com sistema e processo. Seu vendedor passa a receber lead quente e saber quando cobrar follow-up.",
+  },
+  {
+    q: "Por que só loja de móveis?",
+    a: "Porque quem faz tudo não faz bem nada. A gente viveu no seu mercado, sabe o que converte e o que é papo furado. Por isso nossa campanha é mais barata e mais certeira.",
+  },
+];
 ---
 
-<BaseLayout title="Tecnologia que vende móveis">
+<BaseLayout
+  title="Moveis.pro — Marketing pra móvel que vende pelo valor"
+  description="A única empresa de marketing no Brasil que trabalha só com loja de móveis médio-alto ticket. Tráfego + IA + CRM num sistema único. 45 dias pra encher seu showroom."
+>
   <Nav />
 
-  <!-- HERO -->
-  <section
-    class="hero-grid relative overflow-hidden"
-    style="padding: 148px 56px 88px; display: grid; grid-template-columns: 1fr 400px; gap: 56px; align-items: center; min-height: 100vh;"
-  >
-    <!-- Ambient glows -->
-    <div class="absolute pointer-events-none" style="top: -160px; right: 80px; width: 580px; height: 580px; background: radial-gradient(circle, rgba(139,69,19,0.2) 0%, transparent 68%);"></div>
-    <div class="absolute pointer-events-none" style="bottom: 0; left: -60px; width: 360px; height: 360px; background: radial-gradient(circle, rgba(200,121,42,0.07) 0%, transparent 70%);"></div>
-
-    <div class="relative z-10" data-animate>
-      <div class="inline-flex items-center gap-2.5 mb-8" style="color: var(--gold);">
-        <span class="block w-7 h-px" style="background: var(--gold);"></span>
-        <span class="text-xs font-medium tracking-widest uppercase" style="letter-spacing: 2px;">Especialistas em móveis</span>
-      </div>
-
-      <h1
-        class="font-display font-black text-white mb-8"
-        style="font-size: clamp(52px, 6.2vw, 86px); line-height: 0.95; letter-spacing: -3px;"
+  <main>
+    <section id="inicio" class="hero-cinematic">
+      <!-- VÍDEO de fundo (qualidade máxima) -->
+      <video
+        id="hero-video"
+        class="hero-media hero-video"
+        autoplay
+        muted
+        playsinline
+        preload="auto"
+        poster="/images/hero.png"
       >
-        Tecnologia<br />que vende<br />
-        <span style="-webkit-text-stroke: 1.8px var(--gold); color: transparent;">móveis.</span>
-      </h1>
+        <source src="/videos/hero.mp4" type="video/mp4" />
+      </video>
 
-      <p class="font-light mb-12 max-w-md" style="font-size: 16px; color: var(--dim); line-height: 1.7;">
-        CRM com IA, tráfego inteligente, omnichannel e visualização 3D — desenvolvidos para o mercado moveleiro do Nordeste.
-      </p>
+      <!-- IMAGEM final (aparece quando o vídeo termina) -->
+      <img
+        id="hero-poster"
+        class="hero-media hero-poster"
+        src="/images/hero.png"
+        alt="Showroom Moveis.pro"
+      />
 
-      <div class="flex items-center gap-4">
-        <a
-          href="/contato"
-          class="inline-flex items-center gap-2 text-sm font-semibold text-white rounded-[10px] no-underline transition-opacity hover:opacity-90"
-          style="background: var(--brown); padding: 14px 28px;"
-        >
-          Ver demonstração →
-        </a>
-        <a
-          href="/servicos"
-          class="text-sm font-normal no-underline transition-colors hover:text-white"
-          style="color: var(--muted);"
-        >
-          Conheça os serviços ↓
-        </a>
+      <!-- Overlays de legibilidade + transição pro dark -->
+      <div class="hero-vignette"></div>
+      <div class="hero-gradient-left"></div>
+      <div class="hero-gradient-bottom"></div>
+
+      <!-- Conteúdo sobreposto -->
+      <div class="hero-content" data-animate>
+        <h1 class="hero-title">
+          Marketing pra móvel<br/>
+          que vende <em>pelo valor</em><br/>
+          — não pelo preço.
+        </h1>
+
+        <p class="hero-text">
+          A única empresa no Brasil que trabalha <b>só com loja de móveis</b>. Tráfego, IA e
+          atendimento num sistema único. Em 45 dias, seu showroom enche de cliente qualificado.
+        </p>
+
+        <div class="hero-tags">
+          <span>Fabricantes</span>
+          <span>Revendedores</span>
+          <span>Estofados</span>
+          <span>Madeira maciça</span>
+          <span>Médio-alto ticket</span>
+        </div>
+
+        <div class="hero-ctas">
+          <a href="/contato" class="hero-cta-primary">Diagnóstico gratuito →</a>
+          <a href="/servicos" class="hero-cta-secondary">Ver o sistema</a>
+        </div>
+
+        <div class="hero-kpis">
+          <div>
+            <b>14 dias</b>
+            <span>pro sistema estar rodando</span>
+          </div>
+          <div>
+            <b>45 dias</b>
+            <span>pro showroom encher</span>
+          </div>
+          <div>
+            <b>30 leads</b>
+            <span>garantidos no 1º ciclo</span>
+          </div>
+        </div>
       </div>
+    </section>
+
+    <div style="position: relative; z-index: 1;">
+      <Marquee items={marqueeItems} />
     </div>
 
-    <div class="hero-card-wrapper relative z-10">
-      <HeroCard
-        metric="+187%"
-        metricLabel="Leads qualificados — Móveis Alfa SP"
-        barPercent={74}
-        rows={[
-          { label: 'ROI em tráfego pago', value: '3.8×' },
-          { label: 'Taxa de conversão', value: '+64%' },
-          { label: 'Tempo de resposta', value: '−68%' },
-        ]}
+    <!-- 4 PILARES -->
+    <section id="pilares" style="padding: 56px 56px 0;">
+      <div data-animate>
+        <SectionHeader
+          index="01 — Por que a gente"
+          title={"Quatro coisas que\nmudam o jogo"}
+          subtitle="Ninguém contrata generalista quando existe especialista. Por isso a gente trabalha só com um mercado — o seu."
+        />
+      </div>
+
+      <div class="pilares-grid" data-animate data-delay="1">
+        {pilares.map((p) => (
+          <article class="pilar-card" style={`background-image: url('${p.img}')`}>
+            <div class="pilar-overlay"></div>
+            <span class="pilar-num">{p.num}</span>
+            <h3 class="pilar-title">{p.title}</h3>
+            <p class="pilar-desc">{p.desc}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section id="servicos" style="padding: 104px 56px 0;">
+      <div data-animate>
+        <SectionHeader
+          index="02 — O sistema"
+          title={"Tráfego + IA + CRM\nnum pacote só"}
+          subtitle="Em vez de contratar 4 fornecedores que não conversam entre si, você contrata um stack que já veio montado pra vender móvel."
+          linkLabel="Ver todos os serviços"
+          linkHref="/servicos"
+        />
+      </div>
+
+      <div class="flex flex-col mt-2">
+        {
+          services.map((s, i) => (
+            <div data-animate data-delay={String((i % 5) + 1)}>
+              <ServiceRow
+                number={s.number}
+                name={s.name}
+                description={s.description}
+                badge={s.badge}
+                href={`/servicos/${s.slug}`}
+              />
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section style="padding: 74px 56px 0;" data-animate>
+      <NumbersBar items={numbers} />
+    </section>
+
+    <section style="padding: 110px 56px 0;">
+      <div data-animate>
+        <SectionHeader
+          index="03 — Qualificação"
+          title={"Pra quem é\ne pra quem não é"}
+          subtitle="Filtro honesto. Melhor espantar o cliente errado agora do que perder tempo dos dois lados."
+        />
+      </div>
+
+      <div class="fit-grid" data-animate data-delay="1">
+        <article class="fit-card">
+          <span class="fit-kicker">É pra você se...</span>
+          <ul>
+            <li>Vende móvel de médio ou alto ticket</li>
+            <li>Tem equipe comercial e quer subir a taxa de fechamento</li>
+            <li>Quer previsibilidade de lead qualificado</li>
+            <li>Topa ter processo e seguir método</li>
+          </ul>
+        </article>
+        <article class="fit-card no-fit">
+          <span class="fit-kicker">Não é pra você se...</span>
+          <ul>
+            <li>Quer só "crescer o Instagram"</li>
+            <li>Compete pelo menor preço</li>
+            <li>Acha que marketing é mágica, sem esforço interno</li>
+            <li>Espera resultado em 7 dias sem processo</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="cases" style="padding: 110px 56px 0;">
+      <div data-animate>
+        <SectionHeader
+          index="04 — Resultados"
+          title="Loja de verdade, número de verdade"
+          subtitle="Sem case inventado. Só lojista que abriu a porta, seguiu o método e começou a vender diferente."
+        />
+      </div>
+
+      <div
+        class="cases-grid mt-14"
+        style="display: grid; grid-template-columns: 1.5fr 1fr; grid-template-rows: 1fr 1fr; gap: 14px;"
+      >
+        {
+          cases.map((c, i) => (
+            <div data-animate data-delay={String((i % 4) + 1)}>
+              <CaseCard
+                tag={c.tag}
+                title={c.title}
+                description={c.description}
+                metric={c.metric}
+                metricLabel={c.metricLabel}
+                featured={c.featured}
+              />
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section id="faq" style="padding: 110px 56px 0;">
+      <div data-animate>
+        <SectionHeader
+          index="05 — Perguntas"
+          title={"Se rolar dúvida,\ntá aqui."}
+          subtitle="Resposta direta. Sem rodeio institucional."
+        />
+      </div>
+
+      <div class="faq-grid" data-animate data-delay="1">
+        {
+          faqItems.map((item) => (
+            <article class="faq-item">
+              <h3>{item.q}</h3>
+              <p>{item.a}</p>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section style="padding: 0 56px 86px; margin-top: 108px;" data-animate>
+      <CTABox
+        title={"Vamos encher\nseu showroom?"}
+        subtitle="Conversa de 20 minutos. A gente mapeia onde sua loja está vazando lead — captação, atendimento ou follow-up. Você sai com um plano prático, pago ou não."
+        buttonLabel="Diagnóstico gratuito →"
+        buttonHref="/contato"
       />
-    </div>
-  </section>
-
-  <!-- MARQUEE -->
-  <div data-animate>
-    <Marquee items={marqueeItems} />
-  </div>
-
-  <!-- SERVICES -->
-  <section style="padding: 116px 56px;">
-    <div data-animate>
-      <SectionHeader
-        index="01 — Serviços"
-        title={"O que a\nMoveis.pro faz"}
-        subtitle="Da captação de leads à gestão completa — cobrimos toda a jornada com tecnologia própria para o setor moveleiro."
-        linkLabel="Ver todos os serviços →"
-        linkHref="/servicos"
-      />
-    </div>
-    <div class="flex flex-col mt-0">
-      {services.map((s, i) => (
-        <div data-animate data-delay={String((i % 5) + 1)}>
-          <ServiceRow
-            number={s.number}
-            name={s.name}
-            description={s.description}
-            badge={s.badge}
-            href={`/servicos/${s.slug}`}
-          />
-        </div>
-      ))}
-    </div>
-  </section>
-
-  <!-- NUMBERS -->
-  <div style="padding: 0 56px;" data-animate>
-    <NumbersBar items={numbers} />
-  </div>
-
-  <!-- CASES -->
-  <section style="padding: 116px 56px;">
-    <div data-animate>
-      <SectionHeader index="02 — Resultados" title="Cases de sucesso" />
-    </div>
-    <div
-      class="cases-grid mt-14"
-      style="display: grid; grid-template-columns: 1.5fr 1fr; grid-template-rows: 1fr 1fr; gap: 14px;"
-    >
-      {cases.map((c, i) => (
-        <div data-animate data-delay={String(i + 1)}>
-          <CaseCard
-            tag={c.tag}
-            title={c.title}
-            description={c.description}
-            metric={c.metric}
-            metricLabel={c.metricLabel}
-            featured={c.featured}
-          />
-        </div>
-      ))}
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <div style="padding: 0 56px 100px;" data-animate>
-    <CTABox
-      title={"Pronto para sua\nloja vender com\ntecnologia?"}
-      subtitle="Agende uma conversa gratuita com um especialista e receba um diagnóstico completo do seu negócio."
-      buttonLabel="Agendar conversa gratuita →"
-      buttonHref="/contato"
-    />
-  </div>
+    </section>
+  </main>
 
   <Footer />
 </BaseLayout>
+
+<style>
+  /* ── HERO CINEMATOGRÁFICO (vídeo + imagem final) ── */
+  .hero-cinematic {
+    position: relative;
+    width: 100%;
+    height: 92vh;
+    min-height: 650px;
+    max-height: 900px;
+    overflow: hidden;
+    margin-bottom: 0;
+  }
+
+  .hero-media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    z-index: 0;
+  }
+
+  .hero-video {
+    z-index: 1;
+    opacity: 1;
+    transition: opacity 1.2s ease;
+  }
+
+  .hero-poster {
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+    transform: scale(1.02);
+    animation: hero-poster-zoom 22s ease-in-out infinite alternate;
+  }
+
+  /* estado quando o vídeo termina */
+  .hero-cinematic.finished .hero-video {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .hero-cinematic.finished .hero-poster {
+    opacity: 1;
+    z-index: 1;
+  }
+
+  @keyframes hero-poster-zoom {
+    from { transform: scale(1.03); }
+    to   { transform: scale(1.1); }
+  }
+
+  /* vinheta — escurece cantos */
+  .hero-vignette {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse 110% 90% at 30% 50%,
+      transparent 0%,
+      rgba(7, 7, 7, 0.4) 65%,
+      rgba(7, 7, 7, 0.85) 100%
+    );
+  }
+
+  /* gradiente à esquerda pro texto */
+  .hero-gradient-left {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    background: linear-gradient(
+      to right,
+      rgba(7, 7, 7, 0.92) 0%,
+      rgba(7, 7, 7, 0.75) 28%,
+      rgba(7, 7, 7, 0.4) 52%,
+      transparent 78%
+    );
+  }
+
+  /* transição suave pro dark embaixo */
+  .hero-gradient-bottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 40%;
+    z-index: 4;
+    pointer-events: none;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(7, 7, 7, 0.4) 40%,
+      rgba(7, 7, 7, 0.85) 78%,
+      var(--dark) 100%
+    );
+  }
+
+  /* conteúdo sobre a mídia */
+  .hero-content {
+    position: relative;
+    z-index: 5;
+    max-width: 1400px;
+    margin: 0 auto;
+    height: 100%;
+    padding: 120px 56px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .hero-title {
+    font-family: "Urbanist", "Satoshi", "Inter", sans-serif;
+    font-weight: 900;
+    font-size: clamp(32px, 4vw, 56px);
+    line-height: 0.95;
+    letter-spacing: -0.05em;
+    color: var(--cream);
+    margin-bottom: 16px;
+    text-shadow: 0 2px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  .hero-title em {
+    color: var(--terra);
+    font-style: normal;
+  }
+
+  .hero-text {
+    max-width: 520px;
+    font-size: 15px;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.85);
+    text-shadow: 0 1px 16px rgba(0, 0, 0, 0.55);
+  }
+  .hero-text b {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .hero-tags {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .hero-tags span {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(247, 240, 232, 0.28);
+    border-radius: 999px;
+    padding: 7px 12px;
+    background: rgba(10, 8, 5, 0.4);
+    backdrop-filter: blur(8px);
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 24px;
+  }
+
+  .hero-cta-primary,
+  .hero-cta-secondary {
+    text-decoration: none;
+    border-radius: 11px;
+    padding: 14px 18px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  .hero-cta-primary {
+    color: var(--cream);
+    border: 1px solid rgba(247, 240, 232, 0.26);
+    background: linear-gradient(135deg, var(--terra-deep), var(--terra));
+  }
+
+  .hero-cta-secondary {
+    color: var(--text-dim);
+    border: 1px solid rgba(247, 240, 232, 0.22);
+    background: rgba(247, 240, 232, 0.02);
+  }
+
+  .hero-cta-secondary:hover {
+    color: var(--cream);
+    border-color: rgba(247, 240, 232, 0.36);
+  }
+
+  .hero-kpis {
+    margin-top: 26px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    max-width: 640px;
+  }
+
+  .hero-kpis > div {
+    border-top: 1px solid rgba(247, 240, 232, 0.25);
+    padding-top: 10px;
+  }
+
+  .hero-kpis b {
+    display: block;
+    font-family: "Urbanist", "Satoshi", "Inter", sans-serif;
+    font-weight: 900;
+    font-size: 20px;
+    color: var(--terra);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: 5px;
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+  }
+
+  .hero-kpis span {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* ── 4 PILARES ── */
+  .pilares-grid {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+
+  .pilar-card {
+    position: relative;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 28px 24px;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+
+  .pilar-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      165deg,
+      rgba(10, 8, 5, 0.82) 0%,
+      rgba(10, 8, 5, 0.65) 100%
+    );
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
+  .pilar-card > :not(.pilar-overlay) {
+    position: relative;
+    z-index: 1;
+  }
+
+  .pilar-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(200, 121, 42, 0.4);
+  }
+
+  .pilar-card:hover .pilar-overlay {
+    background: linear-gradient(
+      165deg,
+      rgba(10, 8, 5, 0.72) 0%,
+      rgba(10, 8, 5, 0.5) 100%
+    );
+  }
+
+  .pilar-num {
+    font-family: "Urbanist", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--terra);
+    display: block;
+    margin-bottom: 18px;
+  }
+
+  .pilar-title {
+    font-family: "Urbanist", sans-serif;
+    font-size: 26px;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .pilar-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-dim);
+  }
+
+  @media (max-width: 900px) {
+    .pilares-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 520px) {
+    .pilares-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .fit-grid {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .fit-card {
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 24px 22px;
+    background: rgba(247, 240, 232, 0.02);
+  }
+
+  .fit-card.no-fit {
+    background: linear-gradient(165deg, rgba(247, 240, 232, 0.025), rgba(247, 240, 232, 0.01));
+  }
+
+  .fit-kicker {
+    display: inline-flex;
+    margin-bottom: 12px;
+    color: var(--terra);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .fit-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .fit-card li {
+    position: relative;
+    color: var(--text-dim);
+    font-size: 15px;
+    line-height: 1.5;
+    padding-left: 16px;
+  }
+
+  .fit-card li::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 2px;
+    background: var(--terra);
+    transform: rotate(45deg);
+    position: absolute;
+    top: 8px;
+    left: 0;
+  }
+
+  .faq-grid {
+    margin-top: 26px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .faq-item {
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: rgba(247, 240, 232, 0.02);
+    padding: 20px;
+  }
+
+  .faq-item h3 {
+    font-family: "Satoshi", "Inter", sans-serif;
+    font-size: 22px;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+
+  .faq-item p {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .hero-cinematic {
+      height: auto;
+      min-height: 680px;
+    }
+    .hero-content {
+      padding: 140px 24px 80px;
+    }
+    .hero-title {
+      font-size: clamp(26px, 7vw, 40px);
+      letter-spacing: -0.04em;
+    }
+    .hero-text {
+      font-size: 15px;
+    }
+    .hero-kpis {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .hero-gradient-left {
+      background: linear-gradient(
+        to right,
+        rgba(7, 7, 7, 0.88) 0%,
+        rgba(7, 7, 7, 0.65) 60%,
+        rgba(7, 7, 7, 0.35) 100%
+      );
+    }
+    .fit-grid { grid-template-columns: 1fr; }
+    .faq-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-kpis {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  // Hero: quando o vídeo acaba, faz crossfade suave pra imagem final
+  const heroSection = document.querySelector('.hero-cinematic') as HTMLElement | null;
+  const heroVideo = document.getElementById('hero-video') as HTMLVideoElement | null;
+
+  if (heroSection && heroVideo) {
+    const showPoster = () => heroSection.classList.add('finished');
+
+    heroVideo.addEventListener('ended', showPoster);
+
+    // fallback: se o vídeo falhar ou não puder tocar, mostra poster
+    heroVideo.addEventListener('error', showPoster);
+    heroVideo.addEventListener('stalled', () => {
+      // se travar por mais de 4s, mostra a imagem
+      setTimeout(() => {
+        if (heroVideo.readyState < 2) showPoster();
+      }, 4000);
+    });
+
+    // tenta dar play (alguns navegadores exigem interação)
+    const tryPlay = () => {
+      heroVideo.play().catch(() => {
+        // autoplay bloqueado — já vai pra imagem final
+        showPoster();
+      });
+    };
+    tryPlay();
+  }
+</script>

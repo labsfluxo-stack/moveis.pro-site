@@ -5,6 +5,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import CTABox from '../../components/CTABox.astro';
+import IconService from '../../components/IconService.astro';
 
 export async function getStaticPaths() {
   const services = await getCollection('servicos');
@@ -22,20 +23,53 @@ const { Content } = await service.render();
   <Nav />
   <main style="padding-top: 64px;">
 
-    <section style="padding: 100px 56px 80px;">
-      <a href="/servicos" class="inline-flex items-center gap-2 text-sm no-underline mb-12 transition-colors hover:text-white" style="color: var(--muted);">
-        ← Todos os serviços
-      </a>
+    {service.data.heroImage ? (
+      <section class="servico-hero-full">
+        <!-- imagem de fundo full-bleed -->
+        <img
+          src={service.data.heroImage}
+          alt={service.data.title}
+          class="hero-bg-img"
+          loading="eager"
+        />
 
-      <div class="text-4xl mb-8">{service.data.icon}</div>
-      <div class="text-xs font-semibold tracking-widest uppercase mb-4" style="color: var(--gold); letter-spacing: 1.5px;">{service.data.badge}</div>
-      <h1 class="font-display font-black text-white mb-6" style="font-size: clamp(44px, 5.5vw, 68px); letter-spacing: -2.5px; line-height: 1.0; max-width: 700px;">
-        {service.data.title}
-      </h1>
-      <p class="font-light max-w-lg" style="font-size: 18px; color: var(--dim); line-height: 1.7;">
-        {service.data.description}
-      </p>
-    </section>
+        <!-- overlays de legibilidade + transição suave pro dark -->
+        <div class="hero-vignette"></div>
+        <div class="hero-gradient-bottom"></div>
+        <div class="hero-gradient-left"></div>
+
+        <!-- conteúdo sobreposto -->
+        <div class="hero-content-full">
+          <a href="/servicos" class="back-link">← Todos os serviços</a>
+
+          <div class="hero-meta">
+            <span class="hero-badge-full">{service.data.badge}</span>
+          </div>
+
+          <h1 class="hero-title-full">{service.data.title}</h1>
+
+          <p class="hero-desc-full">{service.data.description}</p>
+
+          <!-- scroll cue -->
+          <div class="scroll-cue" aria-hidden="true">
+            <span class="scroll-cue-line"></span>
+            <span class="scroll-cue-label">role pra ver o que faz</span>
+          </div>
+        </div>
+      </section>
+    ) : (
+      <section class="servico-hero">
+        <div class="servico-hero-inner">
+          <a href="/servicos" class="back-link">← Todos os serviços</a>
+          <div class="hero-left">
+            <div class="hero-icon"><IconService slug={service.slug} size={30} /></div>
+            <div class="hero-badge">{service.data.badge}</div>
+            <h1 class="hero-title">{service.data.title}</h1>
+            <p class="hero-desc">{service.data.description}</p>
+          </div>
+        </div>
+      </section>
+    )}
 
     <section style="padding: 0 56px 80px; max-width: 760px;">
       <div class="prose-custom">
@@ -45,9 +79,9 @@ const { Content } = await service.render();
 
     <div style="padding: 0 56px 100px;">
       <CTABox
-        title={`Quer implementar\n${service.data.title}\nna sua loja?`}
-        subtitle="Agende uma conversa gratuita e receba um diagnóstico personalizado para o seu negócio."
-        buttonLabel="Falar com especialista →"
+        title={`Quer ${service.data.title.toLowerCase()}\nrodando na sua loja?`}
+        subtitle="Diagnóstico gratuito. A gente monta seu plano de 14 dias e te mostra onde está vazando venda hoje."
+        buttonLabel="Diagnóstico gratuito →"
         buttonHref="/contato"
       />
     </div>
@@ -56,9 +90,276 @@ const { Content } = await service.render();
   <Footer />
 </BaseLayout>
 
+<style>
+  /* ── HERO FULL-BLEED (com imagem) ── */
+  .servico-hero-full {
+    position: relative;
+    width: 100%;
+    height: 88vh;
+    min-height: 620px;
+    max-height: 860px;
+    overflow: hidden;
+    margin-bottom: -120px; /* puxa a próxima seção pra sobrepor a transição */
+  }
+
+  /* imagem de fundo com leve movimento sutil */
+  .hero-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 50%;
+    display: block;
+    z-index: 0;
+    animation: hero-subtle-zoom 18s ease-in-out infinite alternate;
+  }
+
+  @keyframes hero-subtle-zoom {
+    from { transform: scale(1.02); }
+    to   { transform: scale(1.08); }
+  }
+
+  /* vinheta pra escurecer cantos e dar foco no texto */
+  .hero-vignette {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 100% 80% at 30% 55%, transparent 0%, rgba(7,7,7,0.5) 70%, rgba(7,7,7,0.85) 100%);
+  }
+
+  /* gradiente à esquerda pra dar peso ao texto */
+  .hero-gradient-left {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(
+      to right,
+      rgba(7,7,7,0.92) 0%,
+      rgba(7,7,7,0.7) 28%,
+      rgba(7,7,7,0.35) 52%,
+      transparent 80%
+    );
+  }
+
+  /* transição suave pro dark da próxima seção (bottom fade) */
+  .hero-gradient-bottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 45%;
+    z-index: 3;
+    pointer-events: none;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(7,7,7,0.35) 35%,
+      rgba(7,7,7,0.85) 75%,
+      var(--dark) 100%
+    );
+  }
+
+  /* conteúdo sobre a imagem */
+  .hero-content-full {
+    position: relative;
+    z-index: 5;
+    max-width: 1400px;
+    margin: 0 auto;
+    height: 100%;
+    padding: 120px 56px 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .back-link {
+    position: absolute;
+    top: 40px;
+    left: 56px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    transition: color 0.2s, transform 0.2s;
+    width: fit-content;
+  }
+  .back-link:hover {
+    color: #fff;
+    transform: translateX(-3px);
+  }
+
+  .hero-meta {
+    margin-bottom: 22px;
+  }
+
+  .hero-badge-full {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(10, 8, 5, 0.5);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(200, 121, 42, 0.4);
+    padding: 8px 16px;
+    border-radius: 999px;
+  }
+  .hero-badge-full::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 10px rgba(200, 121, 42, 0.9);
+  }
+
+  .hero-title-full {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 900;
+    font-size: clamp(48px, 6vw, 88px);
+    letter-spacing: -3px;
+    line-height: 0.95;
+    color: #fff;
+    margin-bottom: 26px;
+    max-width: 780px;
+    text-shadow: 0 2px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  .hero-desc-full {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.82);
+    max-width: 560px;
+    text-shadow: 0 1px 20px rgba(0, 0, 0, 0.6);
+  }
+
+  /* scroll cue minimalista */
+  .scroll-cue {
+    position: absolute;
+    bottom: 60px;
+    left: 56px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    opacity: 0.55;
+    animation: scroll-cue-fade 2.8s ease-in-out infinite;
+  }
+
+  .scroll-cue-line {
+    display: block;
+    width: 36px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold));
+    position: relative;
+    overflow: hidden;
+  }
+  .scroll-cue-line::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--gold);
+    animation: scroll-cue-dash 2.4s ease-in-out infinite;
+  }
+
+  .scroll-cue-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  @keyframes scroll-cue-fade {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.9; }
+  }
+  @keyframes scroll-cue-dash {
+    0%   { left: -100%; }
+    60%  { left: 100%; }
+    100% { left: 100%; }
+  }
+
+  /* mobile */
+  @media (max-width: 768px) {
+    .servico-hero-full {
+      height: auto;
+      min-height: 580px;
+      max-height: none;
+    }
+    .hero-content-full {
+      padding: 120px 24px 160px;
+    }
+    .back-link {
+      top: 24px;
+      left: 24px;
+    }
+    .scroll-cue {
+      bottom: 40px;
+      left: 24px;
+    }
+    .hero-title-full {
+      font-size: clamp(38px, 9vw, 56px);
+      letter-spacing: -2px;
+    }
+    .hero-desc-full {
+      font-size: 15px;
+    }
+    .hero-gradient-left {
+      background: linear-gradient(to right, rgba(7,7,7,0.85) 0%, rgba(7,7,7,0.65) 60%, rgba(7,7,7,0.4) 100%);
+    }
+  }
+
+  /* ── HERO SEM IMAGEM (fallback pros outros serviços) ── */
+  .servico-hero {
+    position: relative;
+    padding: 100px 56px 80px;
+    overflow: hidden;
+  }
+  .servico-hero-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .servico-hero .back-link {
+    position: static;
+    margin-bottom: 40px;
+  }
+  .hero-left { position: relative; z-index: 2; }
+  .hero-icon { font-size: 38px; line-height: 1; margin-bottom: 28px; }
+  .hero-badge {
+    display: inline-block;
+    font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(200, 121, 42, 0.1);
+    border: 1px solid rgba(200, 121, 42, 0.25);
+    padding: 6px 14px; border-radius: 20px; margin-bottom: 22px;
+  }
+  .hero-title {
+    font-family: 'Urbanist', sans-serif; font-weight: 900;
+    font-size: clamp(40px, 4.5vw, 64px); letter-spacing: -2.5px; line-height: 1.0;
+    color: #fff; margin-bottom: 22px; max-width: 700px;
+  }
+  .hero-desc {
+    font-family: 'DM Sans', sans-serif; font-weight: 300;
+    font-size: 17px; line-height: 1.65; color: var(--dim); max-width: 480px;
+  }
+</style>
+
 <style is:global>
   .prose-custom h2 {
-    font-family: 'Urbanist', sans-serif;
+    font-family: 'Satoshi', sans-serif;
     font-weight: 800;
     font-size: 28px;
     letter-spacing: -0.8px;
@@ -90,7 +391,7 @@ const { Content } = await service.render();
     content: '✓';
     position: absolute;
     left: 0;
-    color: #C8792A;
+    color: var(--gold);
     font-weight: 700;
   }
 </style>

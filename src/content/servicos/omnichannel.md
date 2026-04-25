@@ -1,19 +1,19 @@
 ---
-title: Omnichannel
-description: WhatsApp, Instagram, e-mail e loja física integrados em um único painel de controle.
-badge: Integração
+title: Atendimento Integrado
+description: WhatsApp, Instagram, telefone e loja fisica no mesmo historico de cliente.
+badge: Integracao
 icon: 🔗
 order: 3
 ---
 
 ## Como funciona
 
-Unificamos todos os seus canais de atendimento — WhatsApp, Instagram, e-mail, telefone e loja física — em uma única interface. Sua equipe vê todo o histórico do cliente em qualquer canal.
+Todos os canais entram no mesmo fluxo. A equipe enxerga o historico completo de cada cliente e continua o atendimento sem perder contexto.
 
-## Benefícios
+## Beneficios
 
-- Atendimento unificado em todos os canais
-- Histórico completo do cliente
-- Transferência de atendimento entre canais sem perda de contexto
-- Métricas por canal e por vendedor
-- Integração com WhatsApp Business API
+- Operacao unica para todos os canais
+- Historico centralizado por cliente
+- Menos retrabalho e menos perda de lead
+- Distribuicao inteligente por vendedor
+- Controle de SLA de resposta

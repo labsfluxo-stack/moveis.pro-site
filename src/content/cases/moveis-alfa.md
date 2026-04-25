@@ -1,8 +1,8 @@
 ---
 title: De 0 a +187% em leads qualificados
-client: Móveis Alfa
-city: São Paulo, SP
-service: CRM + Tráfego com IA
+client: Moveis Alfa
+city: Sao Paulo, SP
+service: CRM + Trafego com IA
 metric: "+187%"
 metricLabel: Aumento em leads qualificados no primeiro trimestre
 featured: true
@@ -10,12 +10,12 @@ featured: true
 
 ## O desafio
 
-A Móveis Alfa tinha um alto volume de visitantes nas redes sociais mas baixíssima conversão em leads qualificados. O atendimento era 100% manual e não havia rastreamento de clientes.
+A Moveis Alfa tinha movimento digital, mas sem processo de conversao. O atendimento era manual e nao havia controle de follow-up.
 
-## A solução
+## A solucao
 
-Implementamos o CRM Automatizado integrado a campanhas de tráfego com IA no Google e Meta. O agente de IA passou a qualificar leads 24/7 e direcionar os mais quentes para os vendedores.
+Aplicamos CRM automatizado integrado ao trafego com IA e criamos rotina comercial para atendimento de lead quente em prioridade.
 
 ## O resultado
 
-Em 45 dias: +187% em leads qualificados, ROI de 3.8× em tráfego e redução de 68% no tempo de resposta ao cliente.
+Em 45 dias: +187% em leads qualificados, ROI de 3.8x em midia e reducao de 68% no tempo de resposta.

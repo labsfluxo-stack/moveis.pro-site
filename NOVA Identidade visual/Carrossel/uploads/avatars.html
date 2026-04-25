@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #1a1a1a; }
+.avatar {
+  width: 1080px; height: 1080px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.icon {
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 6%;
+}
+.label {
+  font-family: sans-serif; font-size: 18px; color: rgba(255,255,255,0.3);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+  white-space: nowrap;
+}
+</style>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Avatar 1: Escuro -->
+<div class="avatar" id="av1" style="background:#100C09;">
+  <div class="icon" style="width:486px;height:486px;border:16px solid #B85C3A;">
+    <span style="font-family:'Satoshi',sans-serif;font-weight:900;font-size:224px;color:#F7F0E8;letter-spacing:-0.04em;line-height:1;">m<span style="color:#B85C3A;">.</span></span>
+  </div>
+  <div class="label">Fundo Escuro — #100C09</div>
+</div>
+
+<!-- Avatar 2: Claro -->
+<div class="avatar" id="av2" style="background:#F7F0E8;">
+  <div class="icon" style="width:486px;height:486px;border:16px solid #B85C3A;">
+    <span style="font-family:'Satoshi',sans-serif;font-weight:900;font-size:224px;color:#100C09;letter-spacing:-0.04em;line-height:1;">m<span style="color:#B85C3A;">.</span></span>
+  </div>
+  <div class="label" style="color:rgba(16,12,9,0.3);">Fundo Claro — #F7F0E8</div>
+</div>
+
+<!-- Avatar 3: Terracota -->
+<div class="avatar" id="av3" style="background:#B85C3A;">
+  <div class="icon" style="width:486px;height:486px;border:16px solid rgba(247,240,232,0.55);">
+    <span style="font-family:'Satoshi',sans-serif;font-weight:900;font-size:224px;color:#F7F0E8;letter-spacing:-0.04em;line-height:1;">m<span style="color:rgba(247,240,232,0.55);">.</span></span>
+  </div>
+  <div class="label">Fundo Terracota — #B85C3A</div>
+</div>
+
+</body>
+</html>

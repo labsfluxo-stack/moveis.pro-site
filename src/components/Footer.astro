@@ -1,16 +1,103 @@
 ---
 // src/components/Footer.astro
 const year = new Date().getFullYear();
+const links = [
+  { href: "/servicos", label: "Servicos" },
+  { href: "/cases", label: "Cases" },
+  { href: "/blog", label: "Blog" },
+  { href: "/contato", label: "Contato" },
+];
 ---
 
-<footer
-  class="px-14 py-7 flex justify-between items-center"
-  style="border-top: 1px solid var(--border);"
->
-  <div class="font-display font-black text-base tracking-tight" style="color: rgba(255,255,255,0.25);">
-    moveis<em class="not-italic" style="color: var(--brown);">.pro</em>
+<footer class="footer-wrap">
+  <div class="footer-brand">
+    <div class="wordmark">moveis<span>.pro</span></div>
+    <p>Marketing pra móvel que vende pelo valor — não pelo preço.</p>
   </div>
-  <p class="text-xs font-light" style="color: rgba(255,255,255,0.18);">
-    © {year} Moveis.pro — Tecnologia para o mercado moveleiro
-  </p>
+
+  <nav class="footer-links" aria-label="Rodape">
+    {
+      links.map((link) => (
+        <a href={link.href}>{link.label}</a>
+      ))
+    }
+  </nav>
+
+  <p class="footer-copy">© {year} Moveis.pro. Todos os direitos reservados.</p>
 </footer>
+
+<style>
+  .footer-wrap {
+    margin-top: 34px;
+    border-top: 1px solid var(--line);
+    padding: 36px 56px 32px;
+    display: grid;
+    grid-template-columns: 1.4fr auto;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .wordmark {
+    font-family: "Satoshi", "Inter", sans-serif;
+    font-size: 30px;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+
+  .wordmark span {
+    color: var(--terra);
+  }
+
+  .footer-brand p {
+    color: var(--text-muted);
+    font-size: 13px;
+    max-width: 380px;
+    line-height: 1.5;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: flex-end;
+  }
+
+  .footer-links a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+  }
+
+  .footer-links a:hover {
+    color: var(--cream);
+  }
+
+  .footer-copy {
+    grid-column: 1 / -1;
+    color: rgba(247, 240, 232, 0.45);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-top: 1px solid rgba(247, 240, 232, 0.08);
+    padding-top: 18px;
+    margin-top: 2px;
+  }
+
+  @media (max-width: 860px) {
+    .footer-wrap {
+      grid-template-columns: 1fr;
+      padding: 32px 24px 24px;
+      gap: 16px;
+    }
+
+    .footer-links {
+      justify-content: flex-start;
+    }
+  }
+</style>

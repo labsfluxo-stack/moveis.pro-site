@@ -1,21 +1,21 @@
 ---
-title: 4.2× de retorno com integração omnichannel
+title: 4.2x de retorno com atendimento integrado
 client: Casa & Design
 city: Belo Horizonte, MG
-service: Omnichannel
-metric: "4.2×"
+service: Atendimento Integrado
+metric: "4.2x"
 metricLabel: Retorno sobre investimento
 featured: false
 ---
 
 ## O desafio
 
-A Casa & Design atendia clientes em 4 canais diferentes sem integração. Mensagens se perdiam e o histórico de cada cliente era inexistente.
+A Casa & Design atendia clientes em varios canais, mas o time perdia historico e demorava para responder. Resultado: lead esfriava antes do fechamento.
 
-## A solução
+## A solucao
 
-Unificamos WhatsApp, Instagram, e-mail e loja física em um painel único com o histórico completo de cada cliente.
+Integramos WhatsApp, Instagram, telefone e loja fisica no mesmo fluxo operacional, com distribuicao de atendimento por prioridade.
 
 ## O resultado
 
-4.2× de retorno sobre o investimento em 3 meses, com aumento de 35% na satisfação dos clientes.
+Em 3 meses: 4.2x de retorno sobre investimento, ganho de velocidade de resposta e aumento de conversao comercial.

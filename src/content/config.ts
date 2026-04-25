@@ -8,6 +8,7 @@ const servicos = defineCollection({
     badge: z.string(),
     icon: z.string(),
     order: z.number(),
+    heroImage: z.string().optional(),
   }),
 });
 

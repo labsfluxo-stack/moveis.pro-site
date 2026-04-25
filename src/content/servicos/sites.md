@@ -1,19 +1,19 @@
 ---
-title: Sites de Alto Padrão
-description: Sites rápidos, modernos e otimizados para converter visitantes em compradores reais.
-badge: Web & Design
+title: Landing Pages de Conversao
+description: Paginas focadas em diagnostico e captacao de lead qualificado para loja de moveis.
+badge: Web
 icon: 🌐
 order: 6
 ---
 
 ## Como funciona
 
-Desenvolvemos sites premium para lojas de móveis, com design exclusivo, carregamento ultra-rápido e otimização para aparecer nas primeiras posições do Google.
+Criamos paginas de conversao com oferta clara, prova comercial e chamada para acao objetiva. O foco e gerar conversa com comprador real, nao trafego vazio.
 
-## Benefícios
+## Beneficios
 
-- Design exclusivo e premium
-- Carregamento em menos de 2 segundos
-- SEO técnico avançado
-- Integração com WhatsApp e Instagram
-- Formulários de captação de leads
+- Estrutura pensada para conversao
+- Carregamento rapido em mobile
+- Captacao integrada ao CRM
+- Formulario com qualificacao inicial
+- Mensagem alinhada ao ticket da loja

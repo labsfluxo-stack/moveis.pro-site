@@ -1,19 +1,19 @@
 ---
 title: CRM Automatizado
-description: Gestão de clientes com IA para aumentar conversão e fidelização sem trabalho manual.
-badge: IA & Automação
+description: CRM que nao deixa lead esfriar e organiza follow-up da equipe comercial.
+badge: IA & CRM
 icon: 🤖
 order: 1
 ---
 
 ## Como funciona
 
-O CRM Automatizado da Moveis.pro integra inteligência artificial diretamente no seu processo de gestão de clientes. Cada lead que chega ao seu negócio é automaticamente classificado, pontuado e direcionado para o vendedor certo.
+Cada lead que entra na sua operacao e registrado, classificado e acompanhado por etapas claras. O CRM mostra quem deve ser acionado agora, quem esfriou e onde a venda travou.
 
-## Benefícios
+## Beneficios
 
-- Nunca perca um follow-up com clientes
-- Histórico completo de cada interação
-- Automação de e-mails e mensagens de WhatsApp
-- Score de probabilidade de compra por cliente
-- Relatórios de conversão em tempo real
+- Follow-up com rotina e prioridade
+- Historico completo de cada contato
+- Alertas de atraso por vendedor
+- Cadencia automatica por etapa de venda
+- Visao real de conversao por fonte

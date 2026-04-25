@@ -1,39 +1,104 @@
 ---
 // src/components/ServiceRow.astro
 export interface Props {
-  number: string;   // ex: "01"
+  number: string;
   name: string;
   description: string;
-  badge: string;    // ex: "IA & Automação"
+  badge: string;
   href: string;
 }
+
 const { number, name, description, badge, href } = Astro.props;
 ---
 
-<a
-  href={href}
-  class="service-row-grid grid gap-7 py-8 no-underline group transition-all duration-200"
-  style="grid-template-columns: 72px 1fr 1.1fr 110px; align-items: center; border-bottom: 1px solid var(--border);"
->
-  <span
-    class="font-display font-bold text-xs tracking-wider"
-    style="color: var(--brown); letter-spacing: 1px;"
-  >
-    {number}
-  </span>
-  <span
-    class="font-display font-black text-white transition-colors group-hover:opacity-80"
-    style="font-size: 19px; letter-spacing: -0.5px;"
-  >
-    {name}
-  </span>
-  <span class="service-row-desc text-sm font-light leading-snug" style="color: var(--muted);">
-    {description}
-  </span>
-  <span
-    class="service-row-badge text-xs font-medium text-center px-3 py-1.5 rounded-full whitespace-nowrap"
-    style="color: var(--muted); background: rgba(255,255,255,0.04); letter-spacing: 0.5px;"
-  >
-    {badge}
-  </span>
+<a href={href} class="service-row-grid row">
+  <span class="number">{number}</span>
+  <span class="title">{name}</span>
+  <span class="service-row-desc desc">{description}</span>
+  <span class="service-row-badge badge">{badge}</span>
+  <span class="arrow" aria-hidden="true">-></span>
 </a>
+
+<style>
+  .row {
+    display: grid;
+    grid-template-columns: 66px 1fr 1.1fr 150px 30px;
+    gap: 18px;
+    align-items: center;
+    border: 1px solid transparent;
+    border-bottom: 1px solid var(--line);
+    text-decoration: none;
+    padding: 22px 14px;
+    margin-left: -14px;
+    margin-right: -14px;
+    border-radius: 14px;
+  }
+
+  .number {
+    color: var(--terra);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .title {
+    color: var(--cream);
+    font-family: "Satoshi", "Inter", sans-serif;
+    font-size: 23px;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+  }
+
+  .desc {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.52;
+  }
+
+  .badge {
+    color: var(--text-dim);
+    background: rgba(247, 240, 232, 0.05);
+    border: 1px solid rgba(247, 240, 232, 0.16);
+    border-radius: 999px;
+    text-align: center;
+    padding: 8px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .arrow {
+    color: var(--terra);
+    opacity: 0;
+    transform: translateX(-6px);
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  .row:hover {
+    border-color: rgba(247, 240, 232, 0.16);
+    background: rgba(247, 240, 232, 0.015);
+  }
+
+  .row:hover .title {
+    color: #fffaf4;
+  }
+
+  .row:hover .arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  @media (max-width: 1024px) {
+    .row {
+      grid-template-columns: 54px 1fr 1fr 130px 24px;
+    }
+    .title {
+      font-size: 20px;
+    }
+  }
+</style>

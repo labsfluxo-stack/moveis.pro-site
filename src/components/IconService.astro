@@ -1,0 +1,94 @@
+---
+export interface Props {
+  slug: string;
+  size?: number;
+}
+const { slug, size = 36 } = Astro.props;
+const gradId = `gold-${slug}`;
+
+const paths: Record<string, string> = {
+  /* Tráfego com IA — curva de crescimento + alvo */
+  'trafego-com-ia':
+    'M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941',
+
+  /* CRM Automatizado — funil de leads */
+  'crm-automatizado':
+    'M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 0 1-.659 1.591l-5.432 5.432a2.25 2.25 0 0 0-.659 1.591v2.927a2.25 2.25 0 0 1-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 0 0-.659-1.591L3.659 7.409A2.25 2.25 0 0 1 3 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0 1 12 3Z',
+
+  /* Agente de IA — chip de processamento */
+  'agente-ia':
+    'M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 0 0 2.25-2.25V6.75a2.25 2.25 0 0 0-2.25-2.25H6.75A2.25 2.25 0 0 0 4.5 6.75v10.5a2.25 2.25 0 0 0 2.25 2.25Zm.75-12h9v9h-9v-9Z',
+
+  /* Omnichannel — ondas de sinal / canais convergentes */
+  'omnichannel':
+    'M9.348 14.651a3.75 3.75 0 0 1 0-5.303m5.304-.001a3.75 3.75 0 0 1 0 5.304m-7.425 2.122a6.75 6.75 0 0 1 0-9.546m9.546.001a6.75 6.75 0 0 1 0 9.546M5.106 18.894c-3.808-3.808-3.808-9.98 0-13.789m13.788 0c3.808 3.808 3.808 9.981 0 13.79M12 12h.008v.007H12V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z',
+
+  /* Métricas em Tempo Real — apresentação com gráfico de barras */
+  'metricas':
+    'M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6',
+
+  /* Sites que Convertem — monitor / conversão */
+  'sites':
+    'M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0H3',
+
+  /* Soluções Comerciais — lâmpada de estratégia */
+  'solucoes-comerciais':
+    'M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18',
+
+  /* Visualização 3D / RA — cubo isométrico */
+  'visualizacao-3d':
+    'M21 7.5l-9-5.25L3 7.5m18 0-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9',
+};
+
+const d = paths[slug] ?? paths['sites'];
+---
+
+<span class="icon-wrap">
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke={`url(#${gradId})`}
+    stroke-width="1.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <defs>
+      <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%"   stop-color="#f7e98e"/>
+        <stop offset="28%"  stop-color="#d4a843"/>
+        <stop offset="55%"  stop-color="#8b6508"/>
+        <stop offset="78%"  stop-color="#c99a2e"/>
+        <stop offset="100%" stop-color="#f0d060"/>
+      </linearGradient>
+    </defs>
+    <path d={d} />
+  </svg>
+</span>
+
+<style>
+  .icon-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .icon-wrap svg {
+    filter:
+      drop-shadow(0 1px 0px rgba(247, 233, 142, 0.6))
+      drop-shadow(0 0 6px rgba(212, 168, 67, 0.5))
+      drop-shadow(0 0 16px rgba(212, 168, 67, 0.2));
+    transition: filter 0.3s;
+  }
+
+
+  .group:hover .icon-wrap svg {
+    filter:
+      drop-shadow(0 1px 0px rgba(247, 233, 142, 0.9))
+      drop-shadow(0 0 8px rgba(212, 168, 67, 0.75))
+      drop-shadow(0 0 22px rgba(212, 168, 67, 0.4));
+  }
+</style>

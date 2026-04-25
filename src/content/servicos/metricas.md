@@ -1,19 +1,19 @@
 ---
-title: Métricas em Tempo Real
-description: Dashboard com todos os indicadores da sua loja atualizados ao vivo.
-badge: Analytics
+title: Metricas em Tempo Real
+description: Painel comercial com lead, venda, custo e retorno atualizados em tempo real.
+badge: Gestao
 icon: ⚡
 order: 5
 ---
 
 ## Como funciona
 
-Um painel completo com todos os KPIs do seu negócio — vendas, leads, atendimentos, tráfego e ROI — acessível do celular ou computador, atualizado em tempo real.
+Um painel unico mostra indicadores de captacao, atendimento e fechamento. Dono e gerente acompanham o que esta acontecendo sem depender de relatorio manual.
 
-## Benefícios
+## Beneficios
 
-- Visão completa do negócio em uma tela
-- Alertas automáticos para metas e anomalias
-- Comparativo por período e por loja
-- Exportação de relatórios em PDF
-- Acesso via app ou navegador
+- Visao de ponta a ponta da operacao
+- Custo por lead e retorno por campanha
+- Gargalos por etapa comercial
+- Comparativo por periodo
+- Relatorio rapido para reuniao semanal

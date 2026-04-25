@@ -1,67 +1,128 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Nav from '../components/Nav.astro';
-import Footer from '../components/Footer.astro';
-import NumbersBar from '../components/NumbersBar.astro';
-import CTABox from '../components/CTABox.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import NumbersBar from "../components/NumbersBar.astro";
+import CTABox from "../components/CTABox.astro";
 
-const diferenciais = [
-  { icon: '🎯', title: 'Especialistas em móveis', desc: 'Somos a única agência 100% focada no setor moveleiro. Entendemos seu cliente, seu ciclo de vendas e o que realmente converte.' },
-  { icon: '🤖', title: 'Tecnologia proprietária', desc: 'Desenvolvemos nossas próprias ferramentas de IA, CRM e 3D — não revendemos software genérico.' },
-  { icon: '📍', title: 'Foco no Nordeste', desc: 'Atuamos em Campina Grande, Caruaru, João Pessoa e Recife com conhecimento profundo do mercado local.' },
-  { icon: '📊', title: 'ROI garantido', desc: 'Trabalhamos com métricas claras e acompanhamento semanal. Você sabe exatamente o retorno do investimento.' },
+const pilares = [
+  {
+    icon: "01",
+    title: "Especialização",
+    desc: "Só loja de móveis médio-alto ticket. Fabricante e revendedor. A gente vive nesse mercado — sabe o que converte e o que é papo.",
+  },
+  {
+    icon: "02",
+    title: "Sistema",
+    desc: "Tráfego + IA + CRM em pacote fechado. Sem contratar 4 fornecedores que não conversam entre si.",
+  },
+  {
+    icon: "03",
+    title: "Resultado",
+    desc: "Venda e faturamento — métrica de negócio. Não seguidor, não clique, não métrica de vaidade.",
+  },
+  {
+    icon: "04",
+    title: "Velocidade",
+    desc: "Setup em 14 dias. Showroom começa a encher em 45. Sem enrolação nem reunião eterna.",
+  },
 ];
 
 const numbers = [
-  { value: '+200', label: 'Lojas atendidas no Brasil' },
-  { value: '3.8×', label: 'ROI médio em tráfego' },
-  { value: '98%', label: 'Satisfação dos clientes' },
-  { value: '4', label: 'Cidades no Nordeste' },
+  { value: "14 dias", label: "Pro sistema completo estar rodando" },
+  { value: "45 dias", label: "Pro showroom encher de cliente qualificado" },
+  { value: "30 leads", label: "Mínimo garantido no primeiro ciclo" },
+  { value: "CPL ≤ R$100", label: "Custo máximo por lead qualificado" },
 ];
 ---
 
-<BaseLayout title="Sobre" description="Conheça a Moveis.pro — especialistas em tecnologia para o mercado moveleiro do Nordeste.">
+<BaseLayout
+  title="Sobre — Moveis.pro"
+  description="A única empresa de marketing no Brasil que trabalha só com loja de móveis médio-alto ticket. Tráfego + IA + CRM num sistema único."
+>
   <Nav />
   <main style="padding-top: 64px;">
-
-    <section style="padding: 100px 56px 80px;">
+    <section style="padding: 100px 56px 72px;">
       <div class="inline-flex items-center gap-2.5 mb-8" style="color: var(--gold);">
         <span class="block w-7 h-px" style="background: var(--gold);"></span>
-        <span class="text-xs font-medium tracking-widest uppercase" style="letter-spacing: 2px;">Sobre nós</span>
+        <span class="text-xs font-medium tracking-widest uppercase" style="letter-spacing: 2px;">
+          Quem somos
+        </span>
       </div>
-      <h1 class="font-display font-black text-white mb-8" style="font-size: clamp(44px, 5.5vw, 72px); letter-spacing: -2.5px; line-height: 1.0; max-width: 700px;">
-        A única solução 360°<br />para móveis no<br /><em class="not-italic" style="color: var(--gold);">Nordeste.</em>
+
+      <h1
+        class="font-display font-black text-white mb-7"
+        style="font-size: clamp(44px, 5.4vw, 74px); letter-spacing: -2.4px; line-height: 0.96; max-width: 920px;"
+      >
+        A única empresa que trabalha<br />
+        <em class="not-italic" style="color: var(--gold);">só com loja de móveis.</em>
       </h1>
-      <p class="font-light max-w-xl" style="font-size: 17px; color: var(--dim); line-height: 1.75;">
-        A Moveis.pro nasceu de uma constatação simples: o mercado moveleiro do Nordeste tem potencial enorme, mas carece de tecnologia especializada. Agências genéricas não entendem o ciclo de venda de móveis. Nós entendemos.
+
+      <p class="font-light max-w-2xl" style="font-size: 17px; color: var(--dim); line-height: 1.75;">
+        A Moveis.pro nasceu com uma obsessão: entregar tráfego, IA e atendimento que funcionam
+        <b style="color: var(--cream); font-weight: 600;">pra loja de móveis</b>. Enquanto agência
+        genérica trata lojista de médio-alto ticket como se fosse Magazine Luiza, a gente fala a
+        linguagem do seu showroom. Resultado: campanha mais barata, cliente certo, vendedor que
+        fecha.
       </p>
     </section>
 
-    <div style="padding: 0 56px 80px;">
+    <div style="padding: 0 56px 76px;">
       <NumbersBar items={numbers} />
     </div>
 
-    <section style="padding: 0 56px 100px;">
+    <section style="padding: 0 56px 90px;">
       <div class="diferenciais-grid grid gap-4" style="grid-template-columns: repeat(2, 1fr);">
-        {diferenciais.map((d) => (
-          <div class="rounded-[18px] p-10" style="background: var(--dark-3); border: 1px solid var(--border);">
-            <div class="text-3xl mb-6">{d.icon}</div>
-            <h3 class="font-display font-black text-white mb-3" style="font-size: 20px; letter-spacing: -0.5px;">{d.title}</h3>
-            <p class="text-sm font-light leading-relaxed" style="color: var(--muted);">{d.desc}</p>
-          </div>
-        ))}
+        {
+          pilares.map((item) => (
+            <article class="rounded-[18px] p-9" style="background: var(--dark-3); border: 1px solid var(--border);">
+              <div
+                class="inline-flex items-center justify-center mb-5 rounded-full"
+                style="width: 34px; height: 34px; border: 1px solid rgba(247,240,232,0.26); color: var(--gold); font-size: 11px; font-weight: 700; letter-spacing: 0.08em;"
+              >
+                {item.icon}
+              </div>
+              <h2 class="font-display font-black text-white mb-3" style="font-size: 24px; letter-spacing: -0.8px;">
+                {item.title}
+              </h2>
+              <p class="text-sm font-light leading-relaxed" style="color: var(--muted);">
+                {item.desc}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section style="padding: 0 56px 102px;">
+      <div
+        class="rounded-2xl p-8 md:p-10"
+        style="border: 1px solid var(--border); background: linear-gradient(135deg, rgba(184,92,58,0.16), rgba(247,240,232,0.02));"
+      >
+        <p
+          class="text-xs uppercase tracking-widest mb-4"
+          style="color: var(--gold); letter-spacing: 0.15em; font-weight: 700;"
+        >
+          Garantia comercial
+        </p>
+        <h3 class="font-display font-black text-white mb-4" style="font-size: clamp(26px, 3.2vw, 40px); letter-spacing: -0.04em; line-height: 1.05;">
+          Em 45 dias, mínimo de 30 leads qualificados com CPL ≤ R$100.
+        </h3>
+        <p class="text-sm font-light leading-relaxed" style="color: var(--dim); max-width: 800px;">
+          Se a gente não entregar, o segundo mês é por nossa conta. É assim porque a gente acredita no
+          sistema — e se não vender, a gente não dorme.
+        </p>
       </div>
     </section>
 
     <div style="padding: 0 56px 100px;">
       <CTABox
-        title={"Quer conhecer\nmelhor o nosso\ntrabalho?"}
-        subtitle="Agende uma conversa e veja como transformamos lojas de móveis no Nordeste."
-        buttonLabel="Falar com especialista →"
+        title={"Topa uma conversa\nde 20 minutos?"}
+        subtitle="Diagnóstico gratuito. A gente mapeia o gargalo da sua loja — captação, atendimento ou follow-up — e te entrega um plano prático, pago ou não."
+        buttonLabel="Diagnóstico gratuito →"
         buttonHref="/contato"
       />
     </div>
-
   </main>
   <Footer />
 </BaseLayout>
