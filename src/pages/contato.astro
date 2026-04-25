@@ -2,9 +2,19 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
+import Marquee from "../components/Marquee.astro";
 
 const b = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const enviado = Astro.url.searchParams.get("enviado") === "1";
+
+const marqueeItems = [
+  "Diagnóstico honesto da operação",
+  "Onde está vazando lead",
+  "Prioridade pros próximos 14 dias",
+  "Plano prático pra meta em 45 dias",
+  "Mínimo 30 leads qualificados",
+  "Setup em 14 dias",
+];
 ---
 
 <BaseLayout
@@ -74,7 +84,12 @@ const enviado = Astro.url.searchParams.get("enviado") === "1";
           </div>
         </section>
 
-        <!-- ② GRID: cards + formulário -->
+        <!-- ② MARQUEE -->
+        <div style="position: relative; z-index: 1;">
+          <Marquee items={marqueeItems} />
+        </div>
+
+        <!-- ③ GRID: cards + formulário -->
         <section class="contato-grid">
           <aside class="left">
             <div class="card">
@@ -200,9 +215,9 @@ const enviado = Astro.url.searchParams.get("enviado") === "1";
   .hero {
     position: relative;
     width: 100%;
-    height: 78vh;
-    min-height: 500px;
-    max-height: 820px;
+    height: 92vh;
+    min-height: 650px;
+    max-height: 900px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -251,15 +266,15 @@ const enviado = Astro.url.searchParams.get("enviado") === "1";
     background: radial-gradient(ellipse 110% 90% at 30% 55%, transparent 0%, rgba(7,7,7,0.45) 65%, rgba(7,7,7,0.88) 100%);
   }
 
-  /* gradiente: escurece esquerda pra texto + fade natural na base */
+  /* gradiente: mesmo padrão da home */
   .hero-gradient {
     position: absolute;
     inset: 0;
     z-index: 3;
     pointer-events: none;
     background:
-      linear-gradient(to right, rgba(7,7,7,0.92) 0%, rgba(7,7,7,0.65) 30%, rgba(7,7,7,0.2) 60%, transparent 85%),
-      linear-gradient(to bottom, transparent 20%, rgba(7,7,7,0.35) 52%, rgba(7,7,7,0.78) 80%, rgba(7,7,7,0.96) 100%);
+      linear-gradient(to right, rgba(7,7,7,0.92) 0%, rgba(7,7,7,0.75) 28%, rgba(7,7,7,0.4) 52%, transparent 78%),
+      linear-gradient(to bottom, transparent 0%, rgba(7,7,7,0.4) 40%, rgba(7,7,7,0.85) 78%, var(--dark) 100%);
   }
 
   /* conteúdo sobreposto */
@@ -314,13 +329,8 @@ const enviado = Astro.url.searchParams.get("enviado") === "1";
   }
 
   /* ── GRID: cards + formulário ── */
-  /* sobe 80px sobre a hero com fundo sólido — elimina a linha de transição */
   .contato-grid {
-    position: relative;
-    z-index: 10;
-    margin-top: -80px;
-    padding: 80px 56px 100px;
-    background: var(--ink);
+    padding: 56px 56px 100px;
     display: grid;
     grid-template-columns: 1fr 1.1fr;
     gap: 48px;
@@ -568,14 +578,14 @@ const enviado = Astro.url.searchParams.get("enviado") === "1";
   /* ── MOBILE ── */
   @media (max-width: 768px) {
     .hero {
-      height: 72svh;
-      min-height: 480px;
+      height: 100svh;
+      min-height: 620px;
       max-height: none;
     }
 
     .hero-gradient {
       background:
-        linear-gradient(to bottom, rgba(7,7,7,0.18) 0%, rgba(7,7,7,0.55) 45%, rgba(7,7,7,0.9) 75%, var(--dark) 100%);
+        linear-gradient(to bottom, rgba(7,7,7,0.2) 0%, rgba(7,7,7,0.55) 45%, rgba(7,7,7,0.9) 75%, var(--dark) 100%);
     }
 
     .hero-inner {
@@ -596,7 +606,7 @@ const enviado = Astro.url.searchParams.get("enviado") === "1";
     .contato-grid {
       grid-template-columns: 1fr;
       gap: 24px;
-      padding: 80px 16px 80px;
+      padding: 40px 16px 80px;
     }
 
     .row,
