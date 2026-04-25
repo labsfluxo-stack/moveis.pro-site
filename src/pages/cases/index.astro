@@ -231,7 +231,7 @@ const rest = cases.filter((c) => !c.data.featured);
 
       <div class="cases-grid" style="display: grid; grid-template-columns: 1.5fr 1fr; grid-template-rows: auto auto; gap: 14px;">
         {featured && (
-          <a href={`${b}cases/${featured.slug}`} class="no-underline" style="grid-row: span 2;">
+          <a href={`${b}cases/${featured.slug}`} class="no-underline case-featured-link" style="grid-row: span 2;">
             <CaseCard
               tag={featured.data.service}
               title={`${featured.data.client} — ${featured.data.city}`}
@@ -258,7 +258,7 @@ const rest = cases.filter((c) => !c.data.featured);
     </section>
 
     <!-- ④ CTA -->
-    <div style="padding: 0 56px 100px;">
+    <div class="cta-section" style="padding: 0 56px 100px;">
       <CTABox
         title={"Sua loja é\na próxima?"}
         subtitle="Conversa de 20 minutos. Plano prático em 14 dias. Showroom cheio em 45. Se não funcionar, o segundo mês é por nossa conta."
@@ -390,19 +390,30 @@ const rest = cases.filter((c) => !c.data.featured);
   }
 
   @media (max-width: 768px) {
-    .page-hero { grid-template-columns: 1fr; }
-    .hero-slide-wrap { display: none; }
-    .hero-content { padding: 72px 24px 52px; }
+    .page-hero {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 260px;
+    }
+    .hero-slide-wrap {
+      display: block;
+      height: 260px;
+      min-height: 260px;
+    }
+    .hero-slide-fade { display: none; }
+    .hero-content { padding: 72px 24px 32px; }
     .hero-stats { flex-wrap: wrap; width: 100%; }
-    .hero-stat { flex: 1; min-width: 120px; }
+    .hero-stat { flex: 1; min-width: 100px; }
     .hero-stat-div { display: none; }
-    .cases-section { padding: 60px 24px 80px; }
+    .cases-section { padding: 60px 16px 80px; }
     .cases-section-header {
       flex-direction: column;
       align-items: flex-start;
       gap: 16px;
     }
     .cases-section-header p { text-align: left; max-width: 100%; }
+    .cases-grid { grid-template-columns: 1fr !important; }
+    .case-featured-link { grid-row: auto !important; }
+    .cta-section { padding: 0 16px 60px !important; }
   }
 
   /* ── ② TRANSFORMAÇÃO SECTION ── */

@@ -435,26 +435,26 @@ const faqItems = [
 
   .hero-video {
     z-index: 1;
-    opacity: 1;
+    opacity: 0;
     transition: opacity 1.2s ease;
   }
 
   .hero-poster {
     z-index: 0;
-    opacity: 0;
-    transition: opacity 1.2s ease;
+    opacity: 1;
     transform: scale(1.02);
     animation: hero-poster-zoom 22s ease-in-out infinite alternate;
   }
 
-  /* estado quando o vídeo termina */
+  /* video is playing: fade it in over the poster */
+  .hero-cinematic.playing .hero-video {
+    opacity: 1;
+  }
+
+  /* video ended: fade out video, poster already visible underneath */
   .hero-cinematic.finished .hero-video {
     opacity: 0;
     pointer-events: none;
-  }
-  .hero-cinematic.finished .hero-poster {
-    opacity: 1;
-    z-index: 1;
   }
 
   @keyframes hero-poster-zoom {
@@ -906,31 +906,20 @@ const faqItems = [
 </style>
 
 <script>
-  // Hero: quando o vídeo acaba, faz crossfade suave pra imagem final
+  // Hero: poster is always visible (opacity 1). Video fades in when playing, out when done.
   const heroSection = document.querySelector('.hero-cinematic') as HTMLElement | null;
   const heroVideo = document.getElementById('hero-video') as HTMLVideoElement | null;
 
   if (heroSection && heroVideo) {
-    const showPoster = () => heroSection.classList.add('finished');
-
-    heroVideo.addEventListener('ended', showPoster);
-
-    // fallback: se o vídeo falhar ou não puder tocar, mostra poster
-    heroVideo.addEventListener('error', showPoster);
-    heroVideo.addEventListener('stalled', () => {
-      // se travar por mais de 4s, mostra a imagem
-      setTimeout(() => {
-        if (heroVideo.readyState < 2) showPoster();
-      }, 4000);
+    heroVideo.addEventListener('playing', () => {
+      heroSection.classList.add('playing');
+      heroSection.classList.remove('finished');
     });
-
-    // tenta dar play (alguns navegadores exigem interação)
-    const tryPlay = () => {
-      heroVideo.play().catch(() => {
-        // autoplay bloqueado — já vai pra imagem final
-        showPoster();
-      });
-    };
-    tryPlay();
+    heroVideo.addEventListener('ended', () => {
+      heroSection.classList.remove('playing');
+      heroSection.classList.add('finished');
+    });
+    // autoplay blocked or error: poster stays visible, nothing to do
+    heroVideo.play().catch(() => {});
   }
 </script>
