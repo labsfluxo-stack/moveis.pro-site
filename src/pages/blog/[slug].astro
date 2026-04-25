@@ -19,7 +19,7 @@ const { Content } = await post.render();
   <main style="padding-top: 64px;">
     <article style="padding: 100px 56px 80px; max-width: 760px;">
       <a
-        href="/blog"
+        href={`${import.meta.env.BASE_URL}blog`}
         class="inline-flex items-center gap-2 text-sm no-underline mb-12 transition-colors hover:text-white"
         style="color: var(--muted);"
       >

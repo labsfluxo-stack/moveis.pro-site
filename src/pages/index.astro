@@ -84,30 +84,32 @@ const numbers = [
   { value: "1 stack", label: "Tráfego + IA + CRM no mesmo fluxo" },
 ];
 
+const b = import.meta.env.BASE_URL;
+
 const pilares = [
   {
     num: "01",
     title: "Especialização",
     desc: "Só loja de móveis médio-alto ticket. Fabricante e revendedor. Ponto.",
-    img: "/images/pilares/especializacao.png",
+    img: `${b}images/pilares/especializacao.png`,
   },
   {
     num: "02",
     title: "Sistema",
     desc: "Tráfego + IA + CRM em pacote fechado. Sem contratar 4 fornecedores diferentes.",
-    img: "/images/pilares/sistema.png",
+    img: `${b}images/pilares/sistema.png`,
   },
   {
     num: "03",
     title: "Resultado",
     desc: "Métrica de negócio — venda e faturamento. Não seguidor e clique.",
-    img: "/images/pilares/resultado.png",
+    img: `${b}images/pilares/resultado.png`,
   },
   {
     num: "04",
     title: "Velocidade",
     desc: "Setup em 14 dias. Resultado em 45. Sem enrolação.",
-    img: "/images/pilares/velocidade.png",
+    img: `${b}images/pilares/velocidade.png`,
   },
 ];
 
@@ -194,16 +196,16 @@ const faqItems = [
         muted
         playsinline
         preload="auto"
-        poster="/images/hero.png"
+        poster={`${b}images/hero.png`}
       >
-        <source src="/videos/hero.mp4" type="video/mp4" />
+        <source src={`${b}videos/hero.mp4`} type="video/mp4" />
       </video>
 
       <!-- IMAGEM final (aparece quando o vídeo termina) -->
       <img
         id="hero-poster"
         class="hero-media hero-poster"
-        src="/images/hero.png"
+        src={`${b}images/hero.png`}
         alt="Showroom Moveis.pro"
       />
 
@@ -234,8 +236,8 @@ const faqItems = [
         </div>
 
         <div class="hero-ctas">
-          <a href="/contato" class="hero-cta-primary">Diagnóstico gratuito →</a>
-          <a href="/servicos" class="hero-cta-secondary">Ver o sistema</a>
+          <a href={`${b}contato`} class="hero-cta-primary">Diagnóstico gratuito →</a>
+          <a href={`${b}servicos`} class="hero-cta-secondary">Ver o sistema</a>
         </div>
 
         <div class="hero-kpis">

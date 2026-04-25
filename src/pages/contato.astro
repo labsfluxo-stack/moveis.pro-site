@@ -18,7 +18,7 @@ const enviado = Astro.url.searchParams.get("enviado") === "1";
           <span class="success-icon">OK</span>
           <h1>Recebido.</h1>
           <p>A gente retorna em até 24h úteis pra agendar o diagnóstico. Se der vontade de adiantar, chama no WhatsApp.</p>
-          <a href="/">← Voltar pra home</a>
+          <a href={import.meta.env.BASE_URL}>← Voltar pra home</a>
         </div>
       </section>
     ) : (

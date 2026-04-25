@@ -22,7 +22,7 @@ const { Content } = await caseEntry.render();
   <Nav />
   <main style="padding-top: 64px;">
     <section style="padding: 100px 56px 80px; max-width: 860px;">
-      <a href="/cases" class="inline-flex items-center gap-2 text-sm no-underline mb-12 transition-colors hover:text-white" style="color: var(--muted);">
+      <a href={`${import.meta.env.BASE_URL}cases`} class="inline-flex items-center gap-2 text-sm no-underline mb-12 transition-colors hover:text-white" style="color: var(--muted);">
         ← Todos os cases
       </a>
       <div class="text-xs font-semibold tracking-widest uppercase mb-4" style="color: var(--gold); letter-spacing: 1.5px;">{caseEntry.data.service}</div>

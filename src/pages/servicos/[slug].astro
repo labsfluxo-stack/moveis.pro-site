@@ -27,7 +27,7 @@ const { Content } = await service.render();
       <section class="servico-hero-full">
         <!-- imagem de fundo full-bleed -->
         <img
-          src={service.data.heroImage}
+          src={`${import.meta.env.BASE_URL}${service.data.heroImage.replace(/^\//, '')}`}
           alt={service.data.title}
           class="hero-bg-img"
           loading="eager"
@@ -40,7 +40,7 @@ const { Content } = await service.render();
 
         <!-- conteúdo sobreposto -->
         <div class="hero-content-full">
-          <a href="/servicos" class="back-link">← Todos os serviços</a>
+          <a href={`${import.meta.env.BASE_URL}servicos`} class="back-link">← Todos os serviços</a>
 
           <div class="hero-meta">
             <span class="hero-badge-full">{service.data.badge}</span>
@@ -60,7 +60,7 @@ const { Content } = await service.render();
     ) : (
       <section class="servico-hero">
         <div class="servico-hero-inner">
-          <a href="/servicos" class="back-link">← Todos os serviços</a>
+          <a href={`${import.meta.env.BASE_URL}servicos`} class="back-link">← Todos os serviços</a>
           <div class="hero-left">
             <div class="hero-icon"><IconService slug={service.slug} size={30} /></div>
             <div class="hero-badge">{service.data.badge}</div>
