@@ -251,15 +251,15 @@ const enviado = Astro.url.searchParams.get("enviado") === "1";
     background: radial-gradient(ellipse 110% 90% at 30% 55%, transparent 0%, rgba(7,7,7,0.45) 65%, rgba(7,7,7,0.88) 100%);
   }
 
-  /* gradiente: escurece esquerda pra texto + base pra transição suave */
+  /* gradiente: escurece esquerda pra texto + fade forte na base */
   .hero-gradient {
     position: absolute;
     inset: 0;
     z-index: 3;
     pointer-events: none;
     background:
-      linear-gradient(to right, rgba(7,7,7,0.92) 0%, rgba(7,7,7,0.65) 30%, rgba(7,7,7,0.2) 60%, transparent 85%),
-      linear-gradient(to bottom, transparent 30%, rgba(7,7,7,0.55) 70%, var(--dark) 100%);
+      linear-gradient(to right, rgba(7,7,7,0.95) 0%, rgba(7,7,7,0.72) 30%, rgba(7,7,7,0.42) 60%, rgba(7,7,7,0.25) 100%),
+      linear-gradient(to bottom, transparent 10%, rgba(7,7,7,0.45) 48%, rgba(7,7,7,0.9) 76%, var(--dark) 92%, var(--dark) 100%);
   }
 
   /* conteúdo sobreposto */
@@ -315,11 +315,25 @@ const enviado = Astro.url.searchParams.get("enviado") === "1";
 
   /* ── GRID: cards + formulário ── */
   .contato-grid {
+    position: relative;
     padding: 56px 56px 100px;
     display: grid;
     grid-template-columns: 1fr 1.1fr;
     gap: 48px;
     align-items: start;
+  }
+
+  /* fade que "puxa" a hero pra dentro da grid, eliminando a linha dura */
+  .contato-grid::before {
+    content: "";
+    position: absolute;
+    top: -80px;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent 0%, var(--ink) 100%);
+    pointer-events: none;
+    z-index: 0;
   }
 
   .left {
@@ -463,6 +477,17 @@ const enviado = Astro.url.searchParams.get("enviado") === "1";
     font-family: "Inter", sans-serif;
     font-size: 14px;
     padding: 12px;
+  }
+
+  .form select option {
+    background-color: #1f1713;
+    color: #f7f0e8;
+  }
+
+  .form select option:checked,
+  .form select option:hover {
+    background-color: #2e1e16;
+    color: #f7f0e8;
   }
 
   .form textarea {
