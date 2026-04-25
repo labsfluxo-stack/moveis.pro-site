@@ -218,7 +218,7 @@ const faqItems = [
       <div class="hero-content" data-animate>
         <h1 class="hero-title">
           Marketing pra móvel<br/>
-          que vende <em>pelo valor</em><br/>
+          que vende <em>pelo <span class="hero-valor">valor</span></em><br/>
           — não pelo preço.
         </h1>
 
@@ -536,6 +536,27 @@ const faqItems = [
   .hero-title em {
     color: var(--terra);
     font-style: normal;
+  }
+
+  .hero-valor {
+    font-weight: 200;
+    letter-spacing: 0.2em;
+    background: linear-gradient(
+      160deg,
+      #f7e98e 0%,
+      #e8c76a 20%,
+      #b8813a 45%,
+      #d4a843 65%,
+      #f0d060 85%,
+      #c99a2e 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter:
+      drop-shadow(0 0 8px rgba(212, 168, 67, 0.35))
+      drop-shadow(0 2px 18px rgba(184, 129, 58, 0.22));
+    text-shadow: none;
   }
 
   .hero-text {
