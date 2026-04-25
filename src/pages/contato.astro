@@ -84,8 +84,8 @@ const marqueeItems = [
           </div>
         </section>
 
-        <!-- ② MARQUEE -->
-        <div style="position: relative; z-index: 1;">
+        <!-- ② MARQUEE — sobreposto na base da hero -->
+        <div class="marquee-bridge">
           <Marquee items={marqueeItems} />
         </div>
 
@@ -573,6 +573,13 @@ const marqueeItems = [
     text-transform: uppercase;
     letter-spacing: 0.08em;
     font-weight: 800;
+  }
+
+  /* marquee colado na base da hero via sobreposição */
+  .marquee-bridge {
+    position: relative;
+    z-index: 10;
+    margin-top: -56px;
   }
 
   /* ── MOBILE ── */
