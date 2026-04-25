@@ -26,7 +26,7 @@ const rest = cases.filter((c) => !c.data.featured);
           <span class="block w-7 h-px" style="background: var(--gold);"></span>
           <span class="text-xs font-medium tracking-widest uppercase" style="letter-spacing: 2px;">Resultado de verdade</span>
         </div>
-        <h1 class="font-display font-black text-white mb-5" style="font-size: clamp(40px, 4.5vw, 68px); letter-spacing: -2.5px; line-height: 1.0;">
+        <h1 class="font-display font-black text-white mb-5 cases-hero-title" style="font-size: clamp(40px, 4.5vw, 68px); letter-spacing: -2.5px; line-height: 1.0;">
           Showroom cheio.<br/>Vendedor fechando.
         </h1>
         <p class="font-light" style="font-size: 16px; color: var(--dim); line-height: 1.7; max-width: 440px; margin-bottom: 40px;">
@@ -390,19 +390,52 @@ const rest = cases.filter((c) => !c.data.featured);
   }
 
   @media (max-width: 768px) {
+    /* hero becomes full-bleed background like other hero sections */
     .page-hero {
-      grid-template-columns: 1fr;
-      grid-template-rows: auto 260px;
+      display: block;
+      position: relative;
+      height: 100svh;
+      min-height: 560px;
+      overflow: hidden;
+      border-bottom: none;
     }
+
+    /* slideshow fills entire hero as background */
     .hero-slide-wrap {
       display: block;
-      height: 260px;
-      min-height: 260px;
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      min-height: unset;
     }
-    .hero-slide-fade { display: none; }
-    .hero-content { padding: 72px 24px 32px; }
+
+    /* replace left-edge fade with full vertical gradient */
+    .hero-slide-fade {
+      width: 100%;
+      background: linear-gradient(
+        to bottom,
+        rgba(7,7,7,0.2) 0%,
+        rgba(7,7,7,0.52) 45%,
+        rgba(7,7,7,0.9) 75%,
+        var(--dark) 100%
+      );
+    }
+
+    /* content anchors to bottom, overlaid on slideshow */
+    .hero-content {
+      position: relative;
+      z-index: 5;
+      height: 100%;
+      padding: 0 20px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .cases-hero-title { font-size: clamp(28px, 8vw, 40px) !important; letter-spacing: -1.5px !important; }
     .hero-stats { flex-wrap: wrap; width: 100%; }
-    .hero-stat { flex: 1; min-width: 100px; }
+    .hero-stat { flex: 1; min-width: 90px; padding: 10px 14px; }
+    .hero-stat-num { font-size: 20px !important; }
     .hero-stat-div { display: none; }
     .cases-section { padding: 60px 16px 80px; }
     .cases-section-header {
