@@ -22,7 +22,7 @@ const marqueeItems = [
   description="20 minutos de conversa. A gente mapeia onde sua loja está vazando lead e te entrega um plano prático. Pago ou não."
 >
   <Nav />
-  <main style="padding-top: 64px;">
+  <main>
     {enviado ? (
       <section class="success-wrap">
         <div class="success-card">
@@ -221,7 +221,7 @@ const marqueeItems = [
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-start;
   }
 
   .hero-media {
@@ -266,15 +266,15 @@ const marqueeItems = [
     background: radial-gradient(ellipse 110% 90% at 30% 55%, transparent 0%, rgba(7,7,7,0.45) 65%, rgba(7,7,7,0.88) 100%);
   }
 
-  /* gradiente: mesmo padrão da home */
+  /* gradiente: escurece topo (texto) + lateral esquerda + base suave */
   .hero-gradient {
     position: absolute;
     inset: 0;
     z-index: 3;
     pointer-events: none;
     background:
-      linear-gradient(to right, rgba(7,7,7,0.92) 0%, rgba(7,7,7,0.75) 28%, rgba(7,7,7,0.4) 52%, transparent 78%),
-      linear-gradient(to bottom, transparent 0%, rgba(7,7,7,0.4) 40%, rgba(7,7,7,0.85) 78%, var(--dark) 100%);
+      linear-gradient(to right, rgba(7,7,7,0.94) 0%, rgba(7,7,7,0.72) 30%, rgba(7,7,7,0.28) 58%, transparent 80%),
+      linear-gradient(to bottom, rgba(7,7,7,0.55) 0%, rgba(7,7,7,0.2) 35%, rgba(7,7,7,0.5) 72%, var(--dark) 100%);
   }
 
   /* conteúdo sobreposto */
@@ -283,7 +283,7 @@ const marqueeItems = [
     z-index: 5;
     max-width: 1400px;
     width: 100%;
-    padding: 0 56px 60px;
+    padding: 140px 56px 60px;
   }
 
   .eyebrow {
@@ -581,6 +581,7 @@ const marqueeItems = [
       height: 100svh;
       min-height: 620px;
       max-height: none;
+      justify-content: flex-end;
     }
 
     .hero-gradient {
