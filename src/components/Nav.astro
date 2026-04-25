@@ -353,12 +353,49 @@ const isActive = (href: string) =>
   }
 
 
-  /* ── PORTRAIT MOBILE: esconde desktop, mostra mobile-actions ── */
+  /* ── PORTRAIT MOBILE ── */
   @media (max-width: 767px) and (orientation: portrait) {
     .nav-links      { display: none !important; }
     .nav-actions    { display: none !important; }
     .mobile-actions { display: flex !important; }
-    .mobile-menu    { left: 14px; right: 14px; top: 74px; }
+
+    .site-nav { padding: 10px 10px 0; }
+
+    .nav-inner {
+      padding: 6px 8px;
+      gap: 8px;
+      border-radius: 12px;
+    }
+
+    .brand-icon {
+      width: 26px;
+      height: 26px;
+      font-size: 13px;
+      border-radius: 6px;
+    }
+
+    .brand-text { font-size: 16px; }
+    .brand      { gap: 7px; }
+
+    .mobile-nav-link {
+      font-size: 10px;
+      padding: 5px 8px;
+      letter-spacing: 0.04em;
+    }
+
+    .nav-toggle {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      gap: 4px;
+    }
+
+    .nav-toggle span { width: 14px; }
+
+    .nav-toggle.is-open span:nth-child(1) { transform: translateY(5.4px) rotate(45deg); }
+    .nav-toggle.is-open span:nth-child(3) { transform: translateY(-5.4px) rotate(-45deg); }
+
+    .mobile-menu { left: 10px; right: 10px; top: 68px; }
   }
 
   /* ── LANDSCAPE + DESKTOP: mostra tudo, esconde mobile-actions ── */
