@@ -3,6 +3,7 @@ import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://moveis.pro',
+  site: 'https://labsfluxo-stack.github.io',
+  base: '/moveis.pro-site',
   integrations: [tailwind(), sitemap()],
 });
