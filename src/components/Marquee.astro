@@ -61,11 +61,21 @@ const doubled = [...items, ...items];
   }
 
   @keyframes marquee-scroll {
-    from {
-      transform: translateX(0);
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  @media (max-width: 768px) {
+    .marquee-shell {
+      padding: 12px 0;
     }
-    to {
-      transform: translateX(-50%);
+    .marquee-track {
+      gap: 24px;
+      animation-duration: 18s;
+    }
+    .marquee-item {
+      gap: 10px;
+      font-size: 10px;
     }
   }
 </style>
