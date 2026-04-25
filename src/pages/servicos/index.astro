@@ -32,8 +32,8 @@ const services = (await getCollection("servicos")).sort(
           </span>
         </div>
         <h1
-          class="font-display font-black text-white mb-6"
-          style="font-size: clamp(44px, 5.4vw, 74px); letter-spacing: -2.4px; line-height: 0.96;"
+          class="font-display font-black text-white mb-6 servicos-hero-title"
+          style="font-size: clamp(32px, 5.4vw, 74px); letter-spacing: -2.4px; line-height: 0.96;"
         >
           Tráfego + IA + CRM<br />
           num <em class="not-italic" style="color: var(--gold);">pacote só.</em>
@@ -47,10 +47,7 @@ const services = (await getCollection("servicos")).sort(
     </section>
 
     <section style="padding: 0 0 34px;">
-      <div
-        class="rounded-none"
-        style="border: 1px solid var(--border); background: rgba(247,240,232,0.02); padding: 28px 40px; display: flex; align-items: center; gap: 48px;"
-      >
+      <div class="como-funciona-card">
         <p class="text-xs uppercase tracking-widest shrink-0" style="letter-spacing: 0.15em; color: var(--gold); font-weight: 700;">
           Como funciona
         </p>
@@ -65,7 +62,7 @@ const services = (await getCollection("servicos")).sort(
       </div>
     </section>
 
-    <section style="padding: 0 56px 100px;">
+    <section class="cards-section">
       <div class="services-cards-grid grid gap-4" style="grid-template-columns: repeat(2, 1fr);">
         {
           services.map((service) => (
@@ -94,7 +91,7 @@ const services = (await getCollection("servicos")).sort(
       </div>
     </section>
 
-    <div style="padding: 0 56px 100px;">
+    <div class="cta-section">
       <CTABox
         title={"Pronto pra montar\nseu plano de 45 dias?"}
         subtitle="20 minutos de conversa. A gente sai com prioridade, canais e rotina comercial definidos pra sua loja. Sem proposta genérica."
@@ -165,8 +162,20 @@ const services = (await getCollection("servicos")).sort(
     justify-content: center;
   }
 
+  .como-funciona-card {
+    border: 1px solid var(--border);
+    background: rgba(247,240,232,0.02);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    gap: 48px;
+  }
+
+  .cards-section { padding: 0 56px 100px; }
+  .cta-section   { padding: 0 56px 100px; }
+
   .service-card {
-    box-shadow: 0 0 0 1px transparent, 0 0 0 0 transparent;
+    box-shadow: 0 0 0 1px transparent;
   }
   .service-card:hover {
     border-color: transparent;
@@ -176,13 +185,41 @@ const services = (await getCollection("servicos")).sort(
   }
 
   @media (max-width: 768px) {
+    /* hero */
     .servicos-hero {
-      height: auto;
-      min-height: 520px;
+      height: 100svh;
+      min-height: 560px;
       max-height: none;
     }
-    .servicos-hero-content {
-      padding: 140px 24px 80px;
+    .servicos-hero-gradient {
+      background:
+        linear-gradient(to bottom, rgba(7,7,7,0.2) 0%, rgba(7,7,7,0.55) 45%, rgba(7,7,7,0.9) 75%, var(--dark) 100%);
     }
+    .servicos-hero-content {
+      padding: 0 20px 40px;
+      justify-content: flex-end;
+    }
+    .servicos-hero-title {
+      font-size: clamp(28px, 9vw, 44px) !important;
+      letter-spacing: -1.5px !important;
+    }
+
+    /* como funciona */
+    .como-funciona-card {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 20px 16px;
+    }
+
+    /* cards */
+    .cards-section { padding: 0 16px 60px; }
+    .services-cards-grid {
+      grid-template-columns: 1fr !important;
+    }
+    .service-card { padding: 24px 20px !important; }
+
+    /* cta */
+    .cta-section { padding: 0 16px 60px; }
   }
 </style>
