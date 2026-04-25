@@ -84,7 +84,7 @@ const numbers = [
   { value: "1 stack", label: "Tráfego + IA + CRM no mesmo fluxo" },
 ];
 
-const b = import.meta.env.BASE_URL;
+const b = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
 const pilares = [
   {
