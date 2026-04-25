@@ -202,6 +202,11 @@ const numbers = [
     z-index: 0;
   }
 
+  /* no mobile o glow some (gradiente do ::after já cobre) */
+  @media (max-width: 768px) {
+    .sobre-slides-glow { display: none; }
+  }
+
   /* todas as imagens empilhadas — fade automático */
   .sobre-slide {
     position: absolute;
@@ -234,15 +239,61 @@ const numbers = [
 
   @media (max-width: 768px) {
     .sobre-hero {
-      grid-template-columns: 1fr;
-      gap: 0;
-      padding: 72px 20px 0;
-      min-height: auto;
+      display: block;
+      position: relative;
+      height: 100svh;
+      min-height: 560px;
+      padding: 0;
+      overflow: hidden;
     }
 
+    /* slideshow preenche o hero como fundo */
     .sobre-slides-wrap {
-      height: 320px;
-      margin-top: 8px;
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      margin-top: 0;
+    }
+
+    /* gradient vertical para legibilidade do texto */
+    .sobre-slides-wrap::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background: linear-gradient(
+        to bottom,
+        rgba(7,7,7,0.15) 0%,
+        rgba(7,7,7,0.45) 45%,
+        rgba(7,7,7,0.88) 74%,
+        var(--dark) 100%
+      );
+    }
+
+    /* texto sobreposto, ancorado na base */
+    .sobre-hero-text {
+      position: relative;
+      z-index: 5;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 20px 40px;
+    }
+
+    .sobre-hero-text h1 {
+      font-size: clamp(28px, 8.5vw, 42px) !important;
+      letter-spacing: -1.5px !important;
+    }
+
+    .sobre-hero-text p {
+      font-size: 14px !important;
+      max-width: 100% !important;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
   }
 </style>
