@@ -71,20 +71,30 @@ const services = (await getCollection("servicos")).sort(
               class="service-card relative rounded-[18px] p-10 no-underline transition-all duration-300"
               style="background: var(--dark-3); border: 1px solid var(--border);"
             >
-              <div class="mb-6"><IconService slug={service.slug} /></div>
-              <div
-                class="text-xs font-semibold tracking-widest uppercase mb-3"
-                style="color: var(--gold); letter-spacing: 1.5px;"
-              >
-                {service.data.badge}
+              {service.data.heroImage && (
+                <img
+                  src={`${b}${service.data.heroImage.replace(/^\//, '')}`}
+                  alt=""
+                  class="service-card-thumb"
+                  loading="lazy"
+                />
+              )}
+              <div class="service-card-inner">
+                <div class="mb-6"><IconService slug={service.slug} /></div>
+                <div
+                  class="text-xs font-semibold tracking-widest uppercase mb-3"
+                  style="color: var(--gold); letter-spacing: 1.5px;"
+                >
+                  {service.data.badge}
+                </div>
+                <h2 class="font-display font-black text-white mb-3" style="font-size: 22px; letter-spacing: -0.5px;">
+                  {service.data.title}
+                </h2>
+                <p class="text-sm font-light leading-relaxed" style="color: var(--muted);">
+                  {service.data.description}
+                </p>
+                <div class="mt-6 text-sm font-medium" style="color: var(--gold);">Ver mais →</div>
               </div>
-              <h2 class="font-display font-black text-white mb-3" style="font-size: 22px; letter-spacing: -0.5px;">
-                {service.data.title}
-              </h2>
-              <p class="text-sm font-light leading-relaxed" style="color: var(--muted);">
-                {service.data.description}
-              </p>
-              <div class="mt-6 text-sm font-medium" style="color: var(--gold);">Ver mais →</div>
             </a>
           ))
         }
@@ -176,12 +186,63 @@ const services = (await getCollection("servicos")).sort(
 
   .service-card {
     box-shadow: 0 0 0 1px transparent;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                border-color 0.35s ease,
+                box-shadow 0.35s ease;
   }
+
+  /* Hero thumbnail — hidden by default, reveals on hover */
+  .service-card-thumb {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0;
+    transform: scale(1.05);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Content always above thumbnail */
+  .service-card-inner {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Dark overlay to keep text readable when thumb is visible */
+  .service-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(165deg, rgba(16, 12, 9, 0.92), rgba(16, 12, 9, 0.78));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+
   .service-card:hover {
     border-color: transparent;
+    transform: translateY(-4px);
     box-shadow:
-      0 0 0 1px rgba(212, 168, 67, 0.7),
-      0 0 18px 0 rgba(212, 168, 67, 0.15);
+      0 0 0 1px rgba(184, 92, 58, 0.5),
+      0 0 24px 0 rgba(184, 92, 58, 0.12),
+      0 16px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .service-card:hover .service-card-thumb {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .service-card:hover::before {
+    opacity: 1;
   }
 
   @media (max-width: 768px) {

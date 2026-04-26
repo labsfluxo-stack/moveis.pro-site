@@ -8,6 +8,7 @@ import ServiceRow from "../components/ServiceRow.astro";
 import NumbersBar from "../components/NumbersBar.astro";
 import CaseCard from "../components/CaseCard.astro";
 import CTABox from "../components/CTABox.astro";
+import TrustBar from "../components/TrustBar.astro";
 import "../styles/global.css";
 
 const services = [
@@ -242,15 +243,15 @@ const faqItems = [
 
         <div class="hero-kpis">
           <div>
-            <b>14 dias</b>
+            <b data-count="14" data-suffix=" dias">14 dias</b>
             <span>pro sistema estar rodando</span>
           </div>
           <div>
-            <b>45 dias</b>
+            <b data-count="45" data-suffix=" dias">45 dias</b>
             <span>pro showroom encher</span>
           </div>
           <div>
-            <b>30 leads</b>
+            <b data-count="30" data-suffix=" leads">30 leads</b>
             <span>garantidos no 1º ciclo</span>
           </div>
         </div>
@@ -260,6 +261,8 @@ const faqItems = [
     <div style="position: relative; z-index: 1;">
       <Marquee items={marqueeItems} />
     </div>
+
+    <TrustBar />
 
     <!-- 4 PILARES -->
     <section id="pilares" style="padding: 56px 56px 0;">
@@ -385,13 +388,18 @@ const faqItems = [
         />
       </div>
 
-      <div class="faq-grid" data-animate data-delay="1">
+      <div class="faq-list" data-animate data-delay="1">
         {
           faqItems.map((item) => (
-            <article class="faq-item">
-              <h3>{item.q}</h3>
-              <p>{item.a}</p>
-            </article>
+            <details class="faq-item">
+              <summary>
+                <span>{item.q}</span>
+                <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </summary>
+              <div class="faq-answer">
+                <p>{item.a}</p>
+              </div>
+            </details>
           ))
         }
       </div>
@@ -621,7 +629,7 @@ const faqItems = [
     display: block;
     font-family: "Urbanist", "Satoshi", "Inter", sans-serif;
     font-weight: 900;
-    font-size: 20px;
+    font-size: 28px;
     color: var(--terra);
     line-height: 1;
     letter-spacing: -0.03em;
@@ -778,33 +786,87 @@ const faqItems = [
     left: 0;
   }
 
-  .faq-grid {
+  .faq-list {
     margin-top: 26px;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 800px;
   }
 
   .faq-item {
     border: 1px solid var(--line);
     border-radius: 16px;
     background: rgba(247, 240, 232, 0.02);
-    padding: 20px;
+    overflow: hidden;
+    transition: border-color 0.3s ease, background 0.3s ease;
   }
 
-  .faq-item h3 {
+  .faq-item[open] {
+    border-color: rgba(184, 92, 58, 0.3);
+    background: rgba(247, 240, 232, 0.035);
+  }
+
+  .faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 22px;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item summary span {
     font-family: "Satoshi", "Inter", sans-serif;
-    font-size: 22px;
-    line-height: 1.08;
-    letter-spacing: -0.03em;
+    font-size: 18px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
     color: var(--cream);
-    margin-bottom: 8px;
+    font-weight: 700;
   }
 
-  .faq-item p {
+  .faq-chevron {
+    flex-shrink: 0;
+    color: var(--text-muted);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), color 0.3s ease;
+  }
+
+  .faq-item[open] .faq-chevron {
+    transform: rotate(180deg);
+    color: var(--terra);
+  }
+
+  /* Smooth height animation via grid-template-rows */
+  .faq-answer {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .faq-item[open] .faq-answer {
+    grid-template-rows: 1fr;
+  }
+
+  .faq-answer > p {
+    overflow: hidden;
     color: var(--text-muted);
     font-size: 14px;
-    line-height: 1.6;
+    line-height: 1.65;
+    padding: 0 22px;
+    margin: 0;
+    transition: padding 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+    opacity: 0;
+  }
+
+  .faq-item[open] .faq-answer > p {
+    padding: 0 22px 20px;
+    opacity: 1;
   }
 
   @media (max-width: 768px) {
@@ -882,7 +944,6 @@ const faqItems = [
     }
 
     .fit-grid { grid-template-columns: 1fr; }
-    .faq-grid { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 480px) {
@@ -906,20 +967,51 @@ const faqItems = [
 </style>
 
 <script>
-  // Hero: poster is always visible (opacity 1). Video fades in when playing, out when done.
-  const heroSection = document.querySelector('.hero-cinematic') as HTMLElement | null;
-  const heroVideo = document.getElementById('hero-video') as HTMLVideoElement | null;
+  document.addEventListener('astro:page-load', () => {
+    // Hero: poster is always visible (opacity 1). Video fades in when playing, out when done.
+    const heroSection = document.querySelector('.hero-cinematic') as HTMLElement | null;
+    const heroVideo = document.getElementById('hero-video') as HTMLVideoElement | null;
 
-  if (heroSection && heroVideo) {
-    heroVideo.addEventListener('playing', () => {
-      heroSection.classList.add('playing');
-      heroSection.classList.remove('finished');
-    });
-    heroVideo.addEventListener('ended', () => {
-      heroSection.classList.remove('playing');
-      heroSection.classList.add('finished');
-    });
-    // autoplay blocked or error: poster stays visible, nothing to do
-    heroVideo.play().catch(() => {});
-  }
+    if (heroSection && heroVideo) {
+      heroVideo.addEventListener('playing', () => {
+        heroSection.classList.add('playing');
+        heroSection.classList.remove('finished');
+      });
+      heroVideo.addEventListener('ended', () => {
+        heroSection.classList.remove('playing');
+        heroSection.classList.add('finished');
+      });
+      heroVideo.play().catch(() => {});
+    }
+
+    // KPI counter-up animation
+    const kpiObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const kpis = entry.target.querySelectorAll('b[data-count]');
+          kpis.forEach((el) => {
+            const target = parseInt(el.getAttribute('data-count') || '0', 10);
+            const suffix = el.getAttribute('data-suffix') || '';
+            const duration = 1200;
+            const start = performance.now();
+
+            const animate = (now: number) => {
+              const elapsed = now - start;
+              const progress = Math.min(elapsed / duration, 1);
+              const eased = 1 - Math.pow(1 - progress, 3);
+              const current = Math.round(target * eased);
+              el.textContent = current + suffix;
+              if (progress < 1) requestAnimationFrame(animate);
+            };
+            requestAnimationFrame(animate);
+          });
+          kpiObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    const kpiSection = document.querySelector('.hero-kpis');
+    if (kpiSection) kpiObserver.observe(kpiSection);
+  });
 </script>
+

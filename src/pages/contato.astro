@@ -194,20 +194,22 @@ const marqueeItems = [
 </BaseLayout>
 
 <script>
-  const heroEl    = document.getElementById('contato-hero') as HTMLElement | null;
-  const videoEl   = document.getElementById('contato-video') as HTMLVideoElement | null;
+  document.addEventListener('astro:page-load', () => {
+    const heroEl    = document.getElementById('contato-hero') as HTMLElement | null;
+    const videoEl   = document.getElementById('contato-video') as HTMLVideoElement | null;
 
-  if (heroEl && videoEl) {
-    videoEl.addEventListener('playing', () => {
-      heroEl.classList.add('playing');
-      heroEl.classList.remove('finished');
-    });
-    videoEl.addEventListener('ended', () => {
-      heroEl.classList.remove('playing');
-      heroEl.classList.add('finished');
-    });
-    videoEl.play().catch(() => {});
-  }
+    if (heroEl && videoEl) {
+      videoEl.addEventListener('playing', () => {
+        heroEl.classList.add('playing');
+        heroEl.classList.remove('finished');
+      });
+      videoEl.addEventListener('ended', () => {
+        heroEl.classList.remove('playing');
+        heroEl.classList.add('finished');
+      });
+      videoEl.play().catch(() => {});
+    }
+  });
 </script>
 
 <style>

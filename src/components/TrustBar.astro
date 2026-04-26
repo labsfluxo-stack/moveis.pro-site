@@ -1,0 +1,74 @@
+---
+// src/components/TrustBar.astro
+// Trust logos bar — placeholders estilizados que representam clientes
+const clients = [
+  "Concept Brasil",
+  "Casa & Design",
+  "Móveis Alfa",
+  "Decor Prime",
+  "Studio Timber",
+  "Maison Estúdio",
+];
+---
+
+<section class="trust-bar" data-animate>
+  <p class="trust-label">Lojas que já confiam no sistema</p>
+  <div class="trust-logos">
+    {clients.map((name) => (
+      <span class="trust-logo">{name}</span>
+    ))}
+  </div>
+</section>
+
+<style>
+  .trust-bar {
+    padding: 40px 56px;
+    text-align: center;
+  }
+
+  .trust-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+  }
+
+  .trust-logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px 32px;
+  }
+
+  .trust-logo {
+    font-family: "Satoshi", "Inter", sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: rgba(247, 240, 232, 0.22);
+    transition: color 0.3s ease;
+    white-space: nowrap;
+    user-select: none;
+  }
+
+  .trust-logo:hover {
+    color: rgba(247, 240, 232, 0.45);
+  }
+
+  @media (max-width: 768px) {
+    .trust-bar {
+      padding: 32px 24px;
+    }
+
+    .trust-logos {
+      gap: 10px 24px;
+    }
+
+    .trust-logo {
+      font-size: 15px;
+    }
+  }
+</style>

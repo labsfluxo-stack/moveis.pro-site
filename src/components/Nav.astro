@@ -181,14 +181,17 @@ const isActive = (href: string) =>
   }
 
   .nav-ghost {
-    color: var(--text-dim);
-    border: 1px solid var(--line-strong);
-    background: rgba(247, 240, 232, 0.02);
+    color: var(--text-muted);
+    border: none;
+    background: none;
+    padding: 10px 8px;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.06em;
   }
 
   .nav-ghost:hover {
     color: var(--cream);
-    border-color: rgba(247, 240, 232, 0.35);
   }
 
   .nav-cta {
@@ -414,33 +417,35 @@ const isActive = (href: string) =>
 </style>
 
 <script>
-  const toggle = document.getElementById("nav-toggle");
-  const closeButton = document.getElementById("nav-close");
-  const menu = document.getElementById("mobile-menu");
-  const backdrop = document.getElementById("mobile-backdrop");
+  document.addEventListener('astro:page-load', () => {
+    const toggle = document.getElementById("nav-toggle");
+    const closeButton = document.getElementById("nav-close");
+    const menu = document.getElementById("mobile-menu");
+    const backdrop = document.getElementById("mobile-backdrop");
 
-  let open = false;
+    let open = false;
 
-  const setMenuState = (nextOpen) => {
-    open = nextOpen;
-    toggle?.classList.toggle("is-open", open);
-    menu?.classList.toggle("is-open", open);
-    backdrop?.classList.toggle("is-open", open);
-    toggle?.setAttribute("aria-expanded", String(open));
-    menu?.setAttribute("aria-hidden", String(!open));
-  };
+    const setMenuState = (nextOpen) => {
+      open = nextOpen;
+      toggle?.classList.toggle("is-open", open);
+      menu?.classList.toggle("is-open", open);
+      backdrop?.classList.toggle("is-open", open);
+      toggle?.setAttribute("aria-expanded", String(open));
+      menu?.setAttribute("aria-hidden", String(!open));
+    };
 
-  toggle?.addEventListener("click", () => setMenuState(!open));
-  closeButton?.addEventListener("click", () => setMenuState(false));
-  backdrop?.addEventListener("click", () => setMenuState(false));
+    toggle?.addEventListener("click", () => setMenuState(!open));
+    closeButton?.addEventListener("click", () => setMenuState(false));
+    backdrop?.addEventListener("click", () => setMenuState(false));
 
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && open) {
-      setMenuState(false);
-    }
-  });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && open) {
+        setMenuState(false);
+      }
+    });
 
-  menu?.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => setMenuState(false));
+    menu?.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => setMenuState(false));
+    });
   });
 </script>
