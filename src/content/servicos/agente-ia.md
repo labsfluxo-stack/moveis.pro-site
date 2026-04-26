@@ -4,6 +4,7 @@ description: Atendimento 24/7 que responde rapido, qualifica lead e agenda visit
 badge: IA & Atendimento
 icon: 💬
 order: 4
+heroImage: /images/servicos/agente-ia.png
 ---
 
 ## Como funciona

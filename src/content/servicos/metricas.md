@@ -4,6 +4,7 @@ description: Painel comercial com lead, venda, custo e retorno atualizados em te
 badge: Gestao
 icon: ⚡
 order: 5
+heroImage: /images/servicos/metricas.png
 ---
 
 ## Como funciona

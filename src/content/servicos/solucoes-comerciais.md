@@ -4,6 +4,7 @@ description: Estrategia comercial para aumentar fechamento e reduzir perda de le
 badge: Estrategia
 icon: 💼
 order: 7
+heroImage: /images/servicos/solucoes-comerciais.png
 ---
 
 ## Como funciona

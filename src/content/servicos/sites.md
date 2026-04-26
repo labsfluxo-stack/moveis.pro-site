@@ -4,6 +4,7 @@ description: Paginas focadas em diagnostico e captacao de lead qualificado para 
 badge: Web
 icon: 🌐
 order: 6
+heroImage: /images/servicos/sites.png
 ---
 
 ## Como funciona

@@ -4,6 +4,7 @@ description: CRM que nao deixa lead esfriar e organiza follow-up da equipe comer
 badge: IA & CRM
 icon: 🤖
 order: 1
+heroImage: /images/servicos/crm-automatizado.png
 ---
 
 ## Como funciona
