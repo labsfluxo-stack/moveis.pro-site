@@ -4,7 +4,7 @@ description: WhatsApp, Instagram, telefone e loja fisica no mesmo historico de c
 badge: Integracao
 icon: 🔗
 order: 3
-heroImage: /images/servicos/omnichannel.png
+heroImage: /images/servicos/omnichannel.webp
 ---
 
 ## Como funciona

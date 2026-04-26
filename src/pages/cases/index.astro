@@ -62,15 +62,15 @@ const rest = cases.filter((c) => !c.data.featured);
         <!-- left-edge fade to blend with background -->
         <div class="hero-slide-fade"></div>
         <!-- slides -->
-        <div class="hero-slide active" style={`background-image: url('${b}Gemini_Generated_Image_x88ektx88ektx88e.png')`}></div>
-        <div class="hero-slide" style={`background-image: url('${b}Gemini_Generated_Image_evxw1eevxw1eevxw%20(1).png')`}></div>
-        <div class="hero-slide" style={`background-image: url('${b}Gemini_Generated_Image_soqcxxsoqcxxsoqc.png')`}></div>
-        <div class="hero-slide" style={`background-image: url('${b}Gemini_Generated_Image_g0y63yg0y63yg0y6%20(1).png')`}></div>
-        <div class="hero-slide" style={`background-image: url('${b}Gemini_Generated_Image_qkhwmkqkhwmkqkhw.png')`}></div>
-        <div class="hero-slide" style={`background-image: url('${b}Gemini_Generated_Image_jbmi89jbmi89jbmi.png')`}></div>
-        <div class="hero-slide" style={`background-image: url('${b}Gemini_Generated_Image_t80le9t80le9t80l.png')`}></div>
-        <div class="hero-slide" style={`background-image: url('${b}Gemini_Generated_Image_7lachq7lachq7lac.png')`}></div>
-        <div class="hero-slide" style={`background-image: url('${b}Gemini_Generated_Image_4obfuq4obfuq4obf.png')`}></div>
+        <div class="hero-slide active" style={`background-image: url('${b}Gemini_Generated_Image_x88ektx88ektx88e.webp')`}></div>
+        <div class="hero-slide" style={`background-image: url('${b}Gemini_Generated_Image_evxw1eevxw1eevxw%20(1).webp')`}></div>
+        <div class="hero-slide" style={`background-image: url('${b}Gemini_Generated_Image_soqcxxsoqcxxsoqc.webp')`}></div>
+        <div class="hero-slide" style={`background-image: url('${b}Gemini_Generated_Image_g0y63yg0y63yg0y6%20(1).webp')`}></div>
+        <div class="hero-slide" style={`background-image: url('${b}Gemini_Generated_Image_qkhwmkqkhwmkqkhw.webp')`}></div>
+        <div class="hero-slide" style={`background-image: url('${b}Gemini_Generated_Image_jbmi89jbmi89jbmi.webp')`}></div>
+        <div class="hero-slide" style={`background-image: url('${b}Gemini_Generated_Image_t80le9t80le9t80l.webp')`}></div>
+        <div class="hero-slide" style={`background-image: url('${b}Gemini_Generated_Image_7lachq7lachq7lac.webp')`}></div>
+        <div class="hero-slide" style={`background-image: url('${b}Gemini_Generated_Image_4obfuq4obfuq4obf.webp')`}></div>
         <!-- dots -->
         <div class="hero-slide-dots">
           <span class="hero-dot active"></span>
@@ -99,14 +99,14 @@ const rest = cases.filter((c) => !c.data.featured);
         <!-- depois = base layer -->
         <img
           class="transf-img transf-img-depois"
-          src={`${import.meta.env.BASE_URL}images/cases/loja-3-depois.png`}
+          src={`${import.meta.env.BASE_URL}images/cases/loja-3-depois.webp`}
           alt="Loja João Pessoa depois"
         />
         <!-- antes = top layer, dissolve out -->
         <img
           class="transf-img transf-img-antes"
           id="transf-antes"
-          src={`${import.meta.env.BASE_URL}images/cases/loja-3-antes.png`}
+          src={`${import.meta.env.BASE_URL}images/cases/loja-3-antes.webp`}
           alt="Loja João Pessoa antes"
         />
 
@@ -718,116 +718,136 @@ const rest = cases.filter((c) => !c.data.featured);
 </style>
 
 <script>
-  const scene      = document.getElementById('transf-scene');
-  const imgAntes   = document.getElementById('transf-antes') as HTMLImageElement;
-  const progress   = document.getElementById('transf-progress');
-  const phaseTag   = document.getElementById('transf-phase');
-  const replayBtn  = document.getElementById('transf-replay');
-  const metrics    = Array.from(document.querySelectorAll('.transf-metric'));
-  const numEls     = Array.from(document.querySelectorAll('.tm-num')) as HTMLElement[];
-
-  const DELAY      = 1000;   // ms before animation starts
-  const TRANS_DUR  = 3000;   // ms — image fade duration
-  const STAGGER    = 260;    // ms between each metric
-
-  let running = false;
-
-  function reset() {
-    if (!imgAntes || !progress || !phaseTag || !replayBtn) return;
-    imgAntes.style.opacity = '1';
-    progress.style.transition = 'none';
-    progress.style.width = '0%';
-    phaseTag.textContent = 'Antes';
-    phaseTag.classList.remove('depois');
-    metrics.forEach((m) => m.classList.remove('revealed'));
-    numEls.forEach((el) => {
-      el.textContent = el.dataset.from ?? '0';
-    });
-    replayBtn.classList.remove('visible');
-    running = false;
-  }
-
-  function animateNum(el: HTMLElement, duration: number) {
-    const from = parseFloat(el.dataset.from ?? '0');
-    const to   = parseFloat(el.dataset.to   ?? '0');
-    const dec  = parseInt(el.dataset.dec     ?? '0', 10);
-    const start = performance.now();
-    function tick(now: number) {
-      const t = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - t, 3);
-      const val = from + (to - from) * eased;
-      el.textContent = dec > 0 ? val.toFixed(dec) : String(Math.round(val));
-      if (t < 1) requestAnimationFrame(tick);
+  document.addEventListener('astro:page-load', () => {
+    // Clean up previous intervals
+    if (window.__casesSlideInterval) {
+      clearInterval(window.__casesSlideInterval);
+      window.__casesSlideInterval = null;
     }
-    requestAnimationFrame(tick);
-  }
 
-  function play() {
-    if (running) return;
-    running = true;
-    reset();
-    running = true;
+    const scene      = document.getElementById('transf-scene');
+    const imgAntes   = document.getElementById('transf-antes') as HTMLImageElement;
+    const progress   = document.getElementById('transf-progress');
+    const phaseTag   = document.getElementById('transf-phase');
+    const replayBtn  = document.getElementById('transf-replay');
+    const metrics    = Array.from(document.querySelectorAll('.transf-metric'));
+    const numEls     = Array.from(document.querySelectorAll('.tm-num')) as HTMLElement[];
 
-    setTimeout(() => {
+    const DELAY      = 1000;   // ms before animation starts
+    const TRANS_DUR  = 3000;   // ms — image fade duration
+    const STAGGER    = 260;    // ms between each metric
+
+    let running = false;
+
+    function reset() {
       if (!imgAntes || !progress || !phaseTag || !replayBtn) return;
-
-      // fade image
-      imgAntes.style.opacity = '0';
-
-      // progress bar
-      progress.style.transition = `width ${TRANS_DUR}ms linear`;
-      progress.style.width = '100%';
-
-      // phase tag switches mid-way
-      setTimeout(() => {
-        if (phaseTag) {
-          phaseTag.textContent = 'Depois';
-          phaseTag.classList.add('depois');
-        }
-      }, TRANS_DUR * 0.45);
-
-      // reveal metrics staggered
-      metrics.forEach((m, i) => {
-        setTimeout(() => {
-          m.classList.add('revealed');
-          const numEl = m.querySelector('.tm-num') as HTMLElement | null;
-          if (numEl) animateNum(numEl, 1400);
-        }, TRANS_DUR * 0.25 + i * STAGGER);
+      imgAntes.style.opacity = '1';
+      progress.style.transition = 'none';
+      progress.style.width = '0%';
+      phaseTag.textContent = 'Antes';
+      phaseTag.classList.remove('depois');
+      metrics.forEach((m) => m.classList.remove('revealed'));
+      numEls.forEach((el) => {
+        el.textContent = el.dataset.from ?? '0';
       });
+      replayBtn.classList.remove('visible');
+      running = false;
+    }
 
-      // show replay
+    function animateNum(el: HTMLElement, duration: number) {
+      const from = parseFloat(el.dataset.from ?? '0');
+      const to   = parseFloat(el.dataset.to   ?? '0');
+      const dec  = parseInt(el.dataset.dec     ?? '0', 10);
+      const start = performance.now();
+      function tick(now: number) {
+        const t = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - t, 3);
+        const val = from + (to - from) * eased;
+        el.textContent = dec > 0 ? val.toFixed(dec) : String(Math.round(val));
+        if (t < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    function play() {
+      if (running) return;
+      running = true;
+      reset();
+      running = true;
+
       setTimeout(() => {
-        if (replayBtn) replayBtn.classList.add('visible');
-        running = false;
-      }, TRANS_DUR + 600);
+        if (!imgAntes || !progress || !phaseTag || !replayBtn) return;
 
-    }, DELAY);
-  }
+        // fade image
+        imgAntes.style.opacity = '0';
 
-  // trigger when section enters viewport
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting) { play(); obs.disconnect(); }
-    });
-  }, { threshold: 0.2 });
-  if (scene) obs.observe(scene);
+        // progress bar
+        progress.style.transition = `width ${TRANS_DUR}ms linear`;
+        progress.style.width = '100%';
 
-  replayBtn?.addEventListener('click', () => play());
+        // phase tag switches mid-way
+        setTimeout(() => {
+          if (phaseTag) {
+            phaseTag.textContent = 'Depois';
+            phaseTag.classList.add('depois');
+          }
+        }, TRANS_DUR * 0.45);
 
-  // ── HERO SLIDESHOW ──
-  const slides = Array.from(document.querySelectorAll('.hero-slide'));
-  const dots   = Array.from(document.querySelectorAll('.hero-dot'));
-  let current  = 0;
+        // reveal metrics staggered
+        metrics.forEach((m, i) => {
+          setTimeout(() => {
+            m.classList.add('revealed');
+            const numEl = m.querySelector('.tm-num') as HTMLElement | null;
+            if (numEl) animateNum(numEl, 1400);
+          }, TRANS_DUR * 0.25 + i * STAGGER);
+        });
 
-  function goTo(n: number) {
-    slides[current].classList.remove('active');
-    dots[current].classList.remove('active');
-    current = n % slides.length;
-    slides[current].classList.add('active');
-    dots[current].classList.add('active');
-  }
+        // show replay
+        setTimeout(() => {
+          if (replayBtn) replayBtn.classList.add('visible');
+          running = false;
+        }, TRANS_DUR + 600);
 
-  if (slides.length > 1) {
-    setInterval(() => goTo(current + 1), 3500);
-  }
+      }, DELAY);
+    }
+
+    // trigger when section enters viewport
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { play(); obs.disconnect(); }
+      });
+    }, { threshold: 0.2 });
+    if (scene) obs.observe(scene);
+
+    replayBtn?.addEventListener('click', () => play());
+
+    // ── HERO SLIDESHOW ──
+    const slides = Array.from(document.querySelectorAll('.hero-slide'));
+    const dots   = Array.from(document.querySelectorAll('.hero-dot'));
+    let current  = 0;
+
+    // Ensure first slide is active on load
+    slides.forEach((s, i) => s.classList.toggle('active', i === 0));
+    dots.forEach((d, i) => d.classList.toggle('active', i === 0));
+
+    function goTo(n: number) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = n % slides.length;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+    }
+
+    if (slides.length > 1) {
+      window.__casesSlideInterval = setInterval(() => goTo(current + 1), 3500);
+    }
+  });
+
+  // Clean up when navigating away
+  document.addEventListener('astro:before-swap', () => {
+    if (window.__casesSlideInterval) {
+      clearInterval(window.__casesSlideInterval);
+      window.__casesSlideInterval = null;
+    }
+  });
 </script>

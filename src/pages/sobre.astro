@@ -7,7 +7,7 @@ import CTABox from "../components/CTABox.astro";
 
 const b = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
-const sobreImages = ['1.png','2.png','3.png','4.png','5.png','6.png','7.png','8.png'];
+const sobreImages = ['1.webp','2.webp','3.webp','4.webp','5.webp','6.webp','7.webp','8.webp'];
 
 const pilares = [
   {
@@ -159,18 +159,41 @@ const numbers = [
 </BaseLayout>
 
 <script>
-  const slides = Array.from(document.querySelectorAll('.sobre-slide'));
-  let current = 0;
-
-  function nextSlide() {
-    slides[current].classList.remove('active');
-    current = (current + 1) % slides.length;
-    slides[current].classList.add('active');
+  // Clear any previous slideshow interval on re-navigation
+  if (window.__sobreSlideInterval) {
+    clearInterval(window.__sobreSlideInterval);
+    window.__sobreSlideInterval = null;
   }
 
-  if (slides.length > 1) {
-    setInterval(nextSlide, 3200);
-  }
+  document.addEventListener('astro:page-load', () => {
+    // Clean up previous interval if page re-loaded
+    if (window.__sobreSlideInterval) {
+      clearInterval(window.__sobreSlideInterval);
+    }
+
+    const slides = Array.from(document.querySelectorAll('.sobre-slide'));
+    if (slides.length <= 1) return;
+
+    let current = 0;
+    // Ensure first slide is active on load
+    slides.forEach((s, i) => {
+      s.classList.toggle('active', i === 0);
+    });
+
+    window.__sobreSlideInterval = setInterval(() => {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 3200);
+  });
+
+  // Also clean up when navigating away
+  document.addEventListener('astro:before-swap', () => {
+    if (window.__sobreSlideInterval) {
+      clearInterval(window.__sobreSlideInterval);
+      window.__sobreSlideInterval = null;
+    }
+  });
 </script>
 
 <style>

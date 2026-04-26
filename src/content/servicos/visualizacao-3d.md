@@ -4,7 +4,7 @@ description: Experiencia visual para ajudar o cliente a decidir mais rapido ante
 badge: 3D & RA
 icon: 🏠
 order: 8
-heroImage: /images/servicos/visualizacao-3d.png
+heroImage: /images/servicos/visualizacao-3d.webp
 ---
 
 ## Como funciona

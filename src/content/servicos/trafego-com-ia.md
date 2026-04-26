@@ -4,7 +4,7 @@ description: Google e Meta otimizados todo dia pra trazer comprador — não cur
 badge: Performance
 icon: 📊
 order: 2
-heroImage: /images/servicos/trafego-ia-new.png
+heroImage: /images/servicos/trafego-ia-new.webp
 ---
 
 ## Como funciona
